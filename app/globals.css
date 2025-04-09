@@ -37,6 +37,9 @@ body,
   @apply font-fg-atf text-[15px] font-normal leading-[1.4] tracking-normal;
 }
 
+.menu {
+  @apply font-fg font-bold text-[1.6rem] leading-none tracking-normal lg:text-[1.4rem];
+}
 
 .button {
   @apply relative rounded-[0.7rem] p-[2.1rem] font-folio text-[2rem] font-medium leading-none tracking-normal text-white transition-all;

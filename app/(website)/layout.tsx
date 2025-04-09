@@ -6,8 +6,10 @@ import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 
 import AlertBanner from "./alert-banner";
+import { Header } from "@/app/components/Header";
+
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { siteSettingsQuery } from "@/sanity/lib/queries";
+import { headerQuery, siteSettingsQuery } from "@/sanity/lib/queries";
 
 import type React from "react";
 
@@ -19,11 +21,11 @@ export async function generateMetadata(): Promise<Metadata> {
       stega: false,
     })) || {};
 
-  const title = SEO?.metaTitle || "YEP";
+  const title = SEO?.metaTitle || "Rhythm & Motion";
   const description = SEO?.metaDescription || "";
 
   return {
-    metadataBase: new URL("https://www.yepprogram.org"),
+    metadataBase: new URL("https://www.rhythmandmotion.com/"),
     title: {
       template: `%s | ${title}`,
       default: title,
@@ -32,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: SEO?.openGraphTitle,
       description: SEO?.openGraphDescription,
-      url: "https://www.yepprogram.org",
+      url: "https://www.rhythmandmotion.com/",
       siteName: title,
       images: [
         {
@@ -51,12 +53,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const { isEnabled: isDraftMode } = await draftMode();
+  const { header } = await sanityFetch({ query: headerQuery });
 
   return (
     <html lang="en" className="bg-white text-black">
       <body>
         <section className="min-h-screen">
           {isDraftMode && <AlertBanner />}
+          <Header data={header} />
           {children}
         </section>
         {isDraftMode && <VisualEditing />}

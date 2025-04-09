@@ -19,10 +19,26 @@ const photoGalleryData = defineQuery(`{
     photos[] ${imageData}
 }`);
 
+const linkTypeData = `
+  _type == "link" => {
+    ...,
+    internalLink->{_type,slug,title}
+  }
+`;
+
 const contentData = `{
     ...,
     _type == 'photoGallery' => ${photoGalleryData},
 }`;
+
+export const headerQuery = defineQuery(`{
+    'header': *[_type == 'header'][0] {
+        navList[] {
+            ...,
+            ${linkTypeData},
+        }
+    }
+}`);
 
 export const siteSettingsQuery = defineQuery(`
     *[_type == 'siteSettings'][0] {
