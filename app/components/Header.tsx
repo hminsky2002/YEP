@@ -26,7 +26,7 @@ export function Header({ data }: Props) {
 
   return (
     <nav
-      className={`${bgColor} fixed top-0 z-10 flex w-full items-center justify-between text-white`}
+      className={`${bgColor} fixed top-0 z-10 flex w-full items-center justify-between`}
     >
       <NextLink href={`/`}>
         <div className="ml-[1.6rem] mt-[1.6rem] w-80">

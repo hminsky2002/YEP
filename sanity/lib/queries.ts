@@ -26,6 +26,13 @@ const linkTypeData = `
   }
 `;
 
+const socialLink = `
+    {
+    ...,
+    icon ${imageData},
+    ${linkTypeData}
+    }
+`;
 const contentData = `{
     ...,
     _type == 'photoGallery' => ${photoGalleryData},
@@ -37,6 +44,13 @@ export const headerQuery = defineQuery(`{
             ...,
             ${linkTypeData},
         }
+    }
+}`);
+
+export const footerQuery = defineQuery(`{
+    'footer': *[_type == 'footer'][0] {
+            ...,
+            socials[] ${socialLink}
     }
 }`);
 

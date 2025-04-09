@@ -3,7 +3,7 @@ import type { StructureResolver } from "sanity/structure";
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 
-const singletonTypes = ["homepage", "siteSettings", "header"];
+const singletonTypes = ["homepage", "siteSettings", "header", "footer"];
 
 const documentsHiddenFromContentList = ["page", "photoGallery"];
 
@@ -54,6 +54,13 @@ export const structure: StructureResolver = (S) =>
         .title("Header")
         .child(
           S.document().id("header").schemaType("header").documentId("header"),
+        ),
+      S.listItem()
+        .id("footer")
+        .schemaType("footer")
+        .title("Footer")
+        .child(
+          S.document().id("footer").schemaType("footer").documentId("footer"),
         ),
       S.listItem()
         .title("Pages")
