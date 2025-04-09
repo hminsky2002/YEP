@@ -7,13 +7,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const data =
     (await sanityFetch({
       query: homepageQuery,
-      // Metadata should never contain stega
       stega: false,
     })) || {};
 
   const { SEO } = data.homepage;
 
-  const title = SEO?.metaTitle || "Rhythm & Motion";
+  const title = SEO?.metaTitle || "YEP Young Entrepeneurs Program";
   const description = SEO?.metaDescription || "";
 
   return {

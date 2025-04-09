@@ -12,13 +12,6 @@ const imageData = `{
     'aspectRatio': asset->metadata.dimensions.aspectRatio,
 }`;
 
-const linkTypeData = `
-  _type == "link" => {
-    ...,
-    internalLink->{_type,slug,title}
-  }
-`;
-
 const photoGalleryData = defineQuery(`{
     _id,
     _type,

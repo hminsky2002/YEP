@@ -19,11 +19,7 @@ export const homepage = defineType({
       of: [
         {
           type: "reference",
-          to: [
-            { type: "centeredText" },
-            { type: "photoGallery" },
-            { type: "imageText" },
-          ],
+          to: [{ type: "photoGallery" }],
         },
       ],
     }),
