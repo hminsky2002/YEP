@@ -112,26 +112,29 @@ export type CenteredText = {
     caption?: string;
     _type: "imageAlt";
   };
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    _key: string;
-  } & Link>;
+  content?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Link)
+  >;
   textColor?: Color;
 };
 
@@ -156,26 +159,29 @@ export type ImageText = {
     caption?: string;
     _type: "imageAlt";
   };
-  content?: Array<{
-    children?: Array<{
-      marks?: Array<string>;
-      text?: string;
-      _type: "span";
-      _key: string;
-    }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4";
-    listItem?: "bullet" | "number";
-    markDefs?: Array<{
-      href?: string;
-      _type: "link";
-      _key: string;
-    }>;
-    level?: number;
-    _type: "block";
-    _key: string;
-  } | {
-    _key: string;
-  } & Link>;
+  content?: Array<
+    | {
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "normal" | "h1" | "h2" | "h3" | "h4";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }
+    | ({
+        _key: string;
+      } & Link)
+  >;
 };
 
 export type ImageAlt = {
@@ -206,12 +212,16 @@ export type Header = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  navList?: Array<{
-    _key: string;
-  } & Link>;
-  mobileNavList?: Array<{
-    _key: string;
-  } & Link>;
+  navList?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
+  mobileNavList?: Array<
+    {
+      _key: string;
+    } & Link
+  >;
 };
 
 export type Color = {
@@ -251,17 +261,19 @@ export type Link = {
   _type: "link";
   text?: string;
   type?: string;
-  internalLink?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "page";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "homepage";
-  };
+  internalLink?:
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "page";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "homepage";
+      };
   url?: string;
   email?: string;
   phone?: string;
@@ -277,22 +289,26 @@ export type Homepage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  content?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "centeredText";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "photoGallery";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "imageText";
-  }>;
+  content?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "centeredText";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "photoGallery";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "imageText";
+      }
+  >;
   SEO?: Seo;
 };
 
@@ -304,17 +320,20 @@ export type Page = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  content?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "centeredText";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "photoGallery";
-  }>;
+  content?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "centeredText";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "photoGallery";
+      }
+  >;
   SEO?: Seo;
 };
 
@@ -404,7 +423,32 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | PhotoGallery | CenteredText | ImageText | ImageAlt | SiteSettings | Header | Color | RgbaColor | HsvaColor | HslaColor | Link | Homepage | Page | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Seo | Slug;
+export type AllSanitySchemaTypes =
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityFileAsset
+  | Geopoint
+  | PhotoGallery
+  | CenteredText
+  | ImageText
+  | ImageAlt
+  | SiteSettings
+  | Header
+  | Color
+  | RgbaColor
+  | HsvaColor
+  | HslaColor
+  | Link
+  | Homepage
+  | Page
+  | SanityImageCrop
+  | SanityImageHotspot
+  | SanityImageAsset
+  | SanityAssetSourceData
+  | SanityImageMetadata
+  | Seo
+  | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
 // Variable: photoGalleryData
@@ -439,15 +483,18 @@ export type HeaderQueryResult = {
       _type: "link";
       text?: string;
       type?: string;
-      internalLink: {
-        _type: "homepage";
-        slug: null;
-        title: null;
-      } | {
-        _type: "page";
-        slug: Slug | null;
-        title: string | null;
-      } | null;
+      internalLink:
+        | {
+            _type: "homepage";
+            slug: null;
+            title: null;
+          }
+        | {
+            _type: "page";
+            slug: Slug | null;
+            title: string | null;
+          }
+        | null;
       url?: string;
       email?: string;
       phone?: string;
@@ -461,15 +508,18 @@ export type HeaderQueryResult = {
       _type: "link";
       text?: string;
       type?: string;
-      internalLink: {
-        _type: "homepage";
-        slug: null;
-        title: null;
-      } | {
-        _type: "page";
-        slug: Slug | null;
-        title: string | null;
-      } | null;
+      internalLink:
+        | {
+            _type: "homepage";
+            slug: null;
+            title: null;
+          }
+        | {
+            _type: "page";
+            slug: Slug | null;
+            title: string | null;
+          }
+        | null;
       url?: string;
       email?: string;
       phone?: string;
@@ -489,130 +539,146 @@ export type HomepageQueryResult = {
     _createdAt: string;
     _updatedAt: string;
     _rev: string;
-    content: Array<{
-      _id: string;
-      _type: "centeredText";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      marginY: number | null;
-      bgColor: string | null;
-      image: {
-        caption: string | null;
-        assetId: string | null;
-        assetPath: string | null;
-        aspectRatio: number | null;
-      } | null;
-      content: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      } | {
-        _key: string;
-        _type: "link";
-        text?: string;
-        type?: string;
-        internalLink: {
-          _type: "homepage";
-          slug: null;
-          title: null;
-        } | {
-          _type: "page";
-          slug: Slug | null;
-          title: string | null;
-        } | null;
-        url?: string;
-        email?: string;
-        phone?: string;
-        value?: string;
-        blank?: boolean;
-        parameters?: string;
-        anchor?: string;
-      }> | null;
-      textColor: string | null;
-    } | {
-      _id: string;
-      _type: "imageText";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      header?: string;
-      bgColor: string | null;
-      image: {
-        caption: string | null;
-        assetId: string | null;
-        assetPath: string | null;
-        aspectRatio: number | null;
-      } | null;
-      content: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      } | {
-        _key: string;
-        _type: "link";
-        text?: string;
-        type?: string;
-        internalLink: {
-          _type: "homepage";
-          slug: null;
-          title: null;
-        } | {
-          _type: "page";
-          slug: Slug | null;
-          title: string | null;
-        } | null;
-        url?: string;
-        email?: string;
-        phone?: string;
-        value?: string;
-        blank?: boolean;
-        parameters?: string;
-        anchor?: string;
-      }> | null;
-    } | {
-      _id: string;
-      _type: "photoGallery";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      bgColor: string | null;
-      photos: Array<{
-        caption: string | null;
-        assetId: string | null;
-        assetPath: string | null;
-        aspectRatio: number | null;
-      }> | null;
-    }> | null;
+    content: Array<
+      | {
+          _id: string;
+          _type: "centeredText";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          marginY: number | null;
+          bgColor: string | null;
+          image: {
+            caption: string | null;
+            assetId: string | null;
+            assetPath: string | null;
+            aspectRatio: number | null;
+          } | null;
+          content: Array<
+            | {
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "h1" | "h2" | "h3" | "h4" | "normal";
+                listItem?: "bullet" | "number";
+                markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+                }>;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }
+            | {
+                _key: string;
+                _type: "link";
+                text?: string;
+                type?: string;
+                internalLink:
+                  | {
+                      _type: "homepage";
+                      slug: null;
+                      title: null;
+                    }
+                  | {
+                      _type: "page";
+                      slug: Slug | null;
+                      title: string | null;
+                    }
+                  | null;
+                url?: string;
+                email?: string;
+                phone?: string;
+                value?: string;
+                blank?: boolean;
+                parameters?: string;
+                anchor?: string;
+              }
+          > | null;
+          textColor: string | null;
+        }
+      | {
+          _id: string;
+          _type: "imageText";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          header?: string;
+          bgColor: string | null;
+          image: {
+            caption: string | null;
+            assetId: string | null;
+            assetPath: string | null;
+            aspectRatio: number | null;
+          } | null;
+          content: Array<
+            | {
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "h1" | "h2" | "h3" | "h4" | "normal";
+                listItem?: "bullet" | "number";
+                markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+                }>;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }
+            | {
+                _key: string;
+                _type: "link";
+                text?: string;
+                type?: string;
+                internalLink:
+                  | {
+                      _type: "homepage";
+                      slug: null;
+                      title: null;
+                    }
+                  | {
+                      _type: "page";
+                      slug: Slug | null;
+                      title: string | null;
+                    }
+                  | null;
+                url?: string;
+                email?: string;
+                phone?: string;
+                value?: string;
+                blank?: boolean;
+                parameters?: string;
+                anchor?: string;
+              }
+          > | null;
+        }
+      | {
+          _id: string;
+          _type: "photoGallery";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          bgColor: string | null;
+          photos: Array<{
+            caption: string | null;
+            assetId: string | null;
+            assetPath: string | null;
+            aspectRatio: number | null;
+          }> | null;
+        }
+    > | null;
     SEO: {
       _type: "seo";
       metaTitle?: string;
@@ -637,76 +703,85 @@ export type PageQueryResult = {
     _rev: string;
     title: string | null;
     slug?: Slug;
-    content: Array<{
-      _id: string;
-      _type: "centeredText";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      marginY: number | null;
-      bgColor: string | null;
-      image: {
-        caption: string | null;
-        assetId: string | null;
-        assetPath: string | null;
-        aspectRatio: number | null;
-      } | null;
-      content: Array<{
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?: "h1" | "h2" | "h3" | "h4" | "normal";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      } | {
-        _key: string;
-        _type: "link";
-        text?: string;
-        type?: string;
-        internalLink: {
-          _type: "homepage";
-          slug: null;
-          title: null;
-        } | {
-          _type: "page";
-          slug: Slug | null;
-          title: string | null;
-        } | null;
-        url?: string;
-        email?: string;
-        phone?: string;
-        value?: string;
-        blank?: boolean;
-        parameters?: string;
-        anchor?: string;
-      }> | null;
-      textColor: string | null;
-    } | {
-      _id: string;
-      _type: "photoGallery";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      bgColor: string | null;
-      photos: Array<{
-        caption: string | null;
-        assetId: string | null;
-        assetPath: string | null;
-        aspectRatio: number | null;
-      }> | null;
-    }> | null;
+    content: Array<
+      | {
+          _id: string;
+          _type: "centeredText";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          marginY: number | null;
+          bgColor: string | null;
+          image: {
+            caption: string | null;
+            assetId: string | null;
+            assetPath: string | null;
+            aspectRatio: number | null;
+          } | null;
+          content: Array<
+            | {
+                children?: Array<{
+                  marks?: Array<string>;
+                  text?: string;
+                  _type: "span";
+                  _key: string;
+                }>;
+                style?: "h1" | "h2" | "h3" | "h4" | "normal";
+                listItem?: "bullet" | "number";
+                markDefs?: Array<{
+                  href?: string;
+                  _type: "link";
+                  _key: string;
+                }>;
+                level?: number;
+                _type: "block";
+                _key: string;
+              }
+            | {
+                _key: string;
+                _type: "link";
+                text?: string;
+                type?: string;
+                internalLink:
+                  | {
+                      _type: "homepage";
+                      slug: null;
+                      title: null;
+                    }
+                  | {
+                      _type: "page";
+                      slug: Slug | null;
+                      title: string | null;
+                    }
+                  | null;
+                url?: string;
+                email?: string;
+                phone?: string;
+                value?: string;
+                blank?: boolean;
+                parameters?: string;
+                anchor?: string;
+              }
+          > | null;
+          textColor: string | null;
+        }
+      | {
+          _id: string;
+          _type: "photoGallery";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          bgColor: string | null;
+          photos: Array<{
+            caption: string | null;
+            assetId: string | null;
+            assetPath: string | null;
+            aspectRatio: number | null;
+          }> | null;
+        }
+    > | null;
     SEO: {
       _type: "seo";
       metaTitle?: string;

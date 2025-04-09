@@ -1,7 +1,6 @@
 # YEP site
 
-This project is a Next.js 15 application with Sanity. 
-
+This project is a Next.js 15 application with Sanity.
 
 ## Commands
 

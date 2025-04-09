@@ -8,28 +8,21 @@ export default function LogoPrimary() {
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
     >
-      <rect
-        x="0.5"
-        y="0.5"
-        width="123"
-        height="68"
-        fill="url(#pattern0_41_669)"
-        stroke="black"
-      />
+      <rect width="124" height="69" fill="url(#pattern0_76_1217)" />
       <defs>
         <pattern
-          id="pattern0_41_669"
+          id="pattern0_76_1217"
           patternContentUnits="objectBoundingBox"
           width="1"
           height="1"
         >
           <use
-            xlinkHref="#image0_41_669"
+            xlinkHref="#image0_76_1217"
             transform="matrix(0.00166105 0 0 0.00298507 -0.0564516 0)"
           />
         </pattern>
         <image
-          id="image0_41_669"
+          id="image0_76_1217"
           width="670"
           height="335"
           preserveAspectRatio="none"
