@@ -19,7 +19,7 @@ export const homepage = defineType({
       of: [
         {
           type: "reference",
-          to: [{ type: "photoGallery" }],
+          to: [{ type: "photoGallery" }, { type: "openerWithCarousel" }],
         },
       ],
     }),

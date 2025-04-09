@@ -33,9 +33,22 @@ const socialLink = `
     ${linkTypeData}
     }
 `;
+
+const openerWithCarouselData = defineQuery(`{
+    _id,
+    _type,
+    header,
+    subHeader,
+    'bgColor': bgColor.hex,
+    tagline,
+    ${linkTypeData},
+    photos[] ${imageData}
+}`);
+
 const contentData = `{
     ...,
     _type == 'photoGallery' => ${photoGalleryData},
+    _type == 'openerWithCarousel' => ${openerWithCarouselData},
 }`;
 
 export const headerQuery = defineQuery(`{

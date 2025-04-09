@@ -4,14 +4,14 @@ import { type SchemaTypeDefinition } from "sanity";
 import { header, homepage, page, siteSettings, footer } from "./documents";
 
 /* Module Imports */
-import { photoGallery } from "./modules";
+import { photoGallery, openerWithCarousel } from "./modules";
 
 /* Object imports */
 import { imageAlt, seo } from "./objects";
 
 const documents = [header, homepage, page, siteSettings, footer];
 
-const modules = [photoGallery];
+const modules = [photoGallery, openerWithCarousel];
 
 const objects = [imageAlt, seo];
 

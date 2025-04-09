@@ -37,7 +37,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Page() {
   const data = await sanityFetch({ query: homepageQuery });
-
   return (
     <main>
       <Content data={data?.homepage?.content} />
