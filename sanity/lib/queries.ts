@@ -54,6 +54,12 @@ const testimonials = `{
     },
 }`;
 
+const teamMembers = `{
+    ...,
+    image ${imageData},
+    ${linkTypeData}
+}`;
+
 const testimonialsBlock = `{
     _id,
     title,
@@ -61,15 +67,25 @@ const testimonialsBlock = `{
     testimonials[] ${testimonials}
   }`;
 
+const teamMembersBlock = `{
+    ...,
+    teamMembers[] ${teamMembers}
+}`;
+
 const contentData = `{
     ...,
     _type == 'photoGallery' => ${photoGalleryData},
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
-    _type == 'testimonialsBlock' => ${testimonialsBlock}
+    _type == 'testimonialsBlock' => ${testimonialsBlock},
+    _type == 'teamMembersBlock' => ${teamMembersBlock},
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
     'testimonialsBlock': *[_type == 'testimonialsBlock'][0] ${testimonialsBlock}
+}`);
+
+export const teamMembersBlockQuery = defineQuery(`{
+    'teamMembersBlock': *[_type == 'teamMembersBlock'][0] ${teamMembersBlock}
 }`);
 
 export const headerQuery = defineQuery(`{
