@@ -25,7 +25,7 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
   const { header, subHeader, tagline, bgColor, photos, link } = content;
   return (
     <div
-      className="mx-auto flex flex-col gap-12 md:gap-0 md:flex-row items-center"
+      className="mx-auto flex flex-col items-center gap-12 md:flex-row md:gap-0"
       style={{ backgroundColor: bgColor }}
     >
       <div className="w-full md:w-[663px]">
@@ -49,11 +49,11 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
           ))}
         </Swiper>
       </div>
-      <div className="mx-auto w-full md:max-w-[738px] pl-8">
+      <div className="mx-auto w-full pl-8 md:max-w-[738px]">
         <h1 className="text-red">{header}</h1>
         <div className="mt-4 flex gap-6">
           <h4 className="font-semibold">{subHeader}</h4>
-          <h4 className="italic hidden md:block">{tagline}</h4>
+          <h4 className="hidden italic md:block">{tagline}</h4>
         </div>
         <button className="mt-6 rounded-full bg-red px-10 py-4 text-white">
           <Link link={link} />

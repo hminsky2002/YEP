@@ -97,7 +97,7 @@ export type TestimonialsBlock = {
         _type: "span";
         _key: string;
       }>;
-      style?: "normal" | "emphasis";
+      style?: "normal" | "h3" | "yellowH3";
       listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
@@ -522,7 +522,7 @@ export type TestimonialsBlockQueryResult = {
           _type: "span";
           _key: string;
         }>;
-        style?: "emphasis" | "normal";
+        style?: "h3" | "normal" | "yellowH3";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -708,7 +708,7 @@ export type HomepageQueryResult = {
                 _type: "span";
                 _key: string;
               }>;
-              style?: "emphasis" | "normal";
+              style?: "h3" | "normal" | "yellowH3";
               listItem?: "bullet" | "number";
               markDefs?: Array<{
                 href?: string;

@@ -522,7 +522,11 @@
                             },
                             {
                               "type": "string",
-                              "value": "emphasis"
+                              "value": "h3"
+                            },
+                            {
+                              "type": "string",
+                              "value": "yellowH3"
                             }
                           ]
                         },

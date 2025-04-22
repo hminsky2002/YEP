@@ -9,7 +9,7 @@ html {
 h1,
 .h1,
 .hxxl {
-  @apply font-fg font-medium text-[30px] leading-[60%] tracking-normal lg:text-[60px] lg:leading-[89%];
+  @apply font-fg font-medium text-[30px] leading-[90%] tracking-normal lg:text-[60px] lg:leading-[89%];
 }
 
 

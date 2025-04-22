@@ -10,14 +10,19 @@ type TestimonialsBlockProps = {
 export function TestimonialsBlock({ content }: TestimonialsBlockProps) {
   const { header, testimonials } = content || {};
   return (
-    <div className="relative">
-      <ChatBubbleSVG />
-      <div className="absolute inset-0 flex flex-col space-y-8 px-32">
-        <div className="max-w-[398px] self-end text-right text-white mt-12">
+    <div className="bg-orange pb-8 md:relative md:bg-transparent md:pb-0">
+      <span className="hidden md:block">
+        <ChatBubbleSVG />
+      </span>
+      <div className="flex flex-col space-y-8 px-32 md:absolute md:inset-0">
+        <div className="mt-12 max-w-[398px] self-end text-right text-white">
           <h1 className="border-b-2 border-black pb-8">{header}</h1>
         </div>
         {testimonials?.map((t, i) => (
-          <div key={i} className={`${i % 2 === 0 ? "self-start" : "self-end items-end"} flex flex-col gap-4`}>
+          <div
+            key={i}
+            className={`${i % 2 === 0 ? "self-start" : "items-end self-end"} flex flex-col gap-4`}
+          >
             {t.icon?.assetPath && (
               <Image
                 src={t.icon.assetPath}
