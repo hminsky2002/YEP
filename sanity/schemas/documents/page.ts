@@ -39,7 +39,12 @@ export const page = defineType({
       of: [
         {
           type: "reference",
-          to: [{ type: "photoGallery" }],
+          to: [
+            { type: "pressReleasesGallery" },
+            { type: "openerWithCarousel" },
+            { type: "testimonialsBlock" },
+            { type: "teamMembersBlock" },
+          ],
         },
       ],
     }),

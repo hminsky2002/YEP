@@ -12,13 +12,6 @@ const imageData = `{
     'aspectRatio': asset->metadata.dimensions.aspectRatio,
 }`;
 
-const photoGalleryData = defineQuery(`{
-    _id,
-    _type,
-    'bgColor': bgColor.hex,
-    photos[] ${imageData}
-}`);
-
 const linkTypeData = `
   _type == "link" => {
     ...,
@@ -87,7 +80,6 @@ const pressReleasesGallery = `{
 
 const contentData = `{
     ...,
-    _type == 'photoGallery' => ${photoGalleryData},
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
     _type == 'testimonialsBlock' => ${testimonialsBlock},
     _type == 'teamMembersBlock' => ${teamMembersBlock},

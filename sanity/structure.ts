@@ -7,7 +7,7 @@ const singletonTypes = ["homepage", "siteSettings", "header", "footer"];
 
 const documentsHiddenFromContentList = [
   "page",
-  "photoGallery",
+  "pressReleasesGallery",
   "openerWithCarousel",
   "testimonialsBlock",
   "teamMembersBlock",
@@ -95,13 +95,6 @@ export const structure: StructureResolver = (S) =>
                 .title("Press Releases Gallery")
                 .child(
                   S.documentTypeList("pressReleasesGallery").defaultOrdering([
-                    { field: "_createdAt", direction: "asc" },
-                  ]),
-                ),
-              S.listItem()
-                .title("Photo Gallery")
-                .child(
-                  S.documentTypeList("photoGallery").defaultOrdering([
                     { field: "_createdAt", direction: "asc" },
                   ]),
                 ),
