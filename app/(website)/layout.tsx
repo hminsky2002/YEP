@@ -60,7 +60,7 @@ export default async function RootLayout({
   const { footer } = await sanityFetch({ query: footerQuery });
 
   return (
-    <html lang="en" className="bg-white text-black">
+    <html lang="en" className="bg-yellow text-black">
       <body>
         <section className="min-h-screen">
           {isDraftMode && <AlertBanner />}
