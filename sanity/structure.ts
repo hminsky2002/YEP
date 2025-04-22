@@ -92,6 +92,13 @@ export const structure: StructureResolver = (S) =>
             .title("Modules List")
             .items([
               S.listItem()
+                .title("Press Releases Gallery")
+                .child(
+                  S.documentTypeList("pressReleasesGallery").defaultOrdering([
+                    { field: "_createdAt", direction: "asc" },
+                  ]),
+                ),
+              S.listItem()
                 .title("Photo Gallery")
                 .child(
                   S.documentTypeList("photoGallery").defaultOrdering([

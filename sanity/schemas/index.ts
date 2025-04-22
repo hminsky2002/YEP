@@ -5,7 +5,7 @@ import { header, homepage, page, siteSettings, footer } from "./documents";
 
 /* Module Imports */
 import {
-  photoGallery,
+  pressReleasesGallery,
   openerWithCarousel,
   testimonialsBlock,
   teamMembersBlock,
@@ -17,7 +17,7 @@ import { imageAlt, seo } from "./objects";
 const documents = [header, homepage, page, siteSettings, footer];
 
 const modules = [
-  photoGallery,
+  pressReleasesGallery,
   openerWithCarousel,
   testimonialsBlock,
   teamMembersBlock,

@@ -72,12 +72,27 @@ const teamMembersBlock = `{
     teamMembers[] ${teamMembers}
 }`;
 
+const pressRelease = `{
+    ...,
+    image ${imageData},
+    ${linkTypeData}
+}`;
+
+const pressReleasesGallery = `{
+    ...,
+    'tagColor': tagColor.hex,
+    pressReleases[] ${pressRelease}
+
+}`;
+
 const contentData = `{
     ...,
     _type == 'photoGallery' => ${photoGalleryData},
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
     _type == 'testimonialsBlock' => ${testimonialsBlock},
     _type == 'teamMembersBlock' => ${teamMembersBlock},
+    _type == 'pressReleasesGallery' => ${pressReleasesGallery},
+
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -86,6 +101,10 @@ export const testimonialsBlockQuery = defineQuery(`{
 
 export const teamMembersBlockQuery = defineQuery(`{
     'teamMembersBlock': *[_type == 'teamMembersBlock'][0] ${teamMembersBlock}
+}`);
+
+export const pressReleasesGalleryQuery = defineQuery(`{
+    'pressReleasesGallery': *[_type == 'pressReleasesGallery'][0] ${pressReleasesGallery}
 }`);
 
 export const headerQuery = defineQuery(`{
