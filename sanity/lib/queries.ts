@@ -45,11 +45,32 @@ const openerWithCarouselData = defineQuery(`{
     photos[] ${imageData}
 }`);
 
+const testimonials = `{
+    icon ${imageData},
+    testimonialSource,
+    testimonialContent[] {
+      ...,
+      ${linkTypeData},
+    },
+}`;
+
+const testimonialsBlock = `{
+    _id,
+    title,
+    header,
+    testimonials[] ${testimonials}
+  }`;
+
 const contentData = `{
     ...,
     _type == 'photoGallery' => ${photoGalleryData},
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
+    _type == 'testimonialsBlock' => ${testimonialsBlock}
 }`;
+
+export const testimonialsBlockQuery = defineQuery(`{
+    'testimonialsBlock': *[_type == 'testimonialsBlock'][0] ${testimonialsBlock}
+}`);
 
 export const headerQuery = defineQuery(`{
     'header': *[_type == 'header'][0] {

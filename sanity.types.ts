@@ -68,6 +68,51 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type TestimonialsBlock = {
+  _id: string;
+  _type: "testimonialsBlock";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  header?: string;
+  testimonials?: Array<{
+    icon?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      caption?: string;
+      _type: "imageAlt";
+    };
+    testimonialSource?: string;
+    testimonialContent?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h3" | "yellowH3";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    _type: "socialLink";
+    _key: string;
+  }>;
+};
+
 export type OpenerWithCarousel = {
   _id: string;
   _type: "openerWithCarousel";
@@ -293,6 +338,12 @@ export type Homepage = {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "openerWithCarousel";
       }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "testimonialsBlock";
+      }
   >;
   SEO?: Seo;
 };
@@ -407,6 +458,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | TestimonialsBlock
   | OpenerWithCarousel
   | PhotoGallery
   | Footer
@@ -447,6 +499,42 @@ export type OpenerWithCarouselDataResult = {
   bgColor: never;
   tagline: never;
   photos: never;
+};
+// Variable: testimonialsBlockQuery
+// Query: {    'testimonialsBlock': *[_type == 'testimonialsBlock'][0] {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  }}
+export type TestimonialsBlockQueryResult = {
+  testimonialsBlock: {
+    _id: string;
+    title: string | null;
+    header: string | null;
+    testimonials: Array<{
+      icon: {
+        caption: string | null;
+        assetId: string | null;
+        assetPath: string | null;
+        aspectRatio: number | null;
+      } | null;
+      testimonialSource: string | null;
+      testimonialContent: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?: "h3" | "normal" | "yellowH3";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }> | null;
+    }> | null;
+  } | null;
 };
 // Variable: headerQuery
 // Query: {    'header': *[_type == 'header'][0] {        navList[] {            ...,              _type == "link" => {    ...,    internalLink->{_type,slug,title}  },        }    }}
@@ -554,7 +642,7 @@ export type SiteSettingsQueryResult = {
   } | null;
 } | null;
 // Variable: homepageQuery
-// Query: {    'homepage': *[_type == 'homepage'][0] {        ...,        content[]->{    ...,    _type == 'photoGallery' => {    _id,    _type,    'bgColor': bgColor.hex,    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
+// Query: {    'homepage': *[_type == 'homepage'][0] {        ...,        content[]->{    ...,    _type == 'photoGallery' => {    _id,    _type,    'bgColor': bgColor.hex,    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  }},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
 export type HomepageQueryResult = {
   homepage: {
     _id: string;
@@ -597,6 +685,42 @@ export type HomepageQueryResult = {
             aspectRatio: number | null;
           }> | null;
         }
+      | {
+          _id: string;
+          _type: "testimonialsBlock";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title: string | null;
+          header: string | null;
+          testimonials: Array<{
+            icon: {
+              caption: string | null;
+              assetId: string | null;
+              assetPath: string | null;
+              aspectRatio: number | null;
+            } | null;
+            testimonialSource: string | null;
+            testimonialContent: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h3" | "normal" | "yellowH3";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+          }> | null;
+        }
     > | null;
     SEO: {
       _type: "seo";
@@ -612,7 +736,7 @@ export type HomepageQueryResult = {
   } | null;
 };
 // Variable: pageQuery
-// Query: {    'page': *[_type == 'page' && $slug == slug.current][0] {        ...,        title,        content[]->{    ...,    _type == 'photoGallery' => {    _id,    _type,    'bgColor': bgColor.hex,    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
+// Query: {    'page': *[_type == 'page' && $slug == slug.current][0] {        ...,        title,        content[]->{    ...,    _type == 'photoGallery' => {    _id,    _type,    'bgColor': bgColor.hex,    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  }},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
 export type PageQueryResult = {
   page: {
     _id: string;
@@ -657,10 +781,11 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "{\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n}": PhotoGalleryDataResult;
     "{\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n}": OpenerWithCarouselDataResult;
+    "{\n    'testimonialsBlock': *[_type == 'testimonialsBlock'][0] {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  }\n}": TestimonialsBlockQueryResult;
     "{\n    'header': *[_type == 'header'][0] {\n        navList[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        }\n    }\n}": HeaderQueryResult;
     "{\n    'footer': *[_type == 'footer'][0] {\n            ...,\n            socials[] \n    {\n    ...,\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n    }\n\n    }\n}": FooterQueryResult;
     "\n    *[_type == 'siteSettings'][0] {\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n": SiteSettingsQueryResult;
-    "{\n    'homepage': *[_type == 'homepage'][0] {\n        ...,\n        content[]->{\n    ...,\n    _type == 'photoGallery' => {\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": HomepageQueryResult;
-    "{\n    'page': *[_type == 'page' && $slug == slug.current][0] {\n        ...,\n        title,\n        content[]->{\n    ...,\n    _type == 'photoGallery' => {\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": PageQueryResult;
+    "{\n    'homepage': *[_type == 'homepage'][0] {\n        ...,\n        content[]->{\n    ...,\n    _type == 'photoGallery' => {\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  }\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": HomepageQueryResult;
+    "{\n    'page': *[_type == 'page' && $slug == slug.current][0] {\n        ...,\n        title,\n        content[]->{\n    ...,\n    _type == 'photoGallery' => {\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  }\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": PageQueryResult;
   }
 }
