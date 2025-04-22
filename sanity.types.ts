@@ -68,6 +68,53 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type TeamMembersBlock = {
+  _id: string;
+  _type: "teamMembersBlock";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  header?: string;
+  teamMembers?: Array<{
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      caption?: string;
+      _type: "imageAlt";
+    };
+    memberTitle?: string;
+    memberName?: string;
+    memberDescription?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    memberLink?: Link;
+    _type: "teamMember";
+    _key: string;
+  }>;
+};
+
 export type TestimonialsBlock = {
   _id: string;
   _type: "testimonialsBlock";
@@ -458,6 +505,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | TeamMembersBlock
   | TestimonialsBlock
   | OpenerWithCarousel
   | PhotoGallery
@@ -533,6 +581,58 @@ export type TestimonialsBlockQueryResult = {
         _type: "block";
         _key: string;
       }> | null;
+    }> | null;
+  } | null;
+};
+// Variable: teamMembersBlockQuery
+// Query: {    'teamMembersBlock': *[_type == 'teamMembersBlock'][0] {    ...,    teamMembers[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}}}
+export type TeamMembersBlockQueryResult = {
+  teamMembersBlock: {
+    _id: string;
+    _type: "teamMembersBlock";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    header?: string;
+    teamMembers: Array<{
+      image: {
+        caption: string | null;
+        assetId: string | null;
+        assetPath: string | null;
+        aspectRatio: number | null;
+      } | null;
+      memberTitle?: string;
+      memberName?: string;
+      memberDescription?: Array<{
+        children?: Array<{
+          marks?: Array<string>;
+          text?: string;
+          _type: "span";
+          _key: string;
+        }>;
+        style?:
+          | "blockquote"
+          | "h1"
+          | "h2"
+          | "h3"
+          | "h4"
+          | "h5"
+          | "h6"
+          | "normal";
+        listItem?: "bullet" | "number";
+        markDefs?: Array<{
+          href?: string;
+          _type: "link";
+          _key: string;
+        }>;
+        level?: number;
+        _type: "block";
+        _key: string;
+      }>;
+      memberLink?: Link;
+      _type: "teamMember";
+      _key: string;
     }> | null;
   } | null;
 };
@@ -782,6 +882,7 @@ declare module "@sanity/client" {
     "{\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n}": PhotoGalleryDataResult;
     "{\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n}": OpenerWithCarouselDataResult;
     "{\n    'testimonialsBlock': *[_type == 'testimonialsBlock'][0] {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  }\n}": TestimonialsBlockQueryResult;
+    "{\n    'teamMembersBlock': *[_type == 'teamMembersBlock'][0] {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n}\n}": TeamMembersBlockQueryResult;
     "{\n    'header': *[_type == 'header'][0] {\n        navList[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        }\n    }\n}": HeaderQueryResult;
     "{\n    'footer': *[_type == 'footer'][0] {\n            ...,\n            socials[] \n    {\n    ...,\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n    }\n\n    }\n}": FooterQueryResult;
     "\n    *[_type == 'siteSettings'][0] {\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n": SiteSettingsQueryResult;

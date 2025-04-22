@@ -23,6 +23,7 @@ export const homepage = defineType({
             { type: "photoGallery" },
             { type: "openerWithCarousel" },
             { type: "testimonialsBlock" },
+            { type: "teamMembersBlock" },
           ],
         },
       ],
