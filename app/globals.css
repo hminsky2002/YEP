@@ -9,7 +9,7 @@ html {
 h1,
 .h1,
 .hxxl {
-  @apply font-fg font-medium text-[30px] leading-[60%] tracking-normal lg:text-[60px] lg:leading-[120%];
+  @apply font-fg font-medium text-[30px] leading-[60%] tracking-normal lg:text-[60px] lg:leading-[89%];
 }
 
 
@@ -29,7 +29,7 @@ h3,
 h4,
 .h4,
 .medium {
-  @apply font-fg text-[15px] font-normal leading-[0.89] tracking-normal;
+  @apply font-fg text-[18px] font-normal leading-[0.89] tracking-normal;
 }
 
 body,

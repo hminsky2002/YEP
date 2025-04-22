@@ -34,11 +34,11 @@ export function Footer({ data }: Props) {
       <div className="flex flex-col gap-4 md:flex-row md:gap-8">
         <CustomPortableText value={data?.address as PortableTextBlock[]} />
         <div
-          className={`h-[39px] w-[0.5] bg-black ${filter} hidden md:block`}
+          className={`h-[39px] w-[0.5px] bg-black ${filter} hidden md:block`}
         ></div>
         <CustomPortableText value={data?.contact as PortableTextBlock[]} />
         <div
-          className={`h-[39px] w-[0.5] bg-black ${filter} hidden md:block`}
+          className={`h-[39px] w-[0.5px] bg-black ${filter} hidden md:block`}
         ></div>
         <div className="flex gap-12">
           {data?.socials &&
