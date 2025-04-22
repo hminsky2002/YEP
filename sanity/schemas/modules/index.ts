@@ -1,4 +1,4 @@
 export * from "./openerWithCarousel";
-export * from "./photoGallery";
+export * from "./pressReleasesGallery";
 export * from "./teamMembersBlock";
 export * from "./testimonialsBlock";

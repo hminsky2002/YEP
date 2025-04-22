@@ -98,7 +98,7 @@ export type TeamMembersBlock = {
         _type: "span";
         _key: string;
       }>;
-      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      style?: "normal" | "h1" | "h2" | "h3" | "h4";
       listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
@@ -187,25 +187,31 @@ export type OpenerWithCarousel = {
   }>;
 };
 
-export type PhotoGallery = {
+export type PressReleasesGallery = {
   _id: string;
-  _type: "photoGallery";
+  _type: "pressReleasesGallery";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
-  bgColor?: Color;
-  photos?: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  header?: string;
+  tagText?: string;
+  tagColor?: Color;
+  pressReleases?: Array<{
+    link?: Link;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      caption?: string;
+      _type: "imageAlt";
     };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    caption?: string;
-    _type: "photo";
+    _type: "pressReleases";
     _key: string;
   }>;
 };
@@ -377,7 +383,7 @@ export type Homepage = {
         _ref: string;
         _type: "reference";
         _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "photoGallery";
+        [internalGroqTypeReferenceTo]?: "pressReleasesGallery";
       }
     | {
         _ref: string;
@@ -391,6 +397,12 @@ export type Homepage = {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "testimonialsBlock";
       }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "teamMembersBlock";
+      }
   >;
   SEO?: Seo;
 };
@@ -403,13 +415,32 @@ export type Page = {
   _rev: string;
   title?: string;
   slug?: Slug;
-  content?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "photoGallery";
-  }>;
+  content?: Array<
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "pressReleasesGallery";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "openerWithCarousel";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "testimonialsBlock";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "teamMembersBlock";
+      }
+  >;
   SEO?: Seo;
 };
 
@@ -508,7 +539,7 @@ export type AllSanitySchemaTypes =
   | TeamMembersBlock
   | TestimonialsBlock
   | OpenerWithCarousel
-  | PhotoGallery
+  | PressReleasesGallery
   | Footer
   | ImageAlt
   | SiteSettings
@@ -529,14 +560,6 @@ export type AllSanitySchemaTypes =
   | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries.ts
-// Variable: photoGalleryData
-// Query: {    _id,    _type,    'bgColor': bgColor.hex,    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}}
-export type PhotoGalleryDataResult = {
-  _id: never;
-  _type: never;
-  bgColor: never;
-  photos: never;
-};
 // Variable: openerWithCarouselData
 // Query: {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}}
 export type OpenerWithCarouselDataResult = {
@@ -611,15 +634,7 @@ export type TeamMembersBlockQueryResult = {
           _type: "span";
           _key: string;
         }>;
-        style?:
-          | "blockquote"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "normal";
+        style?: "h1" | "h2" | "h3" | "h4" | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -632,6 +647,32 @@ export type TeamMembersBlockQueryResult = {
       }>;
       memberLink?: Link;
       _type: "teamMember";
+      _key: string;
+    }> | null;
+  } | null;
+};
+// Variable: pressReleasesGalleryQuery
+// Query: {    'pressReleasesGallery': *[_type == 'pressReleasesGallery'][0] {    ...,    'tagColor': tagColor.hex,    pressReleases[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}}}
+export type PressReleasesGalleryQueryResult = {
+  pressReleasesGallery: {
+    _id: string;
+    _type: "pressReleasesGallery";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    header?: string;
+    tagText?: string;
+    tagColor: string | null;
+    pressReleases: Array<{
+      link?: Link;
+      image: {
+        caption: string | null;
+        assetId: string | null;
+        assetPath: string | null;
+        aspectRatio: number | null;
+      } | null;
+      _type: "pressReleases";
       _key: string;
     }> | null;
   } | null;
@@ -742,7 +783,7 @@ export type SiteSettingsQueryResult = {
   } | null;
 } | null;
 // Variable: homepageQuery
-// Query: {    'homepage': *[_type == 'homepage'][0] {        ...,        content[]->{    ...,    _type == 'photoGallery' => {    _id,    _type,    'bgColor': bgColor.hex,    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  }},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
+// Query: {    'homepage': *[_type == 'homepage'][0] {        ...,        content[]->{    ...,    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  },    _type == 'teamMembersBlock' => {    ...,    teamMembers[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},    _type == 'pressReleasesGallery' => {    ...,    'tagColor': tagColor.hex,    pressReleases[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
 export type HomepageQueryResult = {
   homepage: {
     _id: string;
@@ -772,17 +813,64 @@ export type HomepageQueryResult = {
         }
       | {
           _id: string;
-          _type: "photoGallery";
+          _type: "pressReleasesGallery";
           _createdAt: string;
           _updatedAt: string;
           _rev: string;
           title?: string;
-          bgColor: string | null;
-          photos: Array<{
-            caption: string | null;
-            assetId: string | null;
-            assetPath: string | null;
-            aspectRatio: number | null;
+          header?: string;
+          tagText?: string;
+          tagColor: string | null;
+          pressReleases: Array<{
+            link?: Link;
+            image: {
+              caption: string | null;
+              assetId: string | null;
+              assetPath: string | null;
+              aspectRatio: number | null;
+            } | null;
+            _type: "pressReleases";
+            _key: string;
+          }> | null;
+        }
+      | {
+          _id: string;
+          _type: "teamMembersBlock";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          header?: string;
+          teamMembers: Array<{
+            image: {
+              caption: string | null;
+              assetId: string | null;
+              assetPath: string | null;
+              aspectRatio: number | null;
+            } | null;
+            memberTitle?: string;
+            memberName?: string;
+            memberDescription?: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "h3" | "h4" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            memberLink?: Link;
+            _type: "teamMember";
+            _key: string;
           }> | null;
         }
       | {
@@ -836,7 +924,7 @@ export type HomepageQueryResult = {
   } | null;
 };
 // Variable: pageQuery
-// Query: {    'page': *[_type == 'page' && $slug == slug.current][0] {        ...,        title,        content[]->{    ...,    _type == 'photoGallery' => {    _id,    _type,    'bgColor': bgColor.hex,    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  }},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
+// Query: {    'page': *[_type == 'page' && $slug == slug.current][0] {        ...,        title,        content[]->{    ...,    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  },    _type == 'teamMembersBlock' => {    ...,    teamMembers[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},    _type == 'pressReleasesGallery' => {    ...,    'tagColor': tagColor.hex,    pressReleases[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
 export type PageQueryResult = {
   page: {
     _id: string;
@@ -846,21 +934,125 @@ export type PageQueryResult = {
     _rev: string;
     title: string | null;
     slug?: Slug;
-    content: Array<{
-      _id: string;
-      _type: "photoGallery";
-      _createdAt: string;
-      _updatedAt: string;
-      _rev: string;
-      title?: string;
-      bgColor: string | null;
-      photos: Array<{
-        caption: string | null;
-        assetId: string | null;
-        assetPath: string | null;
-        aspectRatio: number | null;
-      }> | null;
-    }> | null;
+    content: Array<
+      | {
+          _id: string;
+          _type: "openerWithCarousel";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          header: string | null;
+          subHeader: string | null;
+          tagline: string | null;
+          link?: Link;
+          bgColor: string | null;
+          photos: Array<{
+            caption: string | null;
+            assetId: string | null;
+            assetPath: string | null;
+            aspectRatio: number | null;
+          }> | null;
+        }
+      | {
+          _id: string;
+          _type: "pressReleasesGallery";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          header?: string;
+          tagText?: string;
+          tagColor: string | null;
+          pressReleases: Array<{
+            link?: Link;
+            image: {
+              caption: string | null;
+              assetId: string | null;
+              assetPath: string | null;
+              aspectRatio: number | null;
+            } | null;
+            _type: "pressReleases";
+            _key: string;
+          }> | null;
+        }
+      | {
+          _id: string;
+          _type: "teamMembersBlock";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          header?: string;
+          teamMembers: Array<{
+            image: {
+              caption: string | null;
+              assetId: string | null;
+              assetPath: string | null;
+              aspectRatio: number | null;
+            } | null;
+            memberTitle?: string;
+            memberName?: string;
+            memberDescription?: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h1" | "h2" | "h3" | "h4" | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            memberLink?: Link;
+            _type: "teamMember";
+            _key: string;
+          }> | null;
+        }
+      | {
+          _id: string;
+          _type: "testimonialsBlock";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title: string | null;
+          header: string | null;
+          testimonials: Array<{
+            icon: {
+              caption: string | null;
+              assetId: string | null;
+              assetPath: string | null;
+              aspectRatio: number | null;
+            } | null;
+            testimonialSource: string | null;
+            testimonialContent: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?: "h3" | "normal" | "yellowH3";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }> | null;
+          }> | null;
+        }
+    > | null;
     SEO: {
       _type: "seo";
       metaTitle?: string;
@@ -879,14 +1071,14 @@ export type PageQueryResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "{\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n}": PhotoGalleryDataResult;
     "{\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n}": OpenerWithCarouselDataResult;
     "{\n    'testimonialsBlock': *[_type == 'testimonialsBlock'][0] {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  }\n}": TestimonialsBlockQueryResult;
     "{\n    'teamMembersBlock': *[_type == 'teamMembersBlock'][0] {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n}\n}": TeamMembersBlockQueryResult;
+    "{\n    'pressReleasesGallery': *[_type == 'pressReleasesGallery'][0] {\n    ...,\n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n\n}\n}": PressReleasesGalleryQueryResult;
     "{\n    'header': *[_type == 'header'][0] {\n        navList[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        }\n    }\n}": HeaderQueryResult;
     "{\n    'footer': *[_type == 'footer'][0] {\n            ...,\n            socials[] \n    {\n    ...,\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n    }\n\n    }\n}": FooterQueryResult;
     "\n    *[_type == 'siteSettings'][0] {\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n": SiteSettingsQueryResult;
-    "{\n    'homepage': *[_type == 'homepage'][0] {\n        ...,\n        content[]->{\n    ...,\n    _type == 'photoGallery' => {\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  }\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": HomepageQueryResult;
-    "{\n    'page': *[_type == 'page' && $slug == slug.current][0] {\n        ...,\n        title,\n        content[]->{\n    ...,\n    _type == 'photoGallery' => {\n    _id,\n    _type,\n    'bgColor': bgColor.hex,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  }\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": PageQueryResult;
+    "{\n    'homepage': *[_type == 'homepage'][0] {\n        ...,\n        content[]->{\n    ...,\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  },\n    _type == 'teamMembersBlock' => {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n},\n    _type == 'pressReleasesGallery' => {\n    ...,\n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n\n},\n\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": HomepageQueryResult;
+    "{\n    'page': *[_type == 'page' && $slug == slug.current][0] {\n        ...,\n        title,\n        content[]->{\n    ...,\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  },\n    _type == 'teamMembersBlock' => {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n},\n    _type == 'pressReleasesGallery' => {\n    ...,\n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n\n},\n\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": PageQueryResult;
   }
 }

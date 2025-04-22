@@ -20,7 +20,7 @@ export const homepage = defineType({
         {
           type: "reference",
           to: [
-            { type: "photoGallery" },
+            { type: "pressReleasesGallery" },
             { type: "openerWithCarousel" },
             { type: "testimonialsBlock" },
             { type: "teamMembersBlock" },

@@ -1,36 +1,62 @@
 import Image from "next/image";
-import type { ImageData } from "../types";
-
-type PhotoGalleryProps = {
-  content: {
-    bgColor: string;
-    photos: Array<ImageData>;
-  };
+import type { PressReleasesGalleryQueryResult } from "@/sanity.types";
+import { Link } from "./Link";
+import { LinkValue } from "sanity-plugin-link-field";
+type PressReleasesGalleryProps = {
+  content: PressReleasesGalleryQueryResult["pressReleasesGallery"];
 };
 
-export default function CenteredText({ content }: PhotoGalleryProps) {
-  const { bgColor, photos } = content;
+export default function PressReleasesGallery({
+  content,
+}: PressReleasesGalleryProps) {
+  const { header, tagColor, tagText, pressReleases } = content || {};
 
   return (
-    <div
-      className="relative flex flex-col justify-center p-4 md:flex-row md:gap-4"
-      style={{
-        backgroundColor: bgColor,
-      }}
-    >
-      {photos.map((photo) => {
-        return (
-          <div key={photo.assetPath} className="mx-auto size-[275px] md:mx-0">
-            <Image
-              src={photo.assetPath}
-              width={550}
-              height={550}
-              alt={photo?.caption || "missing alt"}
-              className="size-full object-contain object-center"
-            />
-          </div>
-        );
-      })}
+    <div className="relative flex flex-col justify-center p-4 md:gap-2">
+      <h2 className="mx-auto my-8 flex">{header}</h2>
+      <div className="flex flex-col justify-center gap-2 md:flex-row">
+        <div
+          style={{ backgroundColor: tagColor || "#E55937" }}
+          className="hidden w-[40px] items-center justify-center self-stretch overflow-hidden rounded-l-full text-white md:flex"
+        >
+          <p className="-rotate-90 whitespace-nowrap">{tagText}</p>
+        </div>
+        <div
+          style={{ backgroundColor: tagColor || "#E55937" }}
+          className="mx-auto w-[250px] items-center rounded-t-full py-4 text-white md:hidden"
+        >
+          <p className="text-center">{tagText}</p>
+        </div>
+
+        {pressReleases?.map((pr) => {
+          return (
+            <div
+              key={pr._key}
+              className="mx-auto size-[197px] w-[250px] bg-white md:mx-0"
+            >
+              {pr.link && pr?.image?.assetPath ? (
+                <Link link={pr.link as LinkValue}>
+                  <Image
+                    src={pr.image.assetPath}
+                    width={550}
+                    height={550}
+                    alt={pr.image?.caption || "missing alt"}
+                    className="size-full object-contain object-center"
+                  />
+                </Link>
+              ) : pr?.image?.assetPath ? (
+                <Image
+                  src={pr.image.assetPath}
+                  width={550}
+                  height={550}
+                  alt={pr.image?.caption || "missing alt"}
+                  className="size-full object-contain object-center"
+                />
+              ) : null}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
