@@ -542,18 +542,6 @@
                             {
                               "type": "string",
                               "value": "h4"
-                            },
-                            {
-                              "type": "string",
-                              "value": "h5"
-                            },
-                            {
-                              "type": "string",
-                              "value": "h6"
-                            },
-                            {
-                              "type": "string",
-                              "value": "blockquote"
                             }
                           ]
                         },
@@ -1157,7 +1145,7 @@
     }
   },
   {
-    "name": "photoGallery",
+    "name": "pressReleasesGallery",
     "type": "document",
     "attributes": {
       "_id": {
@@ -1170,7 +1158,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "photoGallery"
+          "value": "pressReleasesGallery"
         }
       },
       "_createdAt": {
@@ -1198,7 +1186,21 @@
         },
         "optional": true
       },
-      "bgColor": {
+      "header": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "tagText": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "tagColor": {
         "type": "objectAttribute",
         "value": {
           "type": "inline",
@@ -1206,63 +1208,87 @@
         },
         "optional": true
       },
-      "photos": {
+      "pressReleases": {
         "type": "objectAttribute",
         "value": {
           "type": "array",
           "of": {
             "type": "object",
             "attributes": {
-              "asset": {
+              "link": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "inline",
+                  "name": "link"
+                },
+                "optional": true
+              },
+              "image": {
                 "type": "objectAttribute",
                 "value": {
                   "type": "object",
                   "attributes": {
-                    "_ref": {
+                    "asset": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "object",
+                        "attributes": {
+                          "_ref": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string"
+                            }
+                          },
+                          "_type": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "string",
+                              "value": "reference"
+                            }
+                          },
+                          "_weak": {
+                            "type": "objectAttribute",
+                            "value": {
+                              "type": "boolean"
+                            },
+                            "optional": true
+                          }
+                        },
+                        "dereferencesTo": "sanity.imageAsset"
+                      },
+                      "optional": true
+                    },
+                    "hotspot": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageHotspot"
+                      },
+                      "optional": true
+                    },
+                    "crop": {
+                      "type": "objectAttribute",
+                      "value": {
+                        "type": "inline",
+                        "name": "sanity.imageCrop"
+                      },
+                      "optional": true
+                    },
+                    "caption": {
                       "type": "objectAttribute",
                       "value": {
                         "type": "string"
-                      }
+                      },
+                      "optional": true
                     },
                     "_type": {
                       "type": "objectAttribute",
                       "value": {
                         "type": "string",
-                        "value": "reference"
+                        "value": "imageAlt"
                       }
-                    },
-                    "_weak": {
-                      "type": "objectAttribute",
-                      "value": {
-                        "type": "boolean"
-                      },
-                      "optional": true
                     }
-                  },
-                  "dereferencesTo": "sanity.imageAsset"
-                },
-                "optional": true
-              },
-              "hotspot": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "inline",
-                  "name": "sanity.imageHotspot"
-                },
-                "optional": true
-              },
-              "crop": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "inline",
-                  "name": "sanity.imageCrop"
-                },
-                "optional": true
-              },
-              "caption": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
+                  }
                 },
                 "optional": true
               },
@@ -1270,7 +1296,7 @@
                 "type": "objectAttribute",
                 "value": {
                   "type": "string",
-                  "value": "photo"
+                  "value": "pressReleases"
                 }
               }
             },
@@ -2365,7 +2391,7 @@
                     "optional": true
                   }
                 },
-                "dereferencesTo": "photoGallery"
+                "dereferencesTo": "pressReleasesGallery"
               },
               {
                 "type": "object",
@@ -2418,6 +2444,32 @@
                   }
                 },
                 "dereferencesTo": "testimonialsBlock"
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_ref": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "reference"
+                    }
+                  },
+                  "_weak": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  }
+                },
+                "dereferencesTo": "teamMembersBlock"
               }
             ]
           }
@@ -2489,41 +2541,113 @@
         "value": {
           "type": "array",
           "of": {
-            "type": "object",
-            "attributes": {
-              "_ref": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                }
-              },
-              "_type": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string",
-                  "value": "reference"
-                }
-              },
-              "_weak": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "boolean"
-                },
-                "optional": true
-              }
-            },
-            "dereferencesTo": "photoGallery",
-            "rest": {
-              "type": "object",
-              "attributes": {
-                "_key": {
-                  "type": "objectAttribute",
-                  "value": {
-                    "type": "string"
+            "type": "union",
+            "of": [
+              {
+                "type": "object",
+                "attributes": {
+                  "_ref": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "reference"
+                    }
+                  },
+                  "_weak": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
                   }
-                }
+                },
+                "dereferencesTo": "pressReleasesGallery"
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_ref": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "reference"
+                    }
+                  },
+                  "_weak": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  }
+                },
+                "dereferencesTo": "openerWithCarousel"
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_ref": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "reference"
+                    }
+                  },
+                  "_weak": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  }
+                },
+                "dereferencesTo": "testimonialsBlock"
+              },
+              {
+                "type": "object",
+                "attributes": {
+                  "_ref": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string"
+                    }
+                  },
+                  "_type": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "string",
+                      "value": "reference"
+                    }
+                  },
+                  "_weak": {
+                    "type": "objectAttribute",
+                    "value": {
+                      "type": "boolean"
+                    },
+                    "optional": true
+                  }
+                },
+                "dereferencesTo": "teamMembersBlock"
               }
-            }
+            ]
           }
         },
         "optional": true
