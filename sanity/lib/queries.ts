@@ -122,6 +122,21 @@ const chapterComponent = `{
         imageRowEnd,
     }
 }`;
+
+const chaptersList = `{
+    ...,
+    header,
+    chapters[] {
+        ...,
+        title,
+        description,
+        'descriptionColor': descriptionColor.hex,
+        image ${imageData},
+        'linkColor': linkColor.hex,
+        link {..., ${linkTypeData}},
+    }
+}`;
+
 const contentData = `{
     ...,
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
@@ -129,7 +144,8 @@ const contentData = `{
     _type == 'teamMembersBlock' => ${teamMembersBlock},
     _type == 'pressReleasesGallery' => ${pressReleasesGallery},
     _type == 'chaptersGallery' => ${chaptersGallery},
-    _type == 'chapterComponent' => ${chapterComponent}
+    _type == 'chapterComponent' => ${chapterComponent},
+    _type == 'chaptersList' => ${chaptersList}
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -150,6 +166,10 @@ export const chaptersGalleryQuery = defineQuery(`{
 
 export const chapterComponentQuery = defineQuery(`{
     'chapterComponent': *[_type == 'chapterComponent'][0] ${chapterComponent}
+}`);
+
+export const chaptersListQuery = defineQuery(`{
+    'chaptersList': *[_type == 'chaptersList'][0] ${chaptersList}
 }`);
 
 export const headerQuery = defineQuery(`{

@@ -13,6 +13,7 @@ const documentsHiddenFromContentList = [
   "teamMembersBlock",
   "chaptersGallery",
   "chapterComponent",
+  "chaptersList",
 ];
 
 export const singletonPlugin = definePlugin(() => {
@@ -125,6 +126,13 @@ export const structure: StructureResolver = (S) =>
                 .title("Chapters Gallery")
                 .child(
                   S.documentTypeList("chaptersGallery").defaultOrdering([
+                    { field: "_createdAt", direction: "asc" },
+                  ]),
+                ),
+              S.listItem()
+                .title("Chapters List")
+                .child(
+                  S.documentTypeList("chaptersList").defaultOrdering([
                     { field: "_createdAt", direction: "asc" },
                   ]),
                 ),
