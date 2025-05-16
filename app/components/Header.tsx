@@ -20,7 +20,7 @@ export function Header({ data }: Props) {
 
   if (currentPath === "about-us" || currentPath === "our-chapters") {
     bgColor = "bg-yellow pb-2";
-  } else if (currentPath.includes("affiliate")) {
+  } else if (currentPath.includes("chapter")) {
     bgColor = "bg-red";
   }
 

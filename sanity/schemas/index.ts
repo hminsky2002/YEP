@@ -10,6 +10,7 @@ import {
   testimonialsBlock,
   teamMembersBlock,
   chaptersGallery,
+  chapterComponent,
 } from "./modules";
 
 /* Object imports */
@@ -23,6 +24,7 @@ const modules = [
   testimonialsBlock,
   teamMembersBlock,
   chaptersGallery,
+  chapterComponent,
 ];
 
 const objects = [imageAlt, seo];
