@@ -69,16 +69,6 @@ export const chapterComponent = defineType({
       ],
     }),
     defineField({
-      name: "galleryColumns",
-      title: "Gallery Columns",
-      type: "number",
-    }),
-    defineField({
-      name: "galleryRows",
-      title: "Gallery Rows",
-      type: "number",
-    }),
-    defineField({
       name: "imageGallery",
       title: "Image Gallery",
       type: "array",

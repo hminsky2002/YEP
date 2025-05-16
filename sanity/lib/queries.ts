@@ -111,8 +111,6 @@ const chapterComponent = `{
         },
         
     },
-    galleryColumns,
-    galleryRows,
     imageGallery[] {
         ...,
         image ${imageData},

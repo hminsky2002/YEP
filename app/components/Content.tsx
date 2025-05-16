@@ -3,6 +3,7 @@ import PressReleasesGallery from "./PhotoGallery";
 import { TeamMembersBlock } from "./TeamMembersBlock";
 import ChaptersGallery from "./ChaptersGallery";
 import { TestimonialsBlock } from "./TestimonialsBlock";
+import Chapter from "./Chapter";
 type Props = {
   data: any[] | null | undefined;
 };
@@ -21,6 +22,8 @@ export default function Content({ data }: Props) {
             return <OpenerWithCarousel key={c._id} content={c} />;
           case "chaptersGallery":
             return <ChaptersGallery key={c._id} content={c} />;
+          case "chapterComponent":
+            return <Chapter key={c._id} content={c} />;
           default:
             return <h1 key={c._id}>No component found for {c._type}</h1>;
         }
