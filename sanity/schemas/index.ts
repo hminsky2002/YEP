@@ -9,6 +9,7 @@ import {
   openerWithCarousel,
   testimonialsBlock,
   teamMembersBlock,
+  chaptersGallery,
 } from "./modules";
 
 /* Object imports */
@@ -21,6 +22,7 @@ const modules = [
   openerWithCarousel,
   testimonialsBlock,
   teamMembersBlock,
+  chaptersGallery,
 ];
 
 const objects = [imageAlt, seo];

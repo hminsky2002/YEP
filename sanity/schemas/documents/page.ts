@@ -44,6 +44,7 @@ export const page = defineType({
             { type: "openerWithCarousel" },
             { type: "testimonialsBlock" },
             { type: "teamMembersBlock" },
+            { type: "chaptersGallery" },
           ],
         },
       ],

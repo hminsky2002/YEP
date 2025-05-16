@@ -68,6 +68,37 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type ChaptersGallery = {
+  _id: string;
+  _type: "chaptersGallery";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  header?: string;
+  subHeader?: string;
+  chapters?: Array<{
+    chapterTitle?: string;
+    link?: Link;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      caption?: string;
+      _type: "imageAlt";
+    };
+    _type: "chapter";
+    _key: string;
+  }>;
+  chaptersLink?: Link;
+  directorsLink?: Link;
+};
+
 export type TeamMembersBlock = {
   _id: string;
   _type: "teamMembersBlock";
@@ -403,6 +434,12 @@ export type Homepage = {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "teamMembersBlock";
       }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "chaptersGallery";
+      }
   >;
   SEO?: Seo;
 };
@@ -439,6 +476,12 @@ export type Page = {
         _type: "reference";
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "teamMembersBlock";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "chaptersGallery";
       }
   >;
   SEO?: Seo;
@@ -536,6 +579,7 @@ export type AllSanitySchemaTypes =
   | SanityImageDimensions
   | SanityFileAsset
   | Geopoint
+  | ChaptersGallery
   | TeamMembersBlock
   | TestimonialsBlock
   | OpenerWithCarousel
@@ -677,6 +721,80 @@ export type PressReleasesGalleryQueryResult = {
     }> | null;
   } | null;
 };
+// Variable: chaptersGalleryQuery
+// Query: {    'chaptersGallery': *[_type == 'chaptersGallery'][0] {    ...,    title,    header,    subHeader,    chaptersLink {...,   _type == "link" => {    ...,    internalLink->{_type,slug,title}  }},    directorsLink {...,   _type == "link" => {    ...,    internalLink->{_type,slug,title}  }},    chapters[] {    ...,    chapterTitle,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}}}
+export type ChaptersGalleryQueryResult = {
+  chaptersGallery: {
+    _id: string;
+    _type: "chaptersGallery";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title: string | null;
+    header: string | null;
+    subHeader: string | null;
+    chapters: Array<{
+      chapterTitle: string | null;
+      link?: Link;
+      image: {
+        caption: string | null;
+        assetId: string | null;
+        assetPath: string | null;
+        aspectRatio: number | null;
+      } | null;
+      _type: "chapter";
+      _key: string;
+    }> | null;
+    chaptersLink: {
+      _type: "link";
+      text?: string;
+      type?: string;
+      internalLink:
+        | {
+            _type: "homepage";
+            slug: null;
+            title: null;
+          }
+        | {
+            _type: "page";
+            slug: Slug | null;
+            title: string | null;
+          }
+        | null;
+      url?: string;
+      email?: string;
+      phone?: string;
+      value?: string;
+      blank?: boolean;
+      parameters?: string;
+      anchor?: string;
+    } | null;
+    directorsLink: {
+      _type: "link";
+      text?: string;
+      type?: string;
+      internalLink:
+        | {
+            _type: "homepage";
+            slug: null;
+            title: null;
+          }
+        | {
+            _type: "page";
+            slug: Slug | null;
+            title: string | null;
+          }
+        | null;
+      url?: string;
+      email?: string;
+      phone?: string;
+      value?: string;
+      blank?: boolean;
+      parameters?: string;
+      anchor?: string;
+    } | null;
+  } | null;
+};
 // Variable: headerQuery
 // Query: {    'header': *[_type == 'header'][0] {        navList[] {            ...,              _type == "link" => {    ...,    internalLink->{_type,slug,title}  },        }    }}
 export type HeaderQueryResult = {
@@ -783,7 +901,7 @@ export type SiteSettingsQueryResult = {
   } | null;
 } | null;
 // Variable: homepageQuery
-// Query: {    'homepage': *[_type == 'homepage'][0] {        ...,        content[]->{    ...,    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  },    _type == 'teamMembersBlock' => {    ...,    teamMembers[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},    _type == 'pressReleasesGallery' => {    ...,    'tagColor': tagColor.hex,    pressReleases[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
+// Query: {    'homepage': *[_type == 'homepage'][0] {        ...,        content[]->{    ...,    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  },    _type == 'teamMembersBlock' => {    ...,    teamMembers[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},    _type == 'pressReleasesGallery' => {    ...,    'tagColor': tagColor.hex,    pressReleases[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},    _type == 'chaptersGallery' => {    ...,    title,    header,    subHeader,    chaptersLink {...,   _type == "link" => {    ...,    internalLink->{_type,slug,title}  }},    directorsLink {...,   _type == "link" => {    ...,    internalLink->{_type,slug,title}  }},    chapters[] {    ...,    chapterTitle,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}}},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
 export type HomepageQueryResult = {
   homepage: {
     _id: string;
@@ -792,6 +910,76 @@ export type HomepageQueryResult = {
     _updatedAt: string;
     _rev: string;
     content: Array<
+      | {
+          _id: string;
+          _type: "chaptersGallery";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title: string | null;
+          header: string | null;
+          subHeader: string | null;
+          chapters: Array<{
+            chapterTitle: string | null;
+            link?: Link;
+            image: {
+              caption: string | null;
+              assetId: string | null;
+              assetPath: string | null;
+              aspectRatio: number | null;
+            } | null;
+            _type: "chapter";
+            _key: string;
+          }> | null;
+          chaptersLink: {
+            _type: "link";
+            text?: string;
+            type?: string;
+            internalLink:
+              | {
+                  _type: "homepage";
+                  slug: null;
+                  title: null;
+                }
+              | {
+                  _type: "page";
+                  slug: Slug | null;
+                  title: string | null;
+                }
+              | null;
+            url?: string;
+            email?: string;
+            phone?: string;
+            value?: string;
+            blank?: boolean;
+            parameters?: string;
+            anchor?: string;
+          } | null;
+          directorsLink: {
+            _type: "link";
+            text?: string;
+            type?: string;
+            internalLink:
+              | {
+                  _type: "homepage";
+                  slug: null;
+                  title: null;
+                }
+              | {
+                  _type: "page";
+                  slug: Slug | null;
+                  title: string | null;
+                }
+              | null;
+            url?: string;
+            email?: string;
+            phone?: string;
+            value?: string;
+            blank?: boolean;
+            parameters?: string;
+            anchor?: string;
+          } | null;
+        }
       | {
           _id: string;
           _type: "openerWithCarousel";
@@ -924,7 +1112,7 @@ export type HomepageQueryResult = {
   } | null;
 };
 // Variable: pageQuery
-// Query: {    'page': *[_type == 'page' && $slug == slug.current][0] {        ...,        title,        content[]->{    ...,    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  },    _type == 'teamMembersBlock' => {    ...,    teamMembers[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},    _type == 'pressReleasesGallery' => {    ...,    'tagColor': tagColor.hex,    pressReleases[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
+// Query: {    'page': *[_type == 'page' && $slug == slug.current][0] {        ...,        title,        content[]->{    ...,    _type == 'openerWithCarousel' => {    _id,    _type,    header,    subHeader,    'bgColor': bgColor.hex,    tagline,      _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    photos[] {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,}},    _type == 'testimonialsBlock' => {    _id,    title,    header,    testimonials[] {    icon {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},    testimonialSource,    testimonialContent[] {      ...,        _type == "link" => {    ...,    internalLink->{_type,slug,title}  },    },}  },    _type == 'teamMembersBlock' => {    ...,    teamMembers[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},    _type == 'pressReleasesGallery' => {    ...,    'tagColor': tagColor.hex,    pressReleases[] {    ...,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}},    _type == 'chaptersGallery' => {    ...,    title,    header,    subHeader,    chaptersLink {...,   _type == "link" => {    ...,    internalLink->{_type,slug,title}  }},    directorsLink {...,   _type == "link" => {    ...,    internalLink->{_type,slug,title}  }},    chapters[] {    ...,    chapterTitle,    image {    caption,    'assetId': asset->_id,    'assetPath': asset->path,    'aspectRatio': asset->metadata.dimensions.aspectRatio,},      _type == "link" => {    ...,    internalLink->{_type,slug,title}  }}}},        SEO {    ...,    'openGraphImage': openGraphImage.asset->url,},    }}
 export type PageQueryResult = {
   page: {
     _id: string;
@@ -935,6 +1123,76 @@ export type PageQueryResult = {
     title: string | null;
     slug?: Slug;
     content: Array<
+      | {
+          _id: string;
+          _type: "chaptersGallery";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title: string | null;
+          header: string | null;
+          subHeader: string | null;
+          chapters: Array<{
+            chapterTitle: string | null;
+            link?: Link;
+            image: {
+              caption: string | null;
+              assetId: string | null;
+              assetPath: string | null;
+              aspectRatio: number | null;
+            } | null;
+            _type: "chapter";
+            _key: string;
+          }> | null;
+          chaptersLink: {
+            _type: "link";
+            text?: string;
+            type?: string;
+            internalLink:
+              | {
+                  _type: "homepage";
+                  slug: null;
+                  title: null;
+                }
+              | {
+                  _type: "page";
+                  slug: Slug | null;
+                  title: string | null;
+                }
+              | null;
+            url?: string;
+            email?: string;
+            phone?: string;
+            value?: string;
+            blank?: boolean;
+            parameters?: string;
+            anchor?: string;
+          } | null;
+          directorsLink: {
+            _type: "link";
+            text?: string;
+            type?: string;
+            internalLink:
+              | {
+                  _type: "homepage";
+                  slug: null;
+                  title: null;
+                }
+              | {
+                  _type: "page";
+                  slug: Slug | null;
+                  title: string | null;
+                }
+              | null;
+            url?: string;
+            email?: string;
+            phone?: string;
+            value?: string;
+            blank?: boolean;
+            parameters?: string;
+            anchor?: string;
+          } | null;
+        }
       | {
           _id: string;
           _type: "openerWithCarousel";
@@ -1075,10 +1333,11 @@ declare module "@sanity/client" {
     "{\n    'testimonialsBlock': *[_type == 'testimonialsBlock'][0] {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  }\n}": TestimonialsBlockQueryResult;
     "{\n    'teamMembersBlock': *[_type == 'teamMembersBlock'][0] {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n}\n}": TeamMembersBlockQueryResult;
     "{\n    'pressReleasesGallery': *[_type == 'pressReleasesGallery'][0] {\n    ...,\n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n\n}\n}": PressReleasesGalleryQueryResult;
+    "{\n    'chaptersGallery': *[_type == 'chaptersGallery'][0] {\n    ...,\n    title,\n    header,\n    subHeader,\n    chaptersLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    directorsLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    chapters[] {\n    ...,\n    chapterTitle,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n}\n}": ChaptersGalleryQueryResult;
     "{\n    'header': *[_type == 'header'][0] {\n        navList[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        }\n    }\n}": HeaderQueryResult;
     "{\n    'footer': *[_type == 'footer'][0] {\n            ...,\n            socials[] \n    {\n    ...,\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n    }\n\n    }\n}": FooterQueryResult;
     "\n    *[_type == 'siteSettings'][0] {\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n": SiteSettingsQueryResult;
-    "{\n    'homepage': *[_type == 'homepage'][0] {\n        ...,\n        content[]->{\n    ...,\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  },\n    _type == 'teamMembersBlock' => {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n},\n    _type == 'pressReleasesGallery' => {\n    ...,\n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n\n},\n\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": HomepageQueryResult;
-    "{\n    'page': *[_type == 'page' && $slug == slug.current][0] {\n        ...,\n        title,\n        content[]->{\n    ...,\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  },\n    _type == 'teamMembersBlock' => {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n},\n    _type == 'pressReleasesGallery' => {\n    ...,\n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n\n},\n\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": PageQueryResult;
+    "{\n    'homepage': *[_type == 'homepage'][0] {\n        ...,\n        content[]->{\n    ...,\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  },\n    _type == 'teamMembersBlock' => {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n},\n    _type == 'pressReleasesGallery' => {\n    ...,\n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n\n},\n    _type == 'chaptersGallery' => {\n    ...,\n    title,\n    header,\n    subHeader,\n    chaptersLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    directorsLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    chapters[] {\n    ...,\n    chapterTitle,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n}\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": HomepageQueryResult;
+    "{\n    'page': *[_type == 'page' && $slug == slug.current][0] {\n        ...,\n        title,\n        content[]->{\n    ...,\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  },\n    _type == 'teamMembersBlock' => {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n},\n    _type == 'pressReleasesGallery' => {\n    ...,\n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n\n},\n    _type == 'chaptersGallery' => {\n    ...,\n    title,\n    header,\n    subHeader,\n    chaptersLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    directorsLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    chapters[] {\n    ...,\n    chapterTitle,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n\n}\n}\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": PageQueryResult;
   }
 }
