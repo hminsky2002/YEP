@@ -24,6 +24,7 @@ export const homepage = defineType({
             { type: "openerWithCarousel" },
             { type: "testimonialsBlock" },
             { type: "teamMembersBlock" },
+            { type: "chaptersGallery" },
           ],
         },
       ],

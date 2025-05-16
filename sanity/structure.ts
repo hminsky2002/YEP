@@ -11,6 +11,7 @@ const documentsHiddenFromContentList = [
   "openerWithCarousel",
   "testimonialsBlock",
   "teamMembersBlock",
+  "chaptersGallery",
 ];
 
 export const singletonPlugin = definePlugin(() => {
@@ -116,6 +117,13 @@ export const structure: StructureResolver = (S) =>
                 .title("Testimonials Block")
                 .child(
                   S.documentTypeList("testimonialsBlock").defaultOrdering([
+                    { field: "_createdAt", direction: "asc" },
+                  ]),
+                ),
+              S.listItem()
+                .title("Chapters Gallery")
+                .child(
+                  S.documentTypeList("chaptersGallery").defaultOrdering([
                     { field: "_createdAt", direction: "asc" },
                   ]),
                 ),

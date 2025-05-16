@@ -71,11 +71,28 @@ const pressRelease = `{
     ${linkTypeData}
 }`;
 
+const chapter = `{
+    ...,
+    chapterTitle,
+    image ${imageData},
+    ${linkTypeData}
+}`;
+
 const pressReleasesGallery = `{
     ...,
     'tagColor': tagColor.hex,
     pressReleases[] ${pressRelease}
 
+}`;
+
+const chaptersGallery = `{
+    ...,
+    title,
+    header,
+    subHeader,
+    chaptersLink {..., ${linkTypeData}},
+    directorsLink {..., ${linkTypeData}},
+    chapters[] ${chapter}
 }`;
 
 const contentData = `{
@@ -84,7 +101,7 @@ const contentData = `{
     _type == 'testimonialsBlock' => ${testimonialsBlock},
     _type == 'teamMembersBlock' => ${teamMembersBlock},
     _type == 'pressReleasesGallery' => ${pressReleasesGallery},
-
+    _type == 'chaptersGallery' => ${chaptersGallery}
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -97,6 +114,10 @@ export const teamMembersBlockQuery = defineQuery(`{
 
 export const pressReleasesGalleryQuery = defineQuery(`{
     'pressReleasesGallery': *[_type == 'pressReleasesGallery'][0] ${pressReleasesGallery}
+}`);
+
+export const chaptersGalleryQuery = defineQuery(`{
+    'chaptersGallery': *[_type == 'chaptersGallery'][0] ${chaptersGallery}
 }`);
 
 export const headerQuery = defineQuery(`{
