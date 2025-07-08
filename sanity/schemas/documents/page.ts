@@ -47,6 +47,7 @@ export const page = defineType({
             { type: "chaptersGallery" },
             { type: "chapterComponent" },
             { type: "chaptersList" },
+            { type: "directorsList" },
           ],
         },
       ],

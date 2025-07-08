@@ -137,6 +137,23 @@ const chaptersList = `{
     }
 }`;
 
+const directorsList = `{
+    ...,
+    header,
+    directorsByGroup[] {
+        directorGroupName,
+        directors[] {
+            directorName,
+            directorTitle,
+            image ${imageData},
+            description[] {
+                ...,
+                ${linkTypeData},
+            },
+        },
+    },
+}`;
+
 const contentData = `{
     ...,
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
@@ -145,7 +162,9 @@ const contentData = `{
     _type == 'pressReleasesGallery' => ${pressReleasesGallery},
     _type == 'chaptersGallery' => ${chaptersGallery},
     _type == 'chapterComponent' => ${chapterComponent},
-    _type == 'chaptersList' => ${chaptersList}
+    _type == 'chaptersList' => ${chaptersList},
+    _type == 'directorsList' => ${directorsList},
+   
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -170,6 +189,10 @@ export const chapterComponentQuery = defineQuery(`{
 
 export const chaptersListQuery = defineQuery(`{
     'chaptersList': *[_type == 'chaptersList'][0] ${chaptersList}
+}`);
+
+export const directorsListQuery = defineQuery(`{
+    'directorsList': *[_type == 'directorsList'][0] ${directorsList}
 }`);
 
 export const headerQuery = defineQuery(`{
