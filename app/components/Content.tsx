@@ -5,6 +5,7 @@ import ChaptersGallery from "./ChaptersGallery";
 import { TestimonialsBlock } from "./TestimonialsBlock";
 import Chapter from "./Chapter";
 import ChaptersList from "./ChaptersList";
+import DirectorsList from "./DirectorsList";
 type Props = {
   data: any[] | null | undefined;
 };
@@ -27,6 +28,8 @@ export default function Content({ data }: Props) {
             return <Chapter key={c._id} content={c} />;
           case "chaptersList":
             return <ChaptersList key={c._id} content={c} />;
+          case "directorsList":
+            return <DirectorsList key={c._id} content={c} />;
           default:
             return <h1 key={c._id}>No component found for {c._type}</h1>;
         }

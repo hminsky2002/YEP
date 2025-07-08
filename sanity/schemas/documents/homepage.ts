@@ -27,6 +27,7 @@ export const homepage = defineType({
             { type: "chaptersGallery" },
             { type: "chapterComponent" },
             { type: "chaptersList" },
+            { type: "directorsList" },
           ],
         },
       ],

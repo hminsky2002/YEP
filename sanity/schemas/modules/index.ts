@@ -5,3 +5,4 @@ export * from "./testimonialsBlock";
 export * from "./chaptersGallery";
 export * from "./chapterComponent";
 export * from "./chaptersList";
+export * from "./directorsList";
