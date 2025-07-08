@@ -65,6 +65,24 @@ export const pressReleasesGallery = defineType({
         },
       ],
     }),
+    defineField({
+      name: "helpImage",
+      title: "Help Image",
+      type: "imageAlt",
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
+      name: "helpHeader",
+      title: "Help Header",
+      type: "string",
+    }),
+    defineField({
+      name: "helpText",
+      title: "Help Text",
+      type: "string",
+    }),
   ],
 
   preview: {
