@@ -39,7 +39,7 @@ export default function ChaptersList({ content }: ChaptersListProps) {
                     alt={chapter.image.caption || ""}
                     width={2000}
                     height={2000}
-                    className={`h-full min-h-[500px] w-full min-w-[600px] ${isEven ? "drop-shadow-image-left" : "drop-shadow-image-right"}`}
+                    className={`size-full min-h-[500px] min-w-[600px] ${isEven ? "drop-shadow-image-left" : "drop-shadow-image-right"}`}
                   />
                 )}
               </div>

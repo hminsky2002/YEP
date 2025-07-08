@@ -62,7 +62,7 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
         </div>
       </div>
       <div className="mx-auto flex flex-col items-center gap-12 bg-yellow md:gap-0">
-        <img
+        <Image
           src="/yepbanner.png"
           alt="What We Do"
           width={2000}
