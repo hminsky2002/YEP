@@ -16,6 +16,10 @@ p {
   line-height: 225.1%;
 }
 
+.line-height-1 {
+  line-height: 225.1%;
+}
+
 h2,
 .h2,
 .hxl {
@@ -36,7 +40,7 @@ h4,
 
 body,
 .body {
-  @apply font-fg-atf text-[15px] font-normal leading-[1.4] tracking-normal;
+  @apply font-fg-atf text-[15px] font-normal leading-[225.1%] tracking-normal;
 }
 
 .menu {
@@ -54,3 +58,14 @@ body,
 .button:hover {
   @apply bg-white text-black;
 }
+
+.drop-shadow-image-left {
+  box-shadow: -7px 12px 8px rgba(0, 0, 0, 0.25);
+}
+
+.drop-shadow-image-right {
+  box-shadow: 7px 12px 8px rgba(0, 0, 0, 0.25);
+}
+
+
+

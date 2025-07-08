@@ -25,45 +25,43 @@ export default function ChaptersList({ content }: ChaptersListProps) {
             }`}
           >
             <div className="relative">
-              <div className="h-[500px] w-[600px]">
-                <h3 className="z-10 inline-block rounded-tl-lg rounded-tr-lg border border-black bg-white px-4 py-1 font-semibold">
-                  {chapter.title}
-                </h3>
+              <div>
+                <div className={`flex w-full ${isEven ? "" : "justify-end"}`}>
+                  <h3
+                    className={`z-10 inline-flex border border-black bg-white px-[40px] py-4 ${isEven ? "rounded-tr-[5rem]" : "rounded-tl-[5rem]"}`}
+                  >
+                    {chapter.title}
+                  </h3>
+                </div>
                 {chapter.image?.assetPath && (
                   <Image
                     src={chapter.image.assetPath}
                     alt={chapter.image.caption || ""}
-                    fill
-                    className="object-contain"
+                    width={2000}
+                    height={2000}
+                    className={`h-full min-h-[500px] w-full min-w-[600px] ${isEven ? "drop-shadow-image-left" : "drop-shadow-image-right"}`}
                   />
                 )}
               </div>
-            </div>
-
-            <div
-              className={`relative flex h-[349px] w-[560px] flex-col justify-between shadow-lg`}
-              style={{ backgroundColor: chapter.descriptionColor || "#fff" }}
-            >
               <div
-                className={`absolute top-1/2 -translate-y-1/2 ${
-                  isEven ? "right-10" : "left-10"
-                }`}
-                style={{ width: 0, height: 0 }}
-              />
-              <div className="max-w-[406px] p-8">
-                <CustomPortableText
-                  value={chapter.description as PortableTextBlock[]}
-                />
-              </div>
-              <div
-                className={`w-[233px] rounded-full border-2 border-black bg-white px-4 py-6 text-center`}
+                className={`absolute top-[20%] flex h-[349px] w-[560px] flex-col items-center justify-center shadow-lg ${isEven ? "left-[80%] rounded-bl-[5rem] rounded-tr-[5rem]" : "right-[80%] rounded-br-[5rem] rounded-tl-[5rem]"}`}
+                style={{ backgroundColor: chapter.descriptionColor || "#fff" }}
               >
-                <Link
-                  link={chapter.link as LinkValue}
-                  className="block text-center"
+                <div className="mx-auto flex max-w-[406px] items-center justify-center p-8 text-center">
+                  <CustomPortableText
+                    value={chapter.description as PortableTextBlock[]}
+                  />
+                </div>
+                <div
+                  className={`rounded-full border-2 border-black bg-white bg-opacity-[70%] px-8 text-center transition-all hover:bg-opacity-[10%]`}
                 >
-                  <h4>{chapter.link?.text}</h4>
-                </Link>
+                  <Link
+                    link={chapter.link as LinkValue}
+                    className="block text-center"
+                  >
+                    <p>{chapter.link?.text}</p>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

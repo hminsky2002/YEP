@@ -67,10 +67,10 @@ export default function PressReleasesGallery({
           })}
         </div>
       </div>
-      <div className="w-full bg-white">
-        <div className="flex h-[764px] flex-col items-center justify-center rounded-t-[8rem] md:mx-auto md:max-w-[1100px] md:flex-row">
+      <div className="w-full bg-white rounded-t-[8rem]">
+        <div className="r flex h-[764px] flex-col items-center justify-center md:mx-auto md:max-w-[1100px] md:flex-row">
           <div className="w-[500px]">
-            <h1 className="text-red py-12">{helpHeader}</h1>
+            <h1 className="py-12 text-red">{helpHeader}</h1>
             <p className="max-w-[400px] text-right">
               {helpText} <br />
               <p className="py-4 text-right text-red">
