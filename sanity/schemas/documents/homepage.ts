@@ -26,6 +26,7 @@ export const homepage = defineType({
             { type: "teamMembersBlock" },
             { type: "chaptersGallery" },
             { type: "chapterComponent" },
+            { type: "chaptersList" },
           ],
         },
       ],

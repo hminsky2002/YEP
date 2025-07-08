@@ -11,6 +11,7 @@ import {
   teamMembersBlock,
   chaptersGallery,
   chapterComponent,
+  chaptersList
 } from "./modules";
 
 /* Object imports */
@@ -25,6 +26,7 @@ const modules = [
   teamMembersBlock,
   chaptersGallery,
   chapterComponent,
+  chaptersList,
 ];
 
 const objects = [imageAlt, seo];

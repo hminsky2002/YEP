@@ -22,7 +22,7 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
         return <h4 className={"h4"}>{children}</h4>;
       },
       normal: ({ children }) => {
-        return <p className={"body"}>{children}</p>;
+        return <p className={"body leading-[225.1%]"}>{children}</p>;
       },
       yellowH3: ({ children }) => {
         return <h3 className={"h3 text-yellow"}>{children}</h3>;
