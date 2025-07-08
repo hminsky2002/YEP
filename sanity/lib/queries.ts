@@ -81,8 +81,10 @@ const chapter = `{
 const pressReleasesGallery = `{
     ...,
     'tagColor': tagColor.hex,
-    pressReleases[] ${pressRelease}
-
+    pressReleases[] ${pressRelease},
+    helpImage ${imageData},
+    helpHeader,
+    helpText
 }`;
 
 const chaptersGallery = `{
