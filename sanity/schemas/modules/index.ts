@@ -6,3 +6,5 @@ export * from "./chaptersGallery";
 export * from "./chapterComponent";
 export * from "./chaptersList";
 export * from "./directorsList";
+export * from "./donation";
+export * from "./whatWeDo";

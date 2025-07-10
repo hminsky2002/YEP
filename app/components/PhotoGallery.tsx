@@ -71,7 +71,7 @@ export default function PressReleasesGallery({
         <div className="r flex h-[764px] flex-col items-center justify-center md:mx-auto md:max-w-[1100px] md:flex-row">
           <div className="w-[500px]">
             <h1 className="py-12 text-red">{helpHeader}</h1>
-            <p className="max-w-[400px] text-right">
+            <div className="max-w-[400px] text-right">
               {helpText} <br />
               <p className="py-4 text-right text-red">
                 <a
@@ -81,7 +81,7 @@ export default function PressReleasesGallery({
                   DONATE TODAY
                 </a>
               </p>
-            </p>
+            </div>
           </div>
           {helpImage?.assetPath && (
             <Image

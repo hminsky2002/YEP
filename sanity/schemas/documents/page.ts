@@ -48,6 +48,8 @@ export const page = defineType({
             { type: "chapterComponent" },
             { type: "chaptersList" },
             { type: "directorsList" },
+            { type: "donation" },
+            { type: "whatWeDo" },
           ],
         },
       ],

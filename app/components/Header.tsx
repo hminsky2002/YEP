@@ -16,17 +16,23 @@ export function Header({ data }: Props) {
   const navList = data?.navList;
   const pathname = usePathname();
   let bgColor = "";
+  let textColor = "text-black";
+  let linkUnderlineColor = "border-black";
   const currentPath = pathname.split("/")[1];
 
   if (currentPath === "about-us" || currentPath === "our-chapters") {
     bgColor = "bg-yellow pb-2";
   } else if (currentPath.includes("chapter")) {
     bgColor = "bg-red";
+  } else if (currentPath.includes("donate")) {
+    bgColor = "bg-transparent";
+    textColor = "text-white";
+    linkUnderlineColor = "border-white";
   }
 
   return (
     <nav
-      className={`${bgColor} fixed top-0 z-10 flex w-full items-center justify-between`}
+      className={`${bgColor} fixed top-0 z-20 flex w-full items-center justify-between`}
     >
       <NextLink href={`/`}>
         <div className="ml-[1.6rem] mt-[1.6rem] w-80">
@@ -41,11 +47,11 @@ export function Header({ data }: Props) {
               link.internalLink?.slug?.current != currentPath &&
               currentPath != "/"
                 ? ""
-                : "border-b pb-1 border-black";
+                : `${linkUnderlineColor} border-b pb-1`;
           }
 
           return (
-            <span key={link._key} className={`menu text-black`}>
+            <span key={link._key} className={`menu ${textColor}`}>
               <Link className={`${linkUnderline}`} link={link as LinkValue}>
                 {link.text}
               </Link>

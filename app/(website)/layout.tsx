@@ -1,5 +1,6 @@
 import "../globals.css";
 
+import { Manrope } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { VisualEditing } from "next-sanity";
@@ -50,6 +51,12 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+const manrope = Manrope({
+  variable: "--font-manrope",
+  subsets: ["latin"],
+  display: "swap",
+});
+
 export default async function RootLayout({
   children,
 }: {
@@ -60,8 +67,8 @@ export default async function RootLayout({
   const { footer } = await sanityFetch({ query: footerQuery });
 
   return (
-    <html lang="en" className="bg-yellow text-black">
-      <body>
+    <html lang="en" className={`${manrope.className} `}>
+      <body className="bg-yellow text-black">
         <section className="min-h-screen">
           {isDraftMode && <AlertBanner />}
           <Header data={header} />

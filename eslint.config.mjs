@@ -31,6 +31,7 @@ const config = [
       "no-undef": "error",
       "react/react-in-jsx-scope": "off",
       "tailwindcss/no-custom-classname": "off",
+      "@next/next/no-html-link-for-pages": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
