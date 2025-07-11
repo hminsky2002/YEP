@@ -20,6 +20,7 @@ const documentsHiddenFromContentList = [
   "ourProgram",
   "ourHistory",
   "ourCurriculum",
+  "programmingBlock",
 ];
 
 export const singletonPlugin = definePlugin(() => {
@@ -191,6 +192,14 @@ export const structure: StructureResolver = (S) =>
                     { field: "_createdAt", direction: "asc" },
                   ]),
                 ),
+              S.listItem()
+                .title("Programming Block")
+                .child(
+                  S.documentTypeList("programmingBlock").defaultOrdering([
+                    { field: "_createdAt", direction: "asc" },
+                  ]),
+                ),
+
             ]),
         ),
 

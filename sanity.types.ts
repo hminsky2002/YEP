@@ -13,6 +13,51 @@
  */
 
 // Source: schema.json
+export type ProgrammingBlock = {
+  _id: string;
+  _type: "programmingBlock";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  header?: string;
+  programmingCards?: Array<{
+    title?: string;
+    description?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      caption?: string;
+      _type: "imageAlt";
+    };
+    _key: string;
+  }>;
+};
+
 export type OurCurriculum = {
   _id: string;
   _type: "ourCurriculum";
@@ -912,6 +957,12 @@ export type Homepage = {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "ourCurriculum";
       }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "programmingBlock";
+      }
   >;
   SEO?: Seo;
 };
@@ -1002,6 +1053,12 @@ export type Page = {
         _type: "reference";
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "ourCurriculum";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "programmingBlock";
       }
   >;
   SEO?: Seo;
@@ -1150,6 +1207,7 @@ export type SanityAssetSourceData = {
 };
 
 export type AllSanitySchemaTypes =
+  | ProgrammingBlock
   | OurCurriculum
   | OurHistory
   | OurProgram
@@ -2429,6 +2487,58 @@ export type HomepageQueryResult = {
         }
       | {
           _id: string;
+          _type: "programmingBlock";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          header?: string;
+          programmingCards?: Array<{
+            title?: string;
+            description?: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?:
+                | "blockquote"
+                | "h1"
+                | "h2"
+                | "h3"
+                | "h4"
+                | "h5"
+                | "h6"
+                | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            image?: {
+              asset?: {
+                _ref: string;
+                _type: "reference";
+                _weak?: boolean;
+                [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              caption?: string;
+              _type: "imageAlt";
+            };
+            _key: string;
+          }>;
+        }
+      | {
+          _id: string;
           _type: "teamMembersBlock";
           _createdAt: string;
           _updatedAt: string;
@@ -3063,6 +3173,58 @@ export type PageQueryResult = {
           } | null;
           helpHeader: string | null;
           helpText: string | null;
+        }
+      | {
+          _id: string;
+          _type: "programmingBlock";
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          header?: string;
+          programmingCards?: Array<{
+            title?: string;
+            description?: Array<{
+              children?: Array<{
+                marks?: Array<string>;
+                text?: string;
+                _type: "span";
+                _key: string;
+              }>;
+              style?:
+                | "blockquote"
+                | "h1"
+                | "h2"
+                | "h3"
+                | "h4"
+                | "h5"
+                | "h6"
+                | "normal";
+              listItem?: "bullet" | "number";
+              markDefs?: Array<{
+                href?: string;
+                _type: "link";
+                _key: string;
+              }>;
+              level?: number;
+              _type: "block";
+              _key: string;
+            }>;
+            image?: {
+              asset?: {
+                _ref: string;
+                _type: "reference";
+                _weak?: boolean;
+                [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+              };
+              media?: unknown;
+              hotspot?: SanityImageHotspot;
+              crop?: SanityImageCrop;
+              caption?: string;
+              _type: "imageAlt";
+            };
+            _key: string;
+          }>;
         }
       | {
           _id: string;

@@ -33,6 +33,7 @@ export const homepage = defineType({
             { type: "ourProgram" },
             { type: "ourHistory" },
             { type: "ourCurriculum" },
+            { type: "programmingBlock" },
           ],
         },
       ],

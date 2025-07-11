@@ -241,6 +241,18 @@ const ourCurriculum = `{
     }
 }`;
 
+const programmingBlock = `{
+    ...,
+    title,
+    header,
+    programmingCards[] {
+        ...,
+        title,
+        description,
+        image ${imageData},
+    }
+}`;
+
 const contentData = `{
     ...,
     _type == 'openerWithCarousel' => ${openerWithCarouselData},

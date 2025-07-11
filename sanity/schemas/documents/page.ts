@@ -53,6 +53,7 @@ export const page = defineType({
             { type: "ourProgram" },
             { type: "ourHistory" },
             { type: "ourCurriculum" },
+            { type: "programmingBlock" },
           ],
         },
       ],
