@@ -17,6 +17,7 @@ import {
   whatWeDo,
   ourProgram,
   ourHistory,
+  ourCurriculum,
 } from "./modules";
 
 /* Object imports */
@@ -37,6 +38,7 @@ const modules = [
   whatWeDo,
   ourProgram,
   ourHistory,
+  ourCurriculum,
 ];
 
 const objects = [imageAlt, seo];
