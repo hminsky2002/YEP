@@ -9,3 +9,4 @@ export * from "./directorsList";
 export * from "./donation";
 export * from "./whatWeDo";
 export * from "./ourProgram";
+export * from "./ourHistory";

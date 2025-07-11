@@ -37,7 +37,7 @@ h3,
 h4,
 .h4,
 .medium {
-  @apply  text-[18px] font-normal leading-[0.89] tracking-normal;
+  @apply  text-[20px] font-normal leading-[0.89] tracking-normal;
 }
 
 body,
