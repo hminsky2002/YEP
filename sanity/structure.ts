@@ -19,6 +19,7 @@ const documentsHiddenFromContentList = [
   "whatWeDo",
   "ourProgram",
   "ourHistory",
+  "ourCurriculum",
 ];
 
 export const singletonPlugin = definePlugin(() => {
@@ -180,6 +181,13 @@ export const structure: StructureResolver = (S) =>
                 .title("Our History")
                 .child(
                   S.documentTypeList("ourHistory").defaultOrdering([
+                    { field: "_createdAt", direction: "asc" },
+                  ]),
+                ),
+              S.listItem()
+                .title("Our Curriculum")
+                .child(
+                  S.documentTypeList("ourCurriculum").defaultOrdering([
                     { field: "_createdAt", direction: "asc" },
                   ]),
                 ),

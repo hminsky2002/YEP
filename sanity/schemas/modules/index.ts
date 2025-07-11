@@ -10,3 +10,4 @@ export * from "./donation";
 export * from "./whatWeDo";
 export * from "./ourProgram";
 export * from "./ourHistory";
+export * from "./ourCurriculum";

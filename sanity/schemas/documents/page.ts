@@ -52,6 +52,7 @@ export const page = defineType({
             { type: "whatWeDo" },
             { type: "ourProgram" },
             { type: "ourHistory" },
+            { type: "ourCurriculum" },
           ],
         },
       ],

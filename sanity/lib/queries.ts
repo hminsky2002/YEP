@@ -220,6 +220,27 @@ const ourHistory = `{
     }
 }`;
 
+const ourCurriculum = `{
+    ...,
+    title,
+    header,
+    curriculumCards[] {
+        ...,
+        title,
+        icon ${imageData},
+        description[] {
+            ...,
+            ${linkTypeData},
+        },
+        image ${imageData},
+        carousel[] {
+            ...,
+            photo ${imageData},
+            caption,
+        },
+    }
+}`;
+
 const contentData = `{
     ...,
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
@@ -233,7 +254,8 @@ const contentData = `{
     _type == 'donation' => ${donation},
     _type == 'whatWeDo' => ${whatWeDo},
     _type == 'ourProgram' => ${ourProgram},
-    _type == 'ourHistory' => ${ourHistory}
+    _type == 'ourHistory' => ${ourHistory},
+    _type == 'ourCurriculum' => ${ourCurriculum}
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -278,6 +300,10 @@ export const ourProgramQuery = defineQuery(`{
 
 export const ourHistoryQuery = defineQuery(`{
     'ourHistory': *[_type == 'ourHistory'][0] ${ourHistory}
+}`);
+
+export const ourCurriculumQuery = defineQuery(`{
+    'ourCurriculum': *[_type == 'ourCurriculum'][0] ${ourCurriculum}
 }`);
 
 export const headerQuery = defineQuery(`{
