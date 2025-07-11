@@ -30,6 +30,7 @@ export const homepage = defineType({
             { type: "directorsList" },
             { type: "donation" },
             { type: "whatWeDo" },
+            { type: "ourProgram" },
           ],
         },
       ],

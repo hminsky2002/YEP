@@ -15,6 +15,7 @@ import {
   directorsList,
   donation,
   whatWeDo,
+  ourProgram,
 } from "./modules";
 
 /* Object imports */
@@ -33,6 +34,7 @@ const modules = [
   directorsList,
   donation,
   whatWeDo,
+  ourProgram,
 ];
 
 const objects = [imageAlt, seo];

@@ -8,3 +8,4 @@ export * from "./chaptersList";
 export * from "./directorsList";
 export * from "./donation";
 export * from "./whatWeDo";
+export * from "./ourProgram";

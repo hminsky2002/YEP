@@ -193,6 +193,20 @@ const whatWeDo = `{
     ${linkTypeData},
 }`;
 
+const ourProgram = `{
+    ...,
+    title,
+    header,
+    description,
+    missionHeader,
+    mission[] {
+        ...,
+        number,
+        text,
+    },
+    image ${imageData},
+}`;
+
 const contentData = `{
     ...,
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
@@ -204,7 +218,8 @@ const contentData = `{
     _type == 'chaptersList' => ${chaptersList},
     _type == 'directorsList' => ${directorsList},
     _type == 'donation' => ${donation},
-    _type == 'whatWeDo' => ${whatWeDo}
+    _type == 'whatWeDo' => ${whatWeDo},
+    _type == 'ourProgram' => ${ourProgram}
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -241,6 +256,10 @@ export const donationQuery = defineQuery(`{
 
 export const whatWeDoQuery = defineQuery(`{
     'whatWeDo': *[_type == 'whatWeDo'][0] ${whatWeDo}
+}`);
+
+export const ourProgramQuery = defineQuery(`{
+    'ourProgram': *[_type == 'ourProgram'][0] ${ourProgram}
 }`);
 
 export const headerQuery = defineQuery(`{

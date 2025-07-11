@@ -50,6 +50,7 @@ export const page = defineType({
             { type: "directorsList" },
             { type: "donation" },
             { type: "whatWeDo" },
+            { type: "ourProgram" },
           ],
         },
       ],
