@@ -12,7 +12,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
   const { header, teamMembers } = content || {};
   return (
     <div className="relative mx-auto mt-12 max-w-[1263px] bg-white pb-12">
-      <div className="pointer-events-none absolute -right-4 -top-4 hidden size-full border-2 border-black md:block" />
+      <div className="pointer-events-none absolute -right-4 -top-4 hidden size-full border border-black md:block" />
       <div className="mx-auto max-w-[425px] pb-[50px] text-center">
         <h1 className="border-b-2 border-black pb-8 pt-[50px]">{header}</h1>
       </div>
