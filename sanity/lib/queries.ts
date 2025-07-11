@@ -207,6 +207,19 @@ const ourProgram = `{
     image ${imageData},
 }`;
 
+const ourHistory = `{
+    ...,
+    title,
+    header,
+    timelineItems[] {
+        ...,
+        header,
+        description,
+        icon ${imageData},
+        year ${imageData},
+    }
+}`;
+
 const contentData = `{
     ...,
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
@@ -219,7 +232,8 @@ const contentData = `{
     _type == 'directorsList' => ${directorsList},
     _type == 'donation' => ${donation},
     _type == 'whatWeDo' => ${whatWeDo},
-    _type == 'ourProgram' => ${ourProgram}
+    _type == 'ourProgram' => ${ourProgram},
+    _type == 'ourHistory' => ${ourHistory}
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -260,6 +274,10 @@ export const whatWeDoQuery = defineQuery(`{
 
 export const ourProgramQuery = defineQuery(`{
     'ourProgram': *[_type == 'ourProgram'][0] ${ourProgram}
+}`);
+
+export const ourHistoryQuery = defineQuery(`{
+    'ourHistory': *[_type == 'ourHistory'][0] ${ourHistory}
 }`);
 
 export const headerQuery = defineQuery(`{

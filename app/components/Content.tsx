@@ -9,6 +9,7 @@ import DirectorsList from "./DirectorsList";
 import Donation from "./Donation";
 import WhatWeDo from "./WhatWeDo";
 import OurProgram from "./OurProgram";
+import OurHistory from "./OurHistory";
 type Props = {
   data: any[] | null | undefined;
 };
@@ -39,6 +40,8 @@ export default function Content({ data }: Props) {
             return <WhatWeDo key={c._id} content={c} />;
           case "ourProgram":
             return <OurProgram key={c._id} content={c} />;
+          case "ourHistory":
+            return <OurHistory key={c._id} content={c} />;
           default:
             return <h1 key={c._id}>No component found for {c._type}</h1>;
         }

@@ -31,6 +31,7 @@ export const homepage = defineType({
             { type: "donation" },
             { type: "whatWeDo" },
             { type: "ourProgram" },
+            { type: "ourHistory" },
           ],
         },
       ],
