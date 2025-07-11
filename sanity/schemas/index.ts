@@ -13,6 +13,8 @@ import {
   chapterComponent,
   chaptersList,
   directorsList,
+  donation,
+  whatWeDo,
 } from "./modules";
 
 /* Object imports */
@@ -29,6 +31,8 @@ const modules = [
   chapterComponent,
   chaptersList,
   directorsList,
+  donation,
+  whatWeDo,
 ];
 
 const objects = [imageAlt, seo];

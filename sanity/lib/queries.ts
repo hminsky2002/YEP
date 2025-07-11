@@ -154,6 +154,45 @@ const directorsList = `{
     },
 }`;
 
+const donation = `{
+    ...,
+    title,
+    redHeader,
+    plainHeader,
+    description[] {
+            ...,
+            ${linkTypeData},
+    },
+    image ${imageData},
+    stats {
+        ...,
+        years {
+            ...,
+            number,
+            text,
+        },
+        chapters {
+            ...,
+            number,
+            text,
+        },
+        studentsSupported {
+            ...,
+            number,
+            text,
+        },
+    }
+}`;
+
+const whatWeDo = `{
+    ...,
+    title,
+    header,
+    description,
+    image ${imageData},
+    ${linkTypeData},
+}`;
+
 const contentData = `{
     ...,
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
@@ -164,7 +203,8 @@ const contentData = `{
     _type == 'chapterComponent' => ${chapterComponent},
     _type == 'chaptersList' => ${chaptersList},
     _type == 'directorsList' => ${directorsList},
-   
+    _type == 'donation' => ${donation},
+    _type == 'whatWeDo' => ${whatWeDo}
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -193,6 +233,14 @@ export const chaptersListQuery = defineQuery(`{
 
 export const directorsListQuery = defineQuery(`{
     'directorsList': *[_type == 'directorsList'][0] ${directorsList}
+}`);
+
+export const donationQuery = defineQuery(`{
+    'donation': *[_type == 'donation'][0] ${donation}
+}`);
+
+export const whatWeDoQuery = defineQuery(`{
+    'whatWeDo': *[_type == 'whatWeDo'][0] ${whatWeDo}
 }`);
 
 export const headerQuery = defineQuery(`{

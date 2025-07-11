@@ -28,6 +28,8 @@ export const homepage = defineType({
             { type: "chapterComponent" },
             { type: "chaptersList" },
             { type: "directorsList" },
+            { type: "donation" },
+            { type: "whatWeDo" },
           ],
         },
       ],

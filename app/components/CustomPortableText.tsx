@@ -27,6 +27,13 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
       yellowH3: ({ children }) => {
         return <h3 className={"h3 text-yellow"}>{children}</h3>;
       },
+      leftBorder: ({ children }) => {
+        return (
+          <p className={"body border-l border-black pl-4 leading-[225.1%]"}>
+            {children}
+          </p>
+        );
+      },
     },
     marks: {
       link: ({ children, value }) => {
