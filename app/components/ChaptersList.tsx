@@ -20,11 +20,11 @@ export default function ChaptersList({ content }: ChaptersListProps) {
         return (
           <div
             key={chapter._key}
-            className={`mb-20 flex w-[1122px] items-center justify-between ${
+            className={`mb-20 flex items-center justify-between lg:w-[1122px] ${
               !isEven ? "flex-row-reverse" : ""
             }`}
           >
-            <div className="relative">
+            <div className="relative max-w-[350px] lg:max-w-full">
               <div>
                 <div className={`flex w-full ${isEven ? "" : "justify-end"}`}>
                   <h3
@@ -39,12 +39,12 @@ export default function ChaptersList({ content }: ChaptersListProps) {
                     alt={chapter.image.caption || ""}
                     width={2000}
                     height={2000}
-                    className={`size-full min-h-[500px] min-w-[600px] ${isEven ? "drop-shadow-image-left" : "drop-shadow-image-right"}`}
+                    className={`size-full h-[300px] w-full object-cover lg:size-auto lg:min-h-[500px] lg:min-w-[600px] lg:object-fill ${isEven ? "lg:drop-shadow-image-left" : "lg:drop-shadow-image-right"}`}
                   />
                 )}
               </div>
               <div
-                className={`absolute top-[20%] flex h-[349px] w-[560px] flex-col items-center justify-center shadow-lg ${isEven ? "left-[80%] rounded-bl-[5rem] rounded-tr-[5rem]" : "right-[80%] rounded-br-[5rem] rounded-tl-[5rem]"}`}
+                className={`top-[20%] flex flex-col items-center justify-center shadow-lg lg:absolute lg:h-[349px] lg:w-[560px] ${isEven ? "left-[80%] rounded-bl-[5rem] lg:rounded-tr-[5rem]" : "right-[80%] rounded-br-[5rem] lg:rounded-tl-[5rem]"}`}
                 style={{ backgroundColor: chapter.descriptionColor || "#fff" }}
               >
                 <div className="mx-auto flex max-w-[406px] items-center justify-center p-8 text-center">
@@ -53,7 +53,7 @@ export default function ChaptersList({ content }: ChaptersListProps) {
                   />
                 </div>
                 <div
-                  className={`rounded-full border-2 border-black bg-white bg-opacity-[70%] px-8 text-center transition-all hover:bg-opacity-[10%]`}
+                  className={`mb-4 rounded-full border-2 border-black bg-white bg-opacity-[70%] px-8 text-center transition-all hover:bg-opacity-[10%] lg:mb-0`}
                 >
                   <Link
                     link={chapter.link as LinkValue}
