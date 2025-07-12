@@ -34,6 +34,7 @@ export const homepage = defineType({
             { type: "ourHistory" },
             { type: "ourCurriculum" },
             { type: "programmingBlock" },
+            { type: "howCanIHelpBlock" },
           ],
         },
       ],

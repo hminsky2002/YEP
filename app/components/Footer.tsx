@@ -33,19 +33,19 @@ export function Footer({ data }: Props) {
   return (
     <div className={`${background}`}>
       <footer
-        className={`${color} ${rounded} flex w-full flex-col gap-8 py-[80px] pl-2 md:items-center md:justify-between md:gap-8 md:pl-0`}
+        className={`${color} ${rounded} flex w-full flex-col gap-8 py-[80px] pl-8 lg:items-center lg:justify-between lg:gap-8 lg:pl-0`}
       >
         <h1>{data?.message}</h1>
-        <div className="flex flex-col gap-4 md:flex-row md:gap-8">
+        <div className="flex flex-col gap-8 lg:flex-row">
           <CustomPortableText value={data?.address as PortableTextBlock[]} />
           <div
-            className={`h-[39px] w-[0.5px] bg-black ${filter} hidden md:block`}
+            className={`h-[39px] w-[0.5px] bg-black ${filter} hidden lg:block`}
           ></div>
           <CustomPortableText value={data?.contact as PortableTextBlock[]} />
           <div
-            className={`h-[39px] w-[0.5px] bg-black ${filter} hidden md:block`}
+            className={`h-[39px] w-[0.5px] bg-black ${filter} hidden lg:block`}
           ></div>
-          <div className="flex gap-12">
+          <div className="flex gap-12 lg:mt-0">
             {data?.socials &&
               data.socials.map((social) => (
                 <Link link={social.link as LinkValue} key={social._key}>

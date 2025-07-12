@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.swiper-custom {
+  --swiper-theme-color: #BD0059;
+  --swiper-navigation-color: #BD0059;
+  --swiper-pagination-bullet-inactive-color: #D9D9D9;
+  --swiper-pagination-bullet-color: #BD0059;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+}
+
 html, body, #__next { height: 100%; }
 
 html {
@@ -11,7 +21,7 @@ html {
 h1,
 .h1,
 .hxxl {
-  @apply  font-bold  text-[30px] leading-[90%] tracking-normal lg:text-[60px] lg:leading-[115%];
+  @apply  font-bold  text-[40px] leading-[110%] tracking-normal lg:text-[60px] lg:leading-[115%];
 }
 
 p {

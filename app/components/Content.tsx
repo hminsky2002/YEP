@@ -1,5 +1,5 @@
 import { OpenerWithCarousel } from "./OpenerWithCarousel";
-import PressReleasesGallery from "./PhotoGallery";
+import PressReleasesGallery from "./PressReleasesGallery";
 import { TeamMembersBlock } from "./TeamMembersBlock";
 import ChaptersGallery from "./ChaptersGallery";
 import { TestimonialsBlock } from "./TestimonialsBlock";
@@ -12,6 +12,7 @@ import OurProgram from "./OurProgram";
 import OurHistory from "./OurHistory";
 import OurCurriculum from "./OurCurriculum";
 import ProgrammingBlock from "./ProgrammingBlock";
+import HowCanIHelp from "./HowCanIHelp";
 
 type Props = {
   data: any[] | null | undefined;
@@ -49,6 +50,8 @@ export default function Content({ data }: Props) {
             return <OurCurriculum key={c._id} content={c} />;
           case "programmingBlock":
             return <ProgrammingBlock key={c._id} content={c} />;
+          case "howCanIHelpBlock":
+            return <HowCanIHelp key={c._id} content={c} />;
           default:
             return <h1 key={c._id}>No component found for {c._type}</h1>;
         }

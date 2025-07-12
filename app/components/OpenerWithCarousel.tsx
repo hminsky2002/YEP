@@ -3,7 +3,13 @@ import type { ImageData } from "../types";
 import { LinkValue } from "sanity-plugin-link-field";
 import { Link } from "./Link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
 import Image from "next/image";
 
 import "swiper/css";
@@ -25,16 +31,17 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
   const { header, subHeader, tagline, bgColor, photos, link } = content;
   return (
     <div
-      className="mx-auto flex flex-col items-center gap-12 md:flex-row md:gap-0"
+      className="mx-auto mt-[100px] flex flex-col items-center lg:mt-0 lg:flex-row lg:gap-0"
       style={{ backgroundColor: bgColor }}
     >
-      <div className="w-full md:w-[663px]">
+      <div className="swiper-custom w-full lg:w-[663px]">
         <Swiper
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
           spaceBetween={50}
           slidesPerView={1}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
+          autoplay={{ delay: 2500, disableOnInteraction: true }}
         >
           {photos.map((photo) => (
             <SwiperSlide key={photo.assetPath}>
@@ -49,15 +56,15 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
           ))}
         </Swiper>
       </div>
-      <div className="mx-auto w-full pl-8 md:max-w-[738px]">
-        <h1 className="text-red">{header}</h1>
-        <div className="mt-4 flex gap-6">
-          <h4 className="font-semibold">{subHeader}</h4>
-          <h4 className="hidden italic md:block">{tagline}</h4>
+      <div className="mx-auto w-full pl-8 lg:block lg:max-w-[738px]">
+        <h1 className="my-4 text-red lg:my-0">{header}</h1>
+        <div className="my-8 flex lg:mb-0 lg:mt-4 lg:gap-6">
+          <h4 className="font-semibold lg:my-0">{subHeader}</h4>
+          <h4 className="hidden italic lg:block">{tagline}</h4>
         </div>
-        <button className="mt-6 rounded-full bg-red px-10 py-4 text-white">
+        <div className="mb-12 mt-4 inline-flex rounded-full bg-red px-8 text-[15px] font-bold text-white lg:mb-0 lg:mt-6 lg:px-10 lg:py-4">
           <Link link={link} />
-        </button>
+        </div>
       </div>
     </div>
   );

@@ -12,3 +12,4 @@ export * from "./ourProgram";
 export * from "./ourHistory";
 export * from "./ourCurriculum";
 export * from "./programmingBlock";
+export * from "./howCanIHelpBlock";

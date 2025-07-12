@@ -25,7 +25,7 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
         return <p className={"body leading-[225.1%]"}>{children}</p>;
       },
       yellowH3: ({ children }) => {
-        return <h3 className={"h3 text-yellow"}>{children}</h3>;
+        return <h3 className={"font-bold text-yellow"}>{children}</h3>;
       },
       leftBorder: ({ children }) => {
         return (
