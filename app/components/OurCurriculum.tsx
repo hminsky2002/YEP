@@ -16,6 +16,7 @@ function NumberComponent({
   bottomClipX,
   topClipId,
   bottomClipId,
+  size,
 }: {
   num: number;
   className: string;
@@ -25,19 +26,24 @@ function NumberComponent({
   bottomClipX: number;
   topClipId: string;
   bottomClipId: string;
+  size: number;
 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={`absolute size-[250px] font-bold ${className}`}
+      className={`absolute size-[${size}px] font-bold ${className}`}
     >
       <defs>
         <clipPath id={topClipId}>
-          <rect x={topClipX} y={topClipY} className="size-[250px]" />
+          <rect x={topClipX} y={topClipY} className={`size-[${size}px]`} />
         </clipPath>
 
         <clipPath id={bottomClipId}>
-          <rect x={bottomClipX} y={bottomClipY} className="size-[250px]" />
+          <rect
+            x={bottomClipX}
+            y={bottomClipY}
+            className={`size-[${size}px]`}
+          />
         </clipPath>
       </defs>
 
@@ -47,7 +53,7 @@ function NumberComponent({
         dominant-baseline="middle"
         text-anchor="middle"
         clip-path={`url(#${topClipId})`}
-        className="fill-black stroke-none text-[250px]"
+        className={`fill-black stroke-none text-[${size}px]`}
       >
         {num}
       </text>
@@ -58,7 +64,7 @@ function NumberComponent({
         dominant-baseline="middle"
         text-anchor="middle"
         clip-path={`url(#${bottomClipId})`}
-        className="fill-transparent stroke-black stroke-1 text-[250px]"
+        className={`fill-transparent stroke-black stroke-1 text-[${size}px]`}
       >
         {num}
       </text>
@@ -66,17 +72,18 @@ function NumberComponent({
   );
 }
 
-function Number({ index }: { index: number }) {
+function Number({ index, className }: { index: number; className?: string }) {
   switch (index % 3) {
     case 0:
       return (
         <NumberComponent
           num={index + 1}
-          className="bottom-[-125px] left-0"
+          className={`bottom-[-125px] left-0 ${className}`}
           topClipY={125}
           bottomClipY={0}
           topClipX={0}
           bottomClipX={0}
+          size={250}
           topClipId={`clip-top-${index}`}
           bottomClipId={`clip-bottom-${index}`}
         />
@@ -85,11 +92,12 @@ function Number({ index }: { index: number }) {
       return (
         <NumberComponent
           num={index + 1}
-          className="bottom-[-150px] right-0"
+          className={`bottom-[-150px] right-0 ${className}`}
           topClipY={100}
           bottomClipY={0}
           topClipX={0}
           bottomClipX={0}
+          size={250}
           topClipId={`clip-top-${index}`}
           bottomClipId={`clip-bottom-${index}`}
         />
@@ -98,9 +106,10 @@ function Number({ index }: { index: number }) {
       return (
         <NumberComponent
           num={index + 1}
-          className="left-0 top-[-125px]"
+          className={`left-0 top-[-100px] ${className}`}
           topClipY={-125}
           bottomClipY={0}
+          size={250}
           topClipX={0}
           bottomClipX={0}
           topClipId={`clip-top-${index}`}
@@ -112,31 +121,86 @@ function Number({ index }: { index: number }) {
   }
 }
 
+function MobileNumber({
+  index,
+  className,
+}: {
+  index: number;
+  className?: string;
+}) {
+  switch (index % 3) {
+    case 0:
+      return (
+        <NumberComponent
+          num={index + 1}
+          className={`left-[-80px] top-[-100px] ${className}`}
+          topClipY={-150}
+          bottomClipY={0}
+          topClipX={0}
+          bottomClipX={0}
+          size={250}
+          topClipId={`clip-top-mobile-${index}`}
+          bottomClipId={`clip-bottom-mobile-${index}`}
+        />
+      );
+    case 1:
+      return (
+        <NumberComponent
+          num={index + 1}
+          className={`right-[-55px] top-[-130px] ${className}`}
+          topClipY={130}
+          bottomClipY={0}
+          size={250}
+          topClipX={0}
+          bottomClipX={0}
+          topClipId={`clip-top-mobile-${index}`}
+          bottomClipId={`clip-bottom-mobile-${index}`}
+        />
+      );
+    case 2:
+      return (
+        <NumberComponent
+          num={index + 1}
+          className={`left-[-px] top-[-100px] ${className}`}
+          topClipY={-125}
+          bottomClipY={0}
+          topClipX={0}
+          size={250}
+          bottomClipX={0}
+          topClipId={`clip-top-mobile-${index}`}
+          bottomClipId={`clip-bottom-mobile-${index}`}
+        />
+      );
+    default:
+      return null;
+  }
+}
+
 export default function OurCurriculum({ content }: OurCurriculumProps) {
   const { header, curriculumCards } = content || {};
 
   return (
-    <div className="flex w-full flex-col bg-orange py-[100px]">
-      <div className="mx-auto flex w-full flex-row items-center justify-center gap-[100px]">
+    <div className="flex w-full flex-col bg-orange py-[100px] transition-all duration-300">
+      <div className="mx-auto flex w-full flex-col items-center justify-center gap-[100px] lg:flex-row">
         <div className="flex flex-col items-center justify-center">
           <h1 className="font-bold underline decoration-1 underline-offset-[20px]">
             {header}
           </h1>
 
-          <div className="w-[436px] text-left"></div>
+          <div className="hidden w-[436px] text-left lg:block"></div>
         </div>
-        <div className="flex w-[451px] flex-col"></div>
+        <div className="hidden w-[451px] flex-col lg:flex"></div>
       </div>
-      <div className="mt-[95px] flex flex-col gap-[100px]">
+      <div className="mx-auto mt-[150px] flex w-[350px] flex-col gap-[150px] lg:mx-0 lg:mt-[95px] lg:w-full lg:gap-[100px]">
         {curriculumCards?.map((card, index) => (
           <div
             key={index}
-            className={`flex ${index % 2 != 0 ? "justify-end" : "justify-start"}`}
+            className={`flex flex-col border border-black lg:flex-row lg:border-none ${index % 2 != 0 ? "lg:justify-end" : "lg:justify-start"} `}
           >
             <div
-              className={`relative z-10 flex h-[524px] w-[1300px] justify-end gap-[80px] bg-white py-[70px] ${index % 2 != 0 ? "flex-row-reverse rounded-l-[20px]" : "flex-row rounded-r-[20px]"} ${index % 2 == 0 ? "mt-[100px]" : ""}`}
+              className={`relative z-10 flex flex-col-reverse justify-end bg-white lg:h-[524px] lg:w-[1300px] lg:flex-row lg:gap-[80px] lg:py-[70px] ${index % 2 != 0 ? "bg-yellowlg:flex-row-reverse lg:rounded-l-[20px]" : "lg:flex-row lg:rounded-r-[20px]"} ${index % 2 == 0 ? "lg:mt-[100px]" : ""}`}
             >
-              <Number index={index} />
+              <Number index={index} className="hidden xl:block" />
 
               <div className="flex flex-col">
                 {card?.icon?.assetPath && (
@@ -145,17 +209,17 @@ export default function OurCurriculum({ content }: OurCurriculumProps) {
                     alt={card.icon.caption || ""}
                     width={1000}
                     height={1000}
-                    className="mx-auto size-[120px] object-contain"
+                    className="mx-auto hidden size-[120px] object-contain lg:block"
                   />
                 )}
-                <div className="mx-auto max-w-[400px] pt-[44px] text-center">
+                <div className="mx-auto max-w-[400px] px-4 pb-[20px] pt-[20px] text-center lg:px-0 lg:pb-0 lg:pt-[44px]">
                   <CustomPortableText
                     value={card.description as PortableTextBlock[]}
                   />
                 </div>
               </div>
               <div
-                className={`flex ${index % 2 != 0 ? "ml-[20px] justify-end" : "mr-[20px] justify-start"} `}
+                className={`flex justify-center ${index % 2 != 0 ? "lg:ml-[20px] lg:justify-end" : "lg:mr-[20px] lg:justify-start"} `}
               >
                 {card?.image?.assetPath && (
                   <Image
@@ -163,7 +227,21 @@ export default function OurCurriculum({ content }: OurCurriculumProps) {
                     alt={card.image.caption || ""}
                     width={1000}
                     height={1000}
-                    className="max-w-[600px] object-cover"
+                    className="object-cover lg:max-w-[600px]"
+                  />
+                )}
+              </div>
+              <div
+                className={`relative mx-auto flex size-full flex-row items-center justify-center gap-6 py-8 font-bold lg:hidden`}
+              >
+                <MobileNumber index={index} />
+                {card?.icon?.assetPath && (
+                  <Image
+                    src={card.icon.assetPath}
+                    alt={card.icon.caption || ""}
+                    width={1000}
+                    height={1000}
+                    className="size-[60px] object-contain lg:hidden"
                   />
                 )}
               </div>

@@ -30,7 +30,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
                   src={t.image.assetPath}
                   width={1000}
                   height={1000}
-                  className="rounded-3xl md:h-[353px] md:w-[280px]"
+                  className="rounded-3xl lg:h-[353px] lg:w-[280px]"
                   alt={t.image.caption || ""}
                 />
               )}
