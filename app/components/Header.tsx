@@ -118,7 +118,10 @@ export function Header({ data }: HeaderProps) {
           </div>
           <div className="mt-[16.8rem] flex flex-col gap-[1.6rem]">
             {mobileNavList?.map((link) => (
-              <span key={link._key} className={` ml-auto text-white text-[20px] font-bold`}>
+              <span
+                key={link._key}
+                className={`ml-auto text-[20px] font-bold text-white`}
+              >
                 <Link link={link as LinkValue} onClick={handleMenuClick}>
                   {link.text}
                 </Link>

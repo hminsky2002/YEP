@@ -199,7 +199,6 @@ export const structure: StructureResolver = (S) =>
                     { field: "_createdAt", direction: "asc" },
                   ]),
                 ),
-
             ]),
         ),
 
