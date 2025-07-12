@@ -80,11 +80,10 @@ const chapter = `{
 
 const pressReleasesGallery = `{
     ...,
+    
     'tagColor': tagColor.hex,
     pressReleases[] ${pressRelease},
-    helpImage ${imageData},
-    helpHeader,
-    helpText
+    
 }`;
 
 const chaptersGallery = `{
@@ -253,6 +252,15 @@ const programmingBlock = `{
     }
 }`;
 
+const howCanIHelpBlock = `{
+    ...,
+    title,
+    header,
+    description,
+    image ${imageData},
+    ${linkTypeData},
+}`;
+
 const contentData = `{
     ...,
     _type == 'openerWithCarousel' => ${openerWithCarouselData},
@@ -268,7 +276,8 @@ const contentData = `{
     _type == 'ourProgram' => ${ourProgram},
     _type == 'ourHistory' => ${ourHistory},
     _type == 'ourCurriculum' => ${ourCurriculum},
-    _type == 'programmingBlock' => ${programmingBlock}
+    _type == 'programmingBlock' => ${programmingBlock},
+    _type == 'howCanIHelpBlock' => ${howCanIHelpBlock}
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -321,6 +330,10 @@ export const ourCurriculumQuery = defineQuery(`{
 
 export const programmingBlockQuery = defineQuery(`{
     'programmingBlock': *[_type == 'programmingBlock'][0] ${programmingBlock}
+}`);
+
+export const howCanIHelpBlockQuery = defineQuery(`{
+    'howCanIHelpBlock': *[_type == 'howCanIHelpBlock'][0] ${howCanIHelpBlock}
 }`);
 
 export const headerQuery = defineQuery(`{
