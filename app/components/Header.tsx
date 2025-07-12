@@ -54,6 +54,7 @@ export function Header({ data }: HeaderProps) {
     bgColor = "bg-yellow pb-2";
   } else if (currentPath.includes("chapter")) {
     bgColor = "bg-red";
+    textColor = "text-white";
   } else if (currentPath.includes("donate")) {
     bgColor = "bg-yellow lg:bg-transparent";
     textColor = "text-white";
@@ -94,7 +95,7 @@ export function Header({ data }: HeaderProps) {
       <div className="lg:hidden">
         <div className="lg:hidden" ref={container}>
           <div
-            className={`menu-text menu opacity-1 cursor-pointer p-[1.6rem]`}
+            className={`menu-text menu opacity-1 cursor-pointer p-[1.6rem] ${textColor}`}
             onClick={handleMenuClick}
           >
             Menu
