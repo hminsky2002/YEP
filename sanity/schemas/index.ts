@@ -18,6 +18,7 @@ import {
   ourProgram,
   ourHistory,
   ourCurriculum,
+  programmingBlock,
 } from "./modules";
 
 /* Object imports */
@@ -39,6 +40,7 @@ const modules = [
   ourProgram,
   ourHistory,
   ourCurriculum,
+  programmingBlock,
 ];
 
 const objects = [imageAlt, seo];
