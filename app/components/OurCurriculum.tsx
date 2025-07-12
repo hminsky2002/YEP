@@ -6,54 +6,48 @@ import { CustomPortableText } from "./CustomPortableText";
 type OurCurriculumProps = {
   content: OurCurriculumQueryResult["ourCurriculum"];
 };
-
 function NumberComponent({
   num,
   className,
   topClipY,
   bottomClipY,
-  topClipX,
-  bottomClipX,
+  size,
   topClipId,
   bottomClipId,
-  size,
 }: {
   num: number;
   className: string;
   topClipY: number;
   bottomClipY: number;
-  topClipX: number;
-  bottomClipX: number;
+  size: number;
   topClipId: string;
   bottomClipId: string;
-  size: number;
 }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className={`absolute size-[${size}px] font-bold ${className}`}
+      width={size}
+      height={size}
+      className={`absolute font-bold ${className}`}
     >
       <defs>
         <clipPath id={topClipId}>
-          <rect x={topClipX} y={topClipY} className={`size-[${size}px]`} />
+          <rect x={0} y={topClipY} width={size} height={size} />
         </clipPath>
-
         <clipPath id={bottomClipId}>
-          <rect
-            x={bottomClipX}
-            y={bottomClipY}
-            className={`size-[${size}px]`}
-          />
+          <rect x={0} y={bottomClipY} width={size} height={size} />
         </clipPath>
       </defs>
 
+      {/* top half, clipped */}
       <text
         x="50%"
         y="50%"
-        dominant-baseline="middle"
-        text-anchor="middle"
-        clip-path={`url(#${topClipId})`}
-        className={`fill-black stroke-none text-[${size}px]`}
+        dominantBaseline="middle"
+        textAnchor="middle"
+        clipPath={`url(#${topClipId})`}
+        className="fill-black stroke-none"
+        fontSize={size}
       >
         {num}
       </text>
@@ -61,10 +55,11 @@ function NumberComponent({
       <text
         x="50%"
         y="50%"
-        dominant-baseline="middle"
-        text-anchor="middle"
-        clip-path={`url(#${bottomClipId})`}
-        className={`fill-transparent stroke-black stroke-1 text-[${size}px]`}
+        dominantBaseline="middle"
+        textAnchor="middle"
+        clipPath={`url(#${bottomClipId})`}
+        className="fill-transparent stroke-black stroke-1"
+        fontSize={size}
       >
         {num}
       </text>
@@ -81,8 +76,6 @@ function Number({ index, className }: { index: number; className?: string }) {
           className={`bottom-[-125px] left-0 ${className}`}
           topClipY={125}
           bottomClipY={0}
-          topClipX={0}
-          bottomClipX={0}
           size={250}
           topClipId={`clip-top-${index}`}
           bottomClipId={`clip-bottom-${index}`}
@@ -95,8 +88,6 @@ function Number({ index, className }: { index: number; className?: string }) {
           className={`bottom-[-150px] right-0 ${className}`}
           topClipY={100}
           bottomClipY={0}
-          topClipX={0}
-          bottomClipX={0}
           size={250}
           topClipId={`clip-top-${index}`}
           bottomClipId={`clip-bottom-${index}`}
@@ -106,12 +97,10 @@ function Number({ index, className }: { index: number; className?: string }) {
       return (
         <NumberComponent
           num={index + 1}
-          className={`left-0 top-[-100px] ${className}`}
+          className={`left-0 top-[-125px] ${className}`}
           topClipY={-125}
           bottomClipY={0}
           size={250}
-          topClipX={0}
-          bottomClipX={0}
           topClipId={`clip-top-${index}`}
           bottomClipId={`clip-bottom-${index}`}
         />
@@ -136,8 +125,6 @@ function MobileNumber({
           className={`left-[-80px] top-[-100px] ${className}`}
           topClipY={-150}
           bottomClipY={0}
-          topClipX={0}
-          bottomClipX={0}
           size={250}
           topClipId={`clip-top-mobile-${index}`}
           bottomClipId={`clip-bottom-mobile-${index}`}
@@ -147,12 +134,10 @@ function MobileNumber({
       return (
         <NumberComponent
           num={index + 1}
-          className={`right-[-55px] top-[-130px] ${className}`}
+          className={`right-[-50px] top-[-130px] ${className}`}
           topClipY={130}
           bottomClipY={0}
           size={250}
-          topClipX={0}
-          bottomClipX={0}
           topClipId={`clip-top-mobile-${index}`}
           bottomClipId={`clip-bottom-mobile-${index}`}
         />
@@ -161,18 +146,14 @@ function MobileNumber({
       return (
         <NumberComponent
           num={index + 1}
-          className={`left-[-px] top-[-100px] ${className}`}
+          className={`left-[-55px] top-[-125px] ${className}`}
           topClipY={-125}
           bottomClipY={0}
-          topClipX={0}
           size={250}
-          bottomClipX={0}
           topClipId={`clip-top-mobile-${index}`}
           bottomClipId={`clip-bottom-mobile-${index}`}
         />
       );
-    default:
-      return null;
   }
 }
 
@@ -212,7 +193,7 @@ export default function OurCurriculum({ content }: OurCurriculumProps) {
                     className="mx-auto hidden size-[120px] object-contain lg:block"
                   />
                 )}
-                <div className="mx-auto max-w-[400px] px-4 pb-[20px] pt-[20px] text-center lg:px-0 lg:pb-0 lg:pt-[44px]">
+                <div className="mx-auto max-w-[400px] px-4 py-[20px] text-center lg:px-0 lg:pb-0 lg:pt-[44px]">
                   <CustomPortableText
                     value={card.description as PortableTextBlock[]}
                   />
