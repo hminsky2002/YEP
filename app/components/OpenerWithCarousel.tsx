@@ -58,11 +58,11 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
       </div>
       <div className="mx-auto w-full pl-8 lg:block lg:max-w-[738px]">
         <h1 className="my-4 text-red lg:my-0">{header}</h1>
-        <div className="flex my-8 lg:mb-0 lg:mt-4 lg:gap-6">
-          <h4 className=" font-semibold lg:my-0">{subHeader}</h4>
+        <div className="my-8 flex lg:mb-0 lg:mt-4 lg:gap-6">
+          <h4 className="font-semibold lg:my-0">{subHeader}</h4>
           <h4 className="hidden italic lg:block">{tagline}</h4>
         </div>
-        <div className="mt-4 mb-12 inline-flex rounded-full bg-red px-8 text-[15px] font-bold text-white lg:mb-0 lg:mt-6 lg:px-10 lg:py-4">
+        <div className="mb-12 mt-4 inline-flex rounded-full bg-red px-8 text-[15px] font-bold text-white lg:mb-0 lg:mt-6 lg:px-10 lg:py-4">
           <Link link={link} />
         </div>
       </div>

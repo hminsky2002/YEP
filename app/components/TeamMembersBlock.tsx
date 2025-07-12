@@ -14,7 +14,9 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
     <div className="relative mx-auto mt-12 max-w-[1263px] bg-white pb-12">
       <div className="pointer-events-none absolute -right-4 -top-4 hidden size-full border border-black md:block" />
       <div className="mx-auto max-w-[425px] pb-[50px] text-center">
-        <h1 className="border-b-2 border-black pb-8 pt-[50px]">{header}</h1>
+        <h1 className="text-decoration-thickness-2 pb-8 pt-[50px] underline underline-offset-[10px]">
+          {header}
+        </h1>
       </div>
       <div className="flex flex-col gap-[100px] px-[80px]">
         {teamMembers?.map((t, i) => (
@@ -40,7 +42,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
             </div>
             <div className="flex flex-col gap-8">
               <div className="-mt-8 flex flex-col">
-                <h3 className="inline-block w-max border-2 border-black bg-white p-2 text-black">
+                <h3 className="inline-block w-max border border-black bg-white p-2 text-black">
                   {t.memberTitle}
                 </h3>
                 <h4 className="inline-block w-max rounded-br-full bg-red p-4 pr-8 text-white">
