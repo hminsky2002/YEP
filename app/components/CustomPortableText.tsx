@@ -29,7 +29,11 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
       },
       leftBorder: ({ children }) => {
         return (
-          <p className={"body border-l border-black pl-4 leading-[225.1%]"}>
+          <p
+            className={
+              "body leading-[225.1%] lg:border-l lg:border-black lg:pl-4"
+            }
+          >
             {children}
           </p>
         );
