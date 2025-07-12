@@ -328,7 +328,11 @@ export const headerQuery = defineQuery(`{
         navList[] {
             ...,
             ${linkTypeData},
-        }
+        },
+        mobileNavList[] {
+            ...,
+            ${linkTypeData},
+        },
     }
 }`);
 
