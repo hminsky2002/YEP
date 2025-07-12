@@ -17,22 +17,54 @@ export default function OurProgram({ content }: OurProgramProps) {
           alt={image.caption || "What We Do"}
           width={2000}
           height={2000}
-          className="size-full object-contain object-center"
+          className="desktop-banner hidden size-full h-auto object-cover object-center lg:block"
         />
       )}
+      <div className="mobile-banner relative after:absolute after:inset-0 after:z-0 after:bg-black after:bg-opacity-[50%] lg:hidden">
+        {image?.assetPath && (
+          <Image
+            src={image.assetPath}
+            alt={image.caption || ""}
+            width={2000}
+            height={2000}
+            className="h-[300px] object-cover"
+          />
+        )}
+        <h1 className="absolute bottom-0 left-10 z-10 pb-12 font-bold text-white">
+          {header}
+        </h1>
+      </div>
 
-      <div className="mx-auto flex w-full flex-row items-center justify-center gap-[100px] bg-white py-[40px]">
+      <div className="flex flex-col items-center justify-center gap-[100px] bg-white py-[40px] lg:w-full lg:flex-row">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="pb-12 font-bold underline decoration-1 underline-offset-[20px]">
+          <h1 className="hidden pb-12 font-bold underline decoration-1 underline-offset-[20px] lg:block">
             {header}
           </h1>
           {description && (
-            <div className="max-w-[436px] text-left">
+            <div className="mx-[3.7rem] text-left lg:mx-0 lg:max-w-[436px]">
               <CustomPortableText value={description as PortableTextBlock[]} />
+              <div className="mt-12 flex flex-col lg:hidden">
+                <p className="pb-4">{missionHeader}</p>
+                {mission && (
+                  <div className="flex flex-col gap-[20px]">
+                    {mission.map((item) => (
+                      <div
+                        key={item._key}
+                        className="gap flex flex-row items-center gap-4"
+                      >
+                        <span className="h1 font-bold text-red">
+                          {item.number}.
+                        </span>
+                        <p className="body">{item.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
-        <div className="flex max-w-[451px] flex-col">
+        <div className="hidden flex-col lg:flex lg:max-w-[451px]">
           <p className="pb-4">{missionHeader}</p>
           {mission && (
             <div className="flex flex-col gap-[20px]">
