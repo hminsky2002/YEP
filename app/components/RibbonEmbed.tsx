@@ -3,7 +3,7 @@
 import Script from "next/script";
 export default function RibbonEmbed() {
   return (
-    <div className="mx-auto my-[40px] h-[600px] max-w-[400px] border border-black">
+    <div className="mx-auto my-[40px] w-[340px] border lg:w-auto border-black lg:h-[600px] lg:max-w-[500px]">
       <link
         rel="stylesheet"
         precedence="default"
