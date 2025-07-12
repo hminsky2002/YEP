@@ -12,7 +12,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
   const { header, teamMembers } = content || {};
   return (
     <div className="relative mx-auto mt-12 max-w-[1263px] bg-white pb-12">
-      <div className="pointer-events-none absolute -right-4 -top-4 hidden size-full border border-black md:block" />
+      <div className="pointer-events-none absolute -right-4 -top-4 hidden size-full border border-black lg:block" />
       <div className="mx-auto max-w-[425px] pb-[50px] text-center">
         <h1 className="text-decoration-thickness-2 pb-8 pt-[50px] underline underline-offset-[10px]">
           {header}
@@ -22,7 +22,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
         {teamMembers?.map((t, i) => (
           <div
             key={i}
-            className={`${i % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse md:justify-end"} mx-auto flex flex-col gap-12`}
+            className={`${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:justify-end"} mx-auto flex flex-col gap-12`}
           >
             <div className="flex flex-col">
               {t.image?.assetPath && (
