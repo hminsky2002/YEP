@@ -267,7 +267,8 @@ const contentData = `{
     _type == 'whatWeDo' => ${whatWeDo},
     _type == 'ourProgram' => ${ourProgram},
     _type == 'ourHistory' => ${ourHistory},
-    _type == 'ourCurriculum' => ${ourCurriculum}
+    _type == 'ourCurriculum' => ${ourCurriculum},
+    _type == 'programmingBlock' => ${programmingBlock}
 }`;
 
 export const testimonialsBlockQuery = defineQuery(`{
@@ -316,6 +317,10 @@ export const ourHistoryQuery = defineQuery(`{
 
 export const ourCurriculumQuery = defineQuery(`{
     'ourCurriculum': *[_type == 'ourCurriculum'][0] ${ourCurriculum}
+}`);
+
+export const programmingBlockQuery = defineQuery(`{
+    'programmingBlock': *[_type == 'programmingBlock'][0] ${programmingBlock}
 }`);
 
 export const headerQuery = defineQuery(`{
