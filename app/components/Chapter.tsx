@@ -122,7 +122,7 @@ export default function Chapter({ content }: Props) {
               className="object-cover"
             />
           )}
-          <div className="absolute left-[5%] top-[50%] z-10 h-screen">
+          <div className="absolute left-[5%] top-1/2 z-10 h-screen">
             <div className="flex h-screen flex-col">
               <div className="text-[60px] font-bold leading-[125%] text-white">
                 YEP!
