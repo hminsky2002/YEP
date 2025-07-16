@@ -31,7 +31,7 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
   const { header, subHeader, tagline, bgColor, photos, link } = content;
   return (
     <div
-      className="mx-auto mt-[100px] flex flex-col items-center lg:mt-0 lg:flex-row lg:gap-0"
+      className="mx-auto mt-[100px] flex flex-col items-center lg:mt-0 lg:flex-row lg:gap-[109px]"
       style={{ backgroundColor: bgColor }}
     >
       <div className="swiper-custom w-full lg:w-[663px]">
@@ -44,23 +44,29 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
           autoplay={{ delay: 2500, disableOnInteraction: true }}
         >
           {photos.map((photo) => (
-            <SwiperSlide key={photo.assetPath}>
+            <SwiperSlide key={photo.assetPath} className="">
               <Image
                 src={photo.assetPath}
                 width={1200}
                 height={1200}
                 alt={photo?.caption || "missing alt"}
-                className="size-full object-contain object-center"
+                className="size-full rounded-tr-[2rem] rounded-br-[2rem] object-contain object-center"
               />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-      <div className="mx-auto w-full pl-8 lg:block lg:max-w-[738px]">
-        <h1 className="my-4 text-red lg:my-0">{header}</h1>
-        <div className="my-8 flex lg:mb-0 lg:mt-4 lg:gap-6">
-          <h4 className="font-semibold lg:my-0">{subHeader}</h4>
-          <h4 className="hidden italic lg:block">{tagline}</h4>
+      <div className="mx-auto w-full pl-8 lg:flex lg:flex-col lg:items-start lg:justify-start">
+        <h1 className="my-4 text-red lg:my-0 lg:text-[60px] lg:leading-[121.6%]">
+          {header}
+        </h1>
+        <div className="my-8 flex md:flex-col lg:mb-0 lg:mt-4 xl:flex-row lg:gap-6 lg:items-center">
+          <h4 className="font-bold lg:my-0 lg:text-[14px] lg:font-bold lg:leading-[117.6%]">
+            {subHeader}
+          </h4>
+          <h4 className="hidden lg:block lg:text-[13px] lg:italic">
+            {tagline}
+          </h4>
         </div>
         <div className="mb-12 mt-4 inline-flex rounded-full bg-red px-8 text-[15px] font-bold text-white lg:mb-0 lg:mt-6 lg:px-10 lg:py-4">
           <Link link={link} />
