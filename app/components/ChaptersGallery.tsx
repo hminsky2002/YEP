@@ -45,7 +45,6 @@ export default function ChaptersGallery({ content }: ChaptersGalleryProps) {
                         </div>
                       </Link>
                     </div>
-                   
                   </div>
                 )}
               </div>

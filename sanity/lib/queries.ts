@@ -118,7 +118,10 @@ const chapterComponent = `{
         imageColumnEnd,
         imageRowStart,
         imageRowEnd,
-    }
+    },
+    contactLink {..., ${linkTypeData}},
+    applyLink {..., ${linkTypeData}},
+
 }`;
 
 const chaptersList = `{

@@ -33,12 +33,12 @@ export const chaptersGallery = defineType({
           name: "chapter",
           title: "Chapter",
           fields: [
-            
             defineField({
               name: "link",
               title: "Link",
               type: "link",
-              description: "link for chapter page, text should be the chapter title",
+              description:
+                "link for chapter page, text should be the chapter title",
               options: {
                 enableText: true,
               },

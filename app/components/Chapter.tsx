@@ -8,6 +8,8 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useState, useEffect } from "react";
+import { Link } from "@/app/components/Link";
+import { LinkValue } from "sanity-plugin-link-field";
 
 gsap.registerPlugin(ScrollTrigger);
 type Props = {
@@ -15,7 +17,8 @@ type Props = {
 };
 
 export default function Chapter({ content }: Props) {
-  const { header, image, timeline, imageGallery } = content || {};
+  const { header, image, timeline, imageGallery, contactLink, applyLink } =
+    content || {};
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -157,15 +160,15 @@ export default function Chapter({ content }: Props) {
             A Chapter History
           </h1>
 
-          <div className="timeline flex flex-col items-center justify-center gap-32 pb-[100px]">
-            <div className="absolute h-4/5 w-1 bg-black"></div>
+          <div className="timeline flex flex-col items-center justify-center gap-32 pb-[100px] lg:flex-row lg:items-start">
+            <div className="absolute h-4/5 w-1 bg-black lg:mt-20 lg:h-1 lg:w-4/5"></div>
             {timeline &&
               timeline.map((timelineItem, index) => (
                 <div
-                  className={`timeline-item relative mb-2 w-[340px] border-[5px] border-yellow bg-white-yellow text-center lg:w-auto lg:max-w-[600px]`}
+                  className={`timeline-item relative mb-2 w-[340px] border-[5px] border-yellow bg-white-yellow text-center lg:w-[400px] lg:max-w-[600px] lg:border lg:border-black`}
                   key={`timeline-${index}`}
                 >
-                  <div className="pointer-events-none absolute -right-2 -top-2 size-full border border-black" />
+                  <div className="pointer-events-none absolute -right-2 -top-2 size-full border border-black lg:hidden" />
 
                   <div className="mx-8 mt-4 flex flex-col gap-4">
                     <h3 className="font-semibold">{timelineItem.header}</h3>
@@ -183,13 +186,27 @@ export default function Chapter({ content }: Props) {
           </div>
         </div>
       </div>
+
+      <div className="contact-links mb-[40px] flex-row items-center justify-center border-black lg:flex">
+        <div className="flex flex-row items-center justify-center lg:gap-16">
+          <Link
+            link={contactLink as LinkValue}
+            className="border-r-none lg:0 flex h-[80px] w-[200px] items-center justify-center rounded-l-full border-y-2 border-l-2 border-black bg-orange px-8 py-[28px] text-center text-[20px] font-bold text-black hover:opacity-50 lg:h-auto lg:w-[226px] lg:rounded-full lg:border-2 lg:py-0 lg:text-[23px]"
+          ></Link>
+          <Link
+            link={applyLink as LinkValue}
+            className="border-l-none flex h-[80px] w-[200px] items-center justify-center rounded-r-full border-y-2 border-r-2 border-black bg-red py-[28px] text-center text-[20px] font-bold text-white hover:opacity-50 lg:h-auto lg:w-[226px] lg:rounded-full lg:border-2 lg:py-0 lg:text-[23px]"
+          ></Link>
+        </div>
+      </div>
+
       <div className="flex h-[1342px] flex-col items-center justify-center rounded-tl-[200px] bg-orange">
         <div className="flex w-full max-w-[1263px] flex-col items-center justify-center px-4 md:px-8">
           <h1 className="mb-[100px] w-full text-center text-white underline decoration-1 underline-offset-[20px] lg:flex lg:justify-start">
             Meet Our Team
           </h1>
           <div className="relative h-[900px] w-full">
-            <div className="grid size-full gap-2 border-orange ">
+            <div className="grid size-full gap-2 border-orange">
               {imageGallery?.map((galleryImage, index) => {
                 if (
                   galleryImage.imageColumnEnd &&
@@ -201,7 +218,7 @@ export default function Chapter({ content }: Props) {
                   return (
                     <div
                       key={index}
-                      className="relative cursor-pointer "
+                      className="relative cursor-pointer"
                       style={{
                         gridColumnStart: galleryImage.imageColumnStart,
                         gridColumnEnd: galleryImage.imageColumnEnd,

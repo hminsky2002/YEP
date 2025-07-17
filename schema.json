@@ -3500,6 +3500,22 @@
         },
         "optional": true
       },
+      "contactLink": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "link"
+        },
+        "optional": true
+      },
+      "applyLink": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "link"
+        },
+        "optional": true
+      },
       "timeline": {
         "type": "objectAttribute",
         "value": {
