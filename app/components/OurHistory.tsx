@@ -12,9 +12,9 @@ export default function OurHistory({ content }: OurHistoryProps) {
 
   return (
     <div className="flex w-full flex-col py-[100px]">
-      <div className="mx-auto flex w-full items-center justify-center gap-[100px] lg:flex-row">
+      <div className="mx-auto mb-[60px] flex w-full items-center justify-center gap-[100px] lg:flex-row">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="pb-12 font-bold underline decoration-1 underline-offset-[20px]">
+          <h1 className="ml-[45px] w-full pb-12 font-bold underline decoration-1 underline-offset-[20px]">
             {header}
           </h1>
 
@@ -23,8 +23,8 @@ export default function OurHistory({ content }: OurHistoryProps) {
         <div className="hidden w-[451px] flex-col lg:flex"></div>
       </div>
 
-      <ol className="relative mx-auto items-start gap-[80px] sm:flex">
-        <div className="absolute top-[204px] hidden h-px w-full bg-black lg:block"></div>
+      <ol className="relative mx-auto items-start gap-[80px] lg:flex">
+        <div className="absolute top-[204px] ml-[10%] hidden h-px w-4/5 bg-black lg:block"></div>
 
         {timelineItems?.map((item, index) => (
           <li className="relative mb-6 sm:mb-0" key={index}>
