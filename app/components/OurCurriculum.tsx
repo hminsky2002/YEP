@@ -134,7 +134,7 @@ function MobileNumber({
       return (
         <NumberComponent
           num={index + 1}
-          className={`right-[-50px] top-[-130px] ${className}`}
+          className={`right-[-50px] top-[-131px] ${className}`}
           topClipY={130}
           bottomClipY={0}
           size={250}
@@ -161,7 +161,7 @@ export default function OurCurriculum({ content }: OurCurriculumProps) {
   const { header, curriculumCards } = content || {};
 
   return (
-    <div className="flex w-full flex-col bg-orange py-[100px] transition-all duration-300">
+    <div className="flex w-full flex-col bg-orange py-[140px] transition-all duration-300">
       <div className="mx-auto flex w-full flex-col items-center justify-center gap-[100px] lg:flex-row">
         <div className="flex flex-col items-center justify-center">
           <h1 className="font-bold underline decoration-1 underline-offset-[20px]">
@@ -172,14 +172,14 @@ export default function OurCurriculum({ content }: OurCurriculumProps) {
         </div>
         <div className="hidden w-[451px] flex-col lg:flex"></div>
       </div>
-      <div className="mx-auto mt-[150px] flex w-[350px] flex-col gap-[150px] lg:mx-0 lg:mt-[95px] lg:w-full lg:gap-[100px]">
+      <div className="mx-auto mt-[150px] flex w-[350px] flex-col gap-[150px] lg:mx-0 lg:mt-0 lg:w-full lg:gap-[100px]">
         {curriculumCards?.map((card, index) => (
           <div
             key={index}
             className={`flex flex-col border border-black lg:flex-row lg:border-none ${index % 2 != 0 ? "lg:justify-end" : "lg:justify-start"} `}
           >
             <div
-              className={`relative z-10 flex flex-col-reverse justify-end bg-white lg:h-[524px] lg:w-[1300px] lg:flex-row lg:gap-[80px] lg:py-[70px] ${index % 2 != 0 ? "bg-yellowlg:flex-row-reverse lg:rounded-l-[20px]" : "lg:flex-row lg:rounded-r-[20px]"} ${index % 2 == 0 ? "lg:mt-[100px]" : ""}`}
+              className={`relative z-10 flex flex-col-reverse justify-end bg-white lg:h-[524px] lg:w-[1300px] lg:flex-row lg:gap-[80px] lg:py-[70px] ${index % 2 != 0 ? " lg:flex-row-reverse lg:rounded-l-[20px]" : "lg:flex-row lg:rounded-r-[20px]"} ${index % 2 == 0 ? "lg:mt-[100px]" : ""}`}
             >
               <Number index={index} className="hidden xl:block" />
 
