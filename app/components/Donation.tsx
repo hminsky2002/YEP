@@ -14,7 +14,7 @@ export default function Donation({ content }: DonationProps) {
       <div className="flex flex-col lg:flex-row">
         <div className="hidden bg-white-yellow lg:flex lg:w-3/5 lg:items-end lg:justify-end">
           <div className="lg:mb-[80px] lg:mr-[40px]">
-            <h2 className="lg:max-w-[650px]">
+            <h2 className="lg:mb-[40px] lg:max-w-[650px]">
               <span className="text-red">{redHeader}</span> {plainHeader}
             </h2>
             <div className="ml-4 mt-4 flex flex-col gap-4 lg:max-w-[550px]">
@@ -56,16 +56,16 @@ export default function Donation({ content }: DonationProps) {
         </div>
       </div>
       <div className="desktop-donation-stats hidden w-full bg-yellow py-[10px] lg:flex">
-        <div className="mx-auto flex flex-col text-red lg:flex-row lg:items-center lg:gap-[200px]">
-          <div className="flex flex-row items-end">
+        <div className="mx-auto flex flex-col text-red lg:flex-row lg:items-center lg:gap-[300px]">
+          <div className="flex flex-row items-end gap-[6px]">
             <h2>{stats?.years?.number}</h2>
             <p className="font-bold">{stats?.years?.text}</p>
           </div>
-          <div className="flex flex-row items-end">
+          <div className="flex flex-row items-end gap-[6px]">
             <h2>{stats?.chapters?.number}</h2>
             <p className="font-bold">{stats?.chapters?.text}</p>
           </div>
-          <div className="flex flex-row items-end">
+          <div className="flex flex-row items-end gap-[6px]">
             <h2>{stats?.studentsSupported?.number}</h2>
             <p className="font-bold">{stats?.studentsSupported?.text}</p>
           </div>
