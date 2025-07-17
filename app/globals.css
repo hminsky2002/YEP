@@ -16,6 +16,19 @@
 }
 
 
+.swiper-curriculum-custom {
+  --swiper-theme-color: #BD0059;
+  --swiper-navigation-color: #BD0059;
+  --swiper-pagination-bullet-inactive-color: #D9D9D9;
+  --swiper-pagination-bullet-color: #BD0059;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-navigation-background-color: #BD0059;
+  --swiper-navigation-disabled-opacity: 0%;
+ --swiper-pagination-bullet-size: 5px;
+}
+
+
 html, body, #__next {
   height: 100%;
 }

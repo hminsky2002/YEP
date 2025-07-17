@@ -212,7 +212,7 @@ export default function Chapter({ content }: Props) {
                 }
               })}
             </div>
-            <div className="pointer-events-none absolute left-[0] top-0 block size-full border-[4px] border-orange lg:border-[10px]" />
+            <div className="pointer-events-none absolute left-0 top-0 block size-full border-4 border-orange lg:border-[10px]" />
           </div>
         </div>
       </div>

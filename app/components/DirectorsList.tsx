@@ -10,7 +10,9 @@ export default function DirectorsList({ content }: DirectorsListProps) {
   const { header, directorsByGroup } = content || {};
   return (
     <div className="flex flex-col items-center bg-white py-20">
-      <h1 className="mb-16 mt-[85px] pb-20 underline decoration-1 underline-offset-[20px]">{header}</h1>
+      <h1 className="mb-16 mt-[85px] pb-20 underline decoration-1 underline-offset-[20px]">
+        {header}
+      </h1>
       <div className="flex flex-col gap-32 lg:gap-20">
         {directorsByGroup?.map((directorGroup) => {
           return (

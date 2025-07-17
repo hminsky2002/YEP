@@ -1,7 +1,19 @@
+"use client";
 import type { OurCurriculumQueryResult } from "@/sanity.types";
 import type { PortableTextBlock } from "@portabletext/types";
 import Image from "next/image";
 import { CustomPortableText } from "./CustomPortableText";
+import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  Navigation,
+  Pagination,
+  Scrollbar,
+  A11y,
+  Autoplay,
+} from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 type OurCurriculumProps = {
   content: OurCurriculumQueryResult["ourCurriculum"];
@@ -157,6 +169,57 @@ function MobileNumber({
   }
 }
 
+function Carousel({
+  carousel,
+}: {
+  carousel:
+    | {
+        photo: {
+          caption: string | null;
+          assetId: string | null;
+          assetPath: string | null;
+          aspectRatio: number | null;
+        } | null;
+        caption: string | null;
+        _type: "carouselPhoto";
+        _key: string;
+      }[]
+    | null;
+}) {
+  return (
+    <Swiper
+      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+      spaceBetween={50}
+      slidesPerView={1}
+      pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}
+      autoplay={{ delay: 2500, disableOnInteraction: true }}
+      className="swiper-curriculum-custom w-[600px]"
+      navigation={true}
+    >
+      {carousel?.map(
+        (item) =>
+          item.photo?.assetPath && (
+            <SwiperSlide key={item.photo?.assetPath} className="">
+              <Image
+                src={item.photo?.assetPath}
+                width={1200}
+                height={1200}
+                alt={item.photo?.caption || "missing alt"}
+                className="relative w-[600px] object-contain object-center lg:rounded-[2rem]"
+              />
+              <div className="absolute bottom-0 left-0 flex w-full items-start justify-center bg-[#D9D9D9] bg-opacity-80 leading-[110%] lg:h-1/5">
+                <div className="mb-[50px] mt-[10px] text-center text-black">
+                  {item.caption}
+                </div>
+              </div>
+            </SwiperSlide>
+          ),
+      )}
+    </Swiper>
+  );
+}
+
 export default function OurCurriculum({ content }: OurCurriculumProps) {
   const { header, curriculumCards } = content || {};
 
@@ -202,14 +265,18 @@ export default function OurCurriculum({ content }: OurCurriculumProps) {
               <div
                 className={`flex justify-center ${index % 2 != 0 ? "lg:ml-[20px] lg:justify-end" : "lg:mr-[20px] lg:justify-start"} `}
               >
-                {card?.image?.assetPath && (
-                  <Image
-                    src={card.image.assetPath}
-                    alt={card.image.caption || ""}
-                    width={1000}
-                    height={1000}
-                    className="object-cover lg:max-w-[600px]"
-                  />
+                {card.carousel ? (
+                  <Carousel carousel={card.carousel} />
+                ) : (
+                  card?.image?.assetPath && (
+                    <Image
+                      src={card.image.assetPath}
+                      alt={card.image.caption || ""}
+                      width={1000}
+                      height={1000}
+                      className="object-cover lg:max-w-[600px]"
+                    />
+                  )
                 )}
               </div>
               <div
