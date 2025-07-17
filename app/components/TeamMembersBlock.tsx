@@ -13,7 +13,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
   return (
     <div className="relative mx-auto mt-12 max-w-[1263px] bg-white pb-12">
       <div className="pointer-events-none absolute -right-4 -top-4 hidden size-full border border-black lg:block" />
-      <div className="mx-auto max-w-[425px] pb-[50px] text-center">
+      <div className="mx-auto max-w-[625px] pb-[50px] text-center">
         <h1 className="text-decoration-thickness-2 pb-8 pt-[50px] underline underline-offset-[10px]">
           {header}
         </h1>
@@ -35,7 +35,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
                 />
               )}
               {t.memberLink && (
-                <h3 className="mx-auto underline">
+                <h3 className="mx-auto mt-[16px] underline">
                   <Link link={t.memberLink as LinkValue} />
                 </h3>
               )}
