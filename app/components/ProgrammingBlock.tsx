@@ -11,12 +11,12 @@ export default function ProgrammingBlock({ content }: ProgrammingBlockProps) {
   const { header, programmingCards } = content || {};
 
   return (
-    <div className="flex flex-col bg-yellow lg:mx-[14%]">
+    <div className="flex flex-col bg-yellow lg:mx-[10%]">
       <div className="flex w-full flex-col items-center justify-center">
-        <h1 className="mx-auto mt-[9.8rem] flex max-w-[500px] text-center lg:mx-0 lg:block lg:max-w-full lg:text-left lg:underline lg:decoration-1 lg:underline-offset-[29px]">
+        <h1 className="mx-auto mt-[9.8rem] flex max-w-[500px] text-center lg:mx-0 lg:mb-[30px] lg:block lg:max-w-full lg:text-left lg:underline lg:decoration-1 lg:underline-offset-[29px]">
           {header}
         </h1>
-        <div className="my-36 flex flex-col items-center justify-center gap-[107px] lg:flex-row lg:items-start lg:justify-normal">
+        <div className="my-36 flex flex-col items-center justify-center gap-[107px] lg:flex-row lg:items-start lg:justify-normal lg:gap-[127px]">
           {programmingCards?.map((card, index) => (
             <div className="flex flex-col" key={index}>
               {card?.image?.assetPath && (

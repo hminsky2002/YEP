@@ -27,7 +27,7 @@ export default function OurHistory({ content }: OurHistoryProps) {
         <div className="absolute top-[204px] ml-[10%] hidden h-px w-4/5 bg-black lg:block"></div>
 
         {timelineItems?.map((item, index) => (
-          <li className="relative mb-6 sm:mb-0" key={index}>
+          <li className="relative mb-6 sm:mb-0 lg:px-12" key={index}>
             <div className="mb-[20px] flex flex-col items-center justify-center">
               {item?.year?.assetPath && (
                 <Image
@@ -52,14 +52,12 @@ export default function OurHistory({ content }: OurHistoryProps) {
                 </div>
               )}
               <div
-                className={`z-10 mb-[-8px] hidden size-6 shrink-0 items-center justify-center rounded-full bg-red lg:flex ${
-                  index % 2 === 0 ? "bg-red" : "bg-white"
-                }`}
+                className={`z-10 mb-[-8px] hidden size-6 shrink-0 items-center justify-center rounded-full bg-white lg:flex`}
               ></div>
               <div className="flex flex-col items-center justify-center text-center lg:mt-[50px]">
                 <div className="">
                   <h4 className="font-semibold">{item.header}</h4>
-                  <div className="mt-[30px] max-w-[246px] font-normal">
+                  <div className="mt-[30px] max-w-[246px] font-normal lg:text-[14px]">
                     <PortableText
                       value={item.description as PortableTextBlock[]}
                     />

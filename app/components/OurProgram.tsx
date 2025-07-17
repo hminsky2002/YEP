@@ -17,7 +17,7 @@ export default function OurProgram({ content }: OurProgramProps) {
           alt={image.caption || "What We Do"}
           width={2000}
           height={2000}
-          className="desktop-banner hidden size-full h-auto object-cover object-center lg:block"
+          className="desktop-banner hidden size-full h-[351px] object-cover object-center lg:block"
         />
       )}
       <div className="mobile-banner relative after:absolute after:inset-0 after:z-0 after:bg-black after:bg-opacity-[50%] lg:hidden">

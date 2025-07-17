@@ -24,6 +24,24 @@ export const chapterComponent = defineType({
       },
     }),
     defineField({
+      name: "contactLink",
+      title: "Contact Link",
+      type: "link",
+      description: "Contact Link",
+      options: {
+        enableText: true,
+      },
+    }),
+    defineField({
+      name: "applyLink",
+      title: "Apply Link",
+      type: "link",
+      description: "Apply Link",
+      options: {
+        enableText: true,
+      },
+    }),
+    defineField({
       name: "timeline",
       title: "Timeline",
       type: "array",

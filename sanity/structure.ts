@@ -12,7 +12,6 @@ const documentsHiddenFromContentList = [
   "testimonialsBlock",
   "teamMembersBlock",
   "chaptersGallery",
-  "chapterComponent",
   "chaptersList",
   "directorsList",
   "donation",
@@ -22,6 +21,7 @@ const documentsHiddenFromContentList = [
   "ourCurriculum",
   "programmingBlock",
   "howCanIHelpBlock",
+  "chapterComponent",
 ];
 
 export const singletonPlugin = definePlugin(() => {
@@ -144,13 +144,7 @@ export const structure: StructureResolver = (S) =>
                     { field: "_createdAt", direction: "asc" },
                   ]),
                 ),
-              S.listItem()
-                .title("Chapter Component")
-                .child(
-                  S.documentTypeList("chapterComponent").defaultOrdering([
-                    { field: "_createdAt", direction: "asc" },
-                  ]),
-                ),
+
               S.listItem()
                 .title("Directors List")
                 .child(
@@ -209,6 +203,14 @@ export const structure: StructureResolver = (S) =>
                 ),
             ]),
         ),
+      S.listItem()
+        .title("Chapter Component")
+        .child(
+          S.documentTypeList("chapterComponent").defaultOrdering([
+            { field: "_createdAt", direction: "asc" },
+          ]),
+        ),
+      S.divider(),
 
       S.listItem()
         .title("Site Settings")

@@ -3500,6 +3500,22 @@
         },
         "optional": true
       },
+      "contactLink": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "link"
+        },
+        "optional": true
+      },
+      "applyLink": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "inline",
+          "name": "link"
+        },
+        "optional": true
+      },
       "timeline": {
         "type": "objectAttribute",
         "value": {
@@ -3917,13 +3933,6 @@
           "of": {
             "type": "object",
             "attributes": {
-              "chapterTitle": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "string"
-                },
-                "optional": true
-              },
               "link": {
                 "type": "objectAttribute",
                 "value": {

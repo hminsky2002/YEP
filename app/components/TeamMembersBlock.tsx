@@ -22,7 +22,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
         {teamMembers?.map((t, i) => (
           <div
             key={i}
-            className={`${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:justify-end"} mx-auto flex flex-col gap-12`}
+            className={`${i % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse lg:justify-end"} mx-auto flex flex-col items-center gap-12`}
           >
             <div className="flex flex-col">
               {t.image?.assetPath && (
@@ -35,7 +35,7 @@ export function TeamMembersBlock({ content }: TeamMembersBlockProps) {
                 />
               )}
               {t.memberLink && (
-                <h3 className="mx-auto mt-[16px] underline">
+                <h3 className="mx-auto mt-[16px] text-[22px] underline">
                   <Link link={t.memberLink as LinkValue} />
                 </h3>
               )}

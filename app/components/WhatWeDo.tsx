@@ -24,7 +24,7 @@ export default function WhatWeDo({ content }: WhatWeDoProps) {
       )}
 
       <div className="my-32 flex w-full flex-col items-center justify-center lg:mx-auto lg:my-[86px] lg:flex-row lg:gap-[60px] lg:pb-[20px]">
-        <h1 className="pb-4 font-bold text-red underline decoration-2 underline-offset-[20px] lg:text-[65px] lg:font-extrabold lg:underline-offset-[30px]">
+        <h1 className="pb-4 font-bold text-red underline decoration-2 underline-offset-[20px] lg:mb-[40px] lg:text-[65px] lg:font-extrabold lg:underline-offset-[30px]">
           {header}
         </h1>
 
