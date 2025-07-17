@@ -189,7 +189,7 @@ export default function Chapter({ content }: Props) {
             Meet Our Team
           </h1>
           <div className="relative h-[900px] w-full">
-            <div className="grid size-full gap-2 border-orange bg-white">
+            <div className="grid size-full gap-2 border-orange ">
               {imageGallery?.map((galleryImage, index) => {
                 if (
                   galleryImage.imageColumnEnd &&
@@ -201,7 +201,7 @@ export default function Chapter({ content }: Props) {
                   return (
                     <div
                       key={index}
-                      className="relative cursor-pointer border-white"
+                      className="relative cursor-pointer "
                       style={{
                         gridColumnStart: galleryImage.imageColumnStart,
                         gridColumnEnd: galleryImage.imageColumnEnd,
