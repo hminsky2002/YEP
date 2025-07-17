@@ -47,9 +47,7 @@ export const chaptersGallery = defineType({
               name: "image",
               title: "Chapter Image",
               type: "imageAlt",
-              options: {
-                hotspot: true,
-              },
+         
             }),
           ],
           preview: {
