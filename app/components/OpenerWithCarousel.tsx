@@ -3,13 +3,7 @@ import type { ImageData } from "../types";
 import { LinkValue } from "sanity-plugin-link-field";
 import { Link } from "./Link";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {
-  Navigation,
-  Pagination,
-  Scrollbar,
-  A11y,
-  Autoplay,
-} from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import Image from "next/image";
 
 import "swiper/css";
@@ -35,25 +29,26 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
       className="mx-auto mt-[100px] flex flex-col items-center lg:mt-0 lg:flex-row lg:gap-[109px]"
       style={{ backgroundColor: bgColor }}
     >
-      <div className="swiper-custom w-full lg:w-[663px]">
+      <div className="swiper-custom w-full lg:h-full lg:w-[663px]">
         <Swiper
-          modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+          modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={50}
           slidesPerView={1}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           autoplay={{ delay: 2500, disableOnInteraction: true }}
-          navigation={true}
+          className="lg:h-full lg:w-[663px]"
         >
           {photos.map((photo) => (
             <SwiperSlide key={photo.assetPath} className="">
-              <Image
-                src={photo.assetPath}
-                width={1200}
-                height={1200}
-                alt={photo?.caption || "missing alt"}
-                className="size-full object-contain object-center lg:rounded-r-[2rem]"
-              />
+              <div className="relative h-[500px] w-full lg:h-[663px]">
+                <Image
+                  src={photo.assetPath}
+                  fill
+                  alt={photo?.caption || "missing alt"}
+                  className="object-cover object-center lg:rounded-r-[2rem]"
+                />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
