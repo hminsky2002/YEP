@@ -36,7 +36,6 @@ export const donation = defineType({
             { title: "Heading XL", value: "h2" },
             { title: "Heading L", value: "h3" },
             { title: "Medium", value: "h4" },
-            { title: "Left Border", value: "leftBorder" },
           ],
         },
       ],

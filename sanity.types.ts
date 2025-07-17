@@ -340,7 +340,7 @@ export type Donation = {
       _type: "span";
       _key: string;
     }>;
-    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "leftBorder";
+    style?: "normal" | "h1" | "h2" | "h3" | "h4";
     listItem?: "bullet" | "number";
     markDefs?: Array<{
       href?: string;
@@ -1774,7 +1774,7 @@ export type DonationQueryResult = {
         _type: "span";
         _key: string;
       }>;
-      style?: "h1" | "h2" | "h3" | "h4" | "leftBorder" | "normal";
+      style?: "h1" | "h2" | "h3" | "h4" | "normal";
       listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
@@ -2627,7 +2627,7 @@ export type HomepageQueryResult = {
               _type: "span";
               _key: string;
             }>;
-            style?: "h1" | "h2" | "h3" | "h4" | "leftBorder" | "normal";
+            style?: "h1" | "h2" | "h3" | "h4" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -3506,7 +3506,7 @@ export type PageQueryResult = {
               _type: "span";
               _key: string;
             }>;
-            style?: "h1" | "h2" | "h3" | "h4" | "leftBorder" | "normal";
+            style?: "h1" | "h2" | "h3" | "h4" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
