@@ -10,9 +10,15 @@
   --swiper-pagination-bullet-color: #BD0059;
   --swiper-pagination-bullet-inactive-opacity: 1;
   --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-navigation-background-color: #BD0059;
+  --swiper-navigation-disabled-opacity: 0%;
+
 }
 
-html, body, #__next { height: 100%; }
+
+html, body, #__next {
+  height: 100%;
+}
 
 html {
   font-size: 10px;
@@ -21,7 +27,7 @@ html {
 h1,
 .h1,
 .hxxl {
-  @apply  font-bold  text-[40px] leading-[110%] tracking-normal lg:text-[60px] lg:leading-[115%];
+  @apply font-bold text-[40px] leading-[110%] tracking-normal lg:text-[60px] lg:leading-[115%];
 }
 
 p {
@@ -35,40 +41,40 @@ p {
 h2,
 .h2,
 .hxl {
-  @apply  font-bold text-[22.5px]  leading-[118%] lg:text-[40px] ;
+  @apply font-bold text-[22.5px] leading-[118%] lg:text-[40px];
 }
 
 h3,
 .h3,
 .hl {
-  @apply  text-[14px] font-normal  tracking-normal lg:text-[28px];
+  @apply text-[14px] font-normal tracking-normal lg:text-[28px];
 }
 
 h4,
 .h4,
 .medium {
-  @apply  text-[20px] font-normal leading-[0.89] tracking-normal;
+  @apply text-[20px] font-normal leading-[0.89] tracking-normal;
 }
 
 body,
 .body {
-  @apply  text-[15px] font-normal leading-[225.1%] tracking-normal;
+  @apply text-[15px] font-normal leading-[225.1%] tracking-normal;
 }
 
 .menu {
-  @apply  font-bold text-[1.6rem] leading-none tracking-normal lg:text-[1.4rem];
+  @apply font-bold text-[1.6rem] leading-none tracking-normal lg:text-[1.4rem];
 }
 
 .button {
-  @apply  relative rounded-[0.7rem] p-[2.1rem]  text-[2rem] font-medium leading-none tracking-normal text-white transition-all;
+  @apply relative rounded-[0.7rem] p-[2.1rem] text-[2rem] font-medium leading-none tracking-normal text-white transition-all;
 }
 
 .button::before {
-  @apply  absolute left-0 top-0 h-full w-full rounded-[0.7rem] bg-white opacity-20 content-[""];
+  @apply absolute left-0 top-0 h-full w-full rounded-[0.7rem] bg-white opacity-20 content-[""];
 }
 
 .button:hover {
-  @apply  bg-white text-black;
+  @apply bg-white text-black;
 }
 
 .drop-shadow-image-left {
@@ -78,8 +84,3 @@ body,
 .drop-shadow-image-right {
   box-shadow: 7px 12px 8px rgba(0, 0, 0, 0.25);
 }
-
-
-
-
-

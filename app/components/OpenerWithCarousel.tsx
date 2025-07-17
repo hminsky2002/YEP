@@ -29,6 +29,7 @@ type OpenerWithCarouselProps = {
 
 export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
   const { header, subHeader, tagline, bgColor, photos, link } = content;
+
   return (
     <div
       className="mx-auto mt-[100px] flex flex-col items-center lg:mt-0 lg:flex-row lg:gap-[109px]"
@@ -42,6 +43,7 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           autoplay={{ delay: 2500, disableOnInteraction: true }}
+          navigation={true}
         >
           {photos.map((photo) => (
             <SwiperSlide key={photo.assetPath} className="">
@@ -50,17 +52,17 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
                 width={1200}
                 height={1200}
                 alt={photo?.caption || "missing alt"}
-                className="size-full rounded-tr-[2rem] rounded-br-[2rem] object-contain object-center"
+                className="size-full lg:rounded-r-[2rem] object-contain object-center"
               />
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
       <div className="mx-auto w-full pl-8 lg:flex lg:flex-col lg:items-start lg:justify-start">
-        <h1 className="my-4 text-red lg:my-0 lg:text-[60px] lg:leading-[121.6%]">
+        <h1 className="my-4 text-red lg:my-0 lg:max-w-screen-md lg:text-[60px] lg:leading-[121.6%]">
           {header}
         </h1>
-        <div className="my-8 flex md:flex-col lg:mb-0 lg:mt-4 xl:flex-row lg:gap-6 lg:items-center">
+        <div className="my-8 flex md:flex-col lg:mb-0 lg:mt-4 lg:items-center lg:gap-4 xl:flex-row">
           <h4 className="font-bold lg:my-0 lg:text-[14px] lg:font-bold lg:leading-[117.6%]">
             {subHeader}
           </h4>
@@ -68,7 +70,7 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
             {tagline}
           </h4>
         </div>
-        <div className="mb-12 mt-4 inline-flex rounded-full bg-red px-8 text-[15px] font-bold text-white lg:mb-0 lg:mt-6 lg:px-10 lg:py-4">
+        <div className="mb-12 mt-4 inline-flex rounded-full bg-red px-8 text-[15px] font-bold text-white lg:mb-0 lg:mt-6 lg:px-[28px] lg:py-[3px] lg:text-center lg:text-[16px] lg:font-semibold">
           <Link link={link} />
         </div>
       </div>
