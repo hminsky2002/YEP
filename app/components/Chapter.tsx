@@ -35,7 +35,7 @@ export default function Chapter({ content }: Props) {
     );
 
     gsap.fromTo(
-      ".mobile-timeline .absolute",
+      ".timeline .absolute",
       {
         scaleY: 0,
         opacity: 0,
@@ -51,6 +51,7 @@ export default function Chapter({ content }: Props) {
           end: "bottom 20%",
           toggleActions: "play none none reverse",
         },
+        delay: 1.0,
       },
     );
 
@@ -72,6 +73,7 @@ export default function Chapter({ content }: Props) {
           end: "bottom 20%",
           toggleActions: "play none none reverse",
         },
+        delay: 1.0,
       },
     );
   }, []);
@@ -85,13 +87,13 @@ export default function Chapter({ content }: Props) {
   };
 
   return (
-    <div className="flex flex-col">
-      <div className="desktop-chapter-heading hidden h-[800px] bg-white lg:flex">
+    <div className="flex flex-col lg:mt-[80px]">
+      <div className="desktop-chapter-heading hidden bg-white py-[100px] lg:flex">
         <div className="mx-auto flex items-center justify-center">
           <div className="flex flex-col">
             <div className="flex flex-row gap-4">
               <div className="flex h-[339px] flex-col justify-end">
-                <div className="text-[100px] font-bold leading-[225%]">
+                <div className="text-[100px] font-bold leading-[125%]">
                   YEP!
                 </div>
               </div>
@@ -101,29 +103,30 @@ export default function Chapter({ content }: Props) {
                   alt={image?.caption || ""}
                   width={1000}
                   height={1000}
-                  className="h-[339px] w-[602px] rounded-tl-[100px] shadow-[8px_8px_2px_0px_rgba(0,0,0,0.3)]"
+                  className="mb-[10px] h-[339px] w-[602px] rounded-tl-[100px] shadow-[8px_8px_2px_0px_rgba(0,0,0,0.3)]"
                 />
               )}
             </div>
-            <div className="flex flex-row items-center gap-4">
+            <div className="mt-[20px] flex flex-row items-center gap-4">
               <AtSymbol fill="black" />
               <div className="text-[120px] font-bold text-red">{header}</div>
             </div>
           </div>
         </div>
       </div>
-      <div className="mobile-chapter-heading bg-white lg:hidden">
-        <div className="h-screen after:absolute after:inset-0 after:z-0 after:bg-black after:bg-opacity-[25%]">
+      <div className="mobile-chapter-heading h-screen bg-white lg:hidden">
+        <div className="h-full after:absolute after:inset-0 after:z-0 after:bg-black after:bg-opacity-[25%]">
           {image?.assetPath && (
             <Image
               src={image?.assetPath}
               alt={image?.caption || ""}
               fill
-              className="object-cover"
+              className="h-screen object-cover"
             />
           )}
-          <div className="absolute left-[5%] top-1/2 z-10 h-screen">
-            <div className="flex h-screen flex-col">
+
+          <div className="absolute left-[5%] top-1/2 z-10">
+            <div className="flex flex-col">
               <div className="text-[60px] font-bold leading-[125%] text-white">
                 YEP!
               </div>
@@ -135,49 +138,19 @@ export default function Chapter({ content }: Props) {
           </div>
         </div>
       </div>
-      <div className="flex-col lg:flex lg:h-[1000px]">
+
+      <div className="flex-col lg:flex">
         <div className="flex flex-col gap-4 lg:items-center lg:justify-center">
-          <h1 className="mx-auto my-[100px] w-fit underline decoration-1">
+          <h1 className="mx-auto my-[100px] w-fit underline decoration-1 underline-offset-[20px]">
             A Chapter History
           </h1>
-          <div className="desktop-timeline hidden flex-row lg:flex">
-            {timeline &&
-              timeline.map((timelineItem, index) => (
-                <div
-                  className="w-[400px] text-center"
-                  key={index}
-                  style={{
-                    borderRight:
-                      index == timeline.length - 1 ? "none" : "2px solid black",
-                  }}
-                >
-                  <h3 className="mb-2 font-medium">{timelineItem.header}</h3>
-                  <div
-                    className="h-[31px] w-full bg-red"
-                    style={{
-                      borderRadius:
-                        index == 0
-                          ? "100px 0 0 100px"
-                          : index == timeline.length - 1
-                            ? "0 100px 100px 0"
-                            : "0",
-                    }}
-                  ></div>
-                  <h3 className="mt-4 font-medium">{timelineItem.subHeader}</h3>
-                  <div className="mx-auto mt-4 w-[220px]">
-                    <CustomPortableText
-                      value={timelineItem.description as PortableTextBlock[]}
-                    />
-                  </div>
-                </div>
-              ))}
-          </div>
-          <div className="mobile-timeline flex flex-col items-center justify-center gap-32 pb-[100px] lg:hidden">
+
+          <div className="timeline flex flex-col items-center justify-center gap-32 pb-[100px]">
             <div className="absolute h-4/5 w-1 bg-black"></div>
             {timeline &&
               timeline.map((timelineItem, index) => (
                 <div
-                  className={`timeline-item relative mb-2 w-[340px] border-[5px] border-yellow bg-white-yellow text-center`}
+                  className={`timeline-item relative mb-2 w-[340px] border-[5px] border-yellow bg-white-yellow text-center lg:w-auto lg:max-w-[600px]`}
                   key={`timeline-${index}`}
                 >
                   <div className="pointer-events-none absolute -right-2 -top-2 size-full border border-black" />
@@ -200,43 +173,46 @@ export default function Chapter({ content }: Props) {
       </div>
       <div className="flex h-[1342px] flex-col items-center justify-center rounded-tl-[200px] bg-orange">
         <div className="flex w-full max-w-[1263px] flex-col items-center justify-center px-4 md:px-8">
-          <h1 className="mb-[100px] text-center text-white underline decoration-1">
+          <h1 className="mb-[100px] w-full text-center text-white underline decoration-1 underline-offset-[20px] lg:flex lg:justify-start">
             Meet Our Team
           </h1>
-          <div className="grid h-[900px] w-full gap-4 border-orange bg-white">
-            {imageGallery?.map((galleryImage, index) => {
-              if (
-                galleryImage.imageColumnEnd &&
-                galleryImage.imageColumnStart &&
-                galleryImage.imageRowEnd &&
-                galleryImage.imageRowStart &&
-                galleryImage.image?.assetPath
-              ) {
-                return (
-                  <div
-                    key={index}
-                    className="relative cursor-pointer border-4 border-white"
-                    style={{
-                      gridColumn: `${galleryImage.imageColumnStart} / ${galleryImage.imageColumnEnd + 1}`,
-                      gridRow: `${galleryImage.imageRowStart} / ${galleryImage.imageRowEnd + 1}`,
-                    }}
-                    onClick={() =>
-                      galleryImage.image?.assetPath &&
-                      openLightbox(galleryImage.image.assetPath)
-                    }
-                  >
-                    <Image
-                      src={galleryImage.image.assetPath}
-                      alt={galleryImage.image.caption || ""}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
+          <div className="relative h-[900px] w-full">
+            <div className="grid size-full gap-4 border-orange bg-white">
+              {imageGallery?.map((galleryImage, index) => {
+                if (
+                  galleryImage.imageColumnEnd &&
+                  galleryImage.imageColumnStart &&
+                  galleryImage.imageRowEnd &&
+                  galleryImage.imageRowStart &&
+                  galleryImage.image?.assetPath
+                ) {
+                  return (
+                    <div
+                      key={index}
+                      className="relative cursor-pointer border-4 border-white"
+                      style={{
+                        gridColumn: `${galleryImage.imageColumnStart} / ${galleryImage.imageColumnEnd + 1}`,
+                        gridRow: `${galleryImage.imageRowStart} / ${galleryImage.imageRowEnd + 1}`,
+                      }}
+                      onClick={() =>
+                        galleryImage.image?.assetPath &&
+                        openLightbox(galleryImage.image.assetPath)
+                      }
+                    >
+                      <Image
+                        src={galleryImage.image.assetPath}
+                        alt={galleryImage.image.caption || ""}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
+            <div className="pointer-events-none absolute left-0 top-0 block size-full border-4 border-orange lg:border-[10px]" />
           </div>
         </div>
       </div>
