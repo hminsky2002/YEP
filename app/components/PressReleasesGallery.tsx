@@ -12,8 +12,8 @@ export default function PressReleasesGallery({
   const { header, tagColor, tagText, pressReleases } = content || {};
 
   return (
-    <div className="relative flex flex-col justify-center p-4 pb-[80px] lg:gap-2">
-      <h2 className="mx-auto my-8 flex">{header}</h2>
+    <div className="relative flex flex-col justify-center p-4 py-[100px] lg:gap-2">
+      <h2 className="mx-auto my-8 flex lg:mb-[40px] lg:ml-[48.8%]">{header}</h2>
       <div className="flex flex-col justify-center gap-2 lg:flex-row">
         <div
           style={{ backgroundColor: tagColor || "#E55937" }}
@@ -34,7 +34,7 @@ export default function PressReleasesGallery({
           return (
             <div
               key={pr._key}
-              className="mx-auto size-[197px] w-[250px] bg-white lg:mx-0"
+              className="mx-auto h-auto w-[250px] bg-white lg:mx-0 lg:h-[197px] lg:w-auto"
             >
               {pr.link && pr?.image?.assetPath ? (
                 <Link link={pr.link as LinkValue}>

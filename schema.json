@@ -4599,11 +4599,11 @@
                             },
                             {
                               "type": "string",
-                              "value": "h3"
+                              "value": "testimonial"
                             },
                             {
                               "type": "string",
-                              "value": "yellowH3"
+                              "value": "yellowTestimonial"
                             }
                           ]
                         },

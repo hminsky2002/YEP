@@ -11,16 +11,16 @@ export default function ChaptersGallery({ content }: ChaptersGalleryProps) {
     content || {};
 
   return (
-    <div className="mx-auto my-[50px] flex flex-col items-center border-black lg:max-w-[1263px] lg:flex-row lg:items-start">
-      <div className="mr-8 hidden h-[509px] bg-black pr-px lg:block" />
+    <div className="mx-auto mb-[160px] mt-[100px] flex flex-col items-center border-black xl:max-w-[1263px] xl:flex-row xl:items-start">
+      <div className="mr-8 hidden h-[509px] bg-black pr-px xl:block" />
       <div className="flex flex-col">
-        <div className="flex w-full flex-col justify-start text-center lg:flex-row">
+        <div className="flex w-full flex-col justify-start text-center xl:flex-row">
           <h1 className="text-red">{header}</h1>
-          <div className="mx-auto mt-4 max-w-[240px] text-center lg:mt-0 lg:flex lg:max-w-full lg:flex-col lg:justify-end lg:text-left">
+          <div className="mx-auto mt-4 max-w-[240px] text-center xl:mx-0 xl:mt-0 xl:flex xl:max-w-full xl:flex-col xl:items-start xl:justify-end xl:pl-[20px] xl:text-left">
             <p>{subHeader}</p>
           </div>
         </div>
-        <div className="mt-[40px] flex flex-col items-center gap-6 lg:flex-row">
+        <div className="mt-[40px] flex flex-col items-center gap-6 xl:flex-row">
           {chapters?.map((chapter) => {
             return (
               <div key={chapter._key}>
@@ -35,17 +35,17 @@ export default function ChaptersGallery({ content }: ChaptersGalleryProps) {
                         className="h-[242px] w-[233px]"
                       />
                     </div>
-                    <div className="w-[233px] rounded-b-full bg-orange p-8">
+                    <div className="w-[233px] rounded-b-full bg-orange py-[8px]">
                       <Link
                         link={chapter.link as LinkValue}
                         className="text-center"
                       >
-                        <h4 className="underline underline-offset-4">
+                        <div className="text-[15px] underline underline-offset-4">
                           {chapter.link?.text}
-                        </h4>
+                        </div>
                       </Link>
                     </div>
-                    <div className="mt-4 text-center">
+                    <div className="mt-4 text-center text-[12px]">
                       <p>{chapter.chapterTitle}</p>
                     </div>
                   </div>
@@ -54,19 +54,15 @@ export default function ChaptersGallery({ content }: ChaptersGalleryProps) {
             );
           })}
         </div>
-        <div className="mt-[40px] flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-32">
+        <div className="mt-[40px] flex flex-col items-center justify-center gap-6 xl:flex-row xl:gap-32">
           <Link
             link={chaptersLink as LinkValue}
-            className="w-[226px] rounded-full border-2 border-black bg-white px-4 py-6 text-center"
-          >
-            <h4 className="">{chaptersLink?.text}</h4>
-          </Link>
+            className="mt-4 w-[226px] rounded-full border-2 border-black bg-white px-8 text-center text-[15px] font-bold text-black lg:mb-0 lg:mt-6 lg:px-[28px] lg:py-[3px] lg:text-[16px] lg:font-semibold"
+          ></Link>
           <Link
             link={directorsLink as LinkValue}
-            className="w-[226px] rounded-full border-2 border-black bg-white px-4 py-6 text-center"
-          >
-            <h4 className="">{directorsLink?.text}</h4>
-          </Link>
+            className="mt-4 w-[226px] rounded-full border-2 border-black bg-white px-8 text-center text-[15px] font-bold text-black lg:mb-0 lg:mt-6 lg:px-[28px] lg:py-[3px] lg:text-[16px] lg:font-semibold"
+          ></Link>
         </div>
       </div>
     </div>

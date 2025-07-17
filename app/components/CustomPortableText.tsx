@@ -24,9 +24,21 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
       normal: ({ children }) => {
         return <p className={"body leading-[225.1%]"}>{children}</p>;
       },
-      yellowH3: ({ children }) => {
-        return <h3 className={"font-bold text-yellow"}>{children}</h3>;
+      yellowTestimonial: ({ children }) => {
+        return (
+          <div className={"text-[23px] font-bold leading-[125%] text-yellow"}>
+            {children}
+          </div>
+        );
       },
+      testimonial: ({ children }) => {
+        return (
+          <div className={"text-[20px] font-bold leading-[125%] text-white"}>
+            {children}
+          </div>
+        );
+      },
+
       leftBorder: ({ children }) => {
         return (
           <p

@@ -49,8 +49,8 @@ export const testimonialsBlock = defineType({
                 defineArrayMember({
                   type: "block",
                   styles: [
-                    { title: "Heading L", value: "h3" },
-                    { title: "Yellow Heading L", value: "yellowH3" },
+                    { title: "Testimonial", value: "testimonial" },
+                    { title: "Yellow Testimonial", value: "yellowTestimonial" },
                   ],
                 }),
               ],

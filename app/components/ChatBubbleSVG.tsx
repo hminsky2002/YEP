@@ -1,14 +1,14 @@
 export default function ChatBubbleSVG() {
   return (
     <svg
-      viewBox=""
-      preserveAspectRatio="none"
+      width="85"
+      height="55"
+      viewBox="0 0 85 55"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="rounded-tl-[10%]"
     >
       <path
-        d="M1138 970C1145.46 988.584 1172.91 1025.6 1223 1024.99C1210.1 1017.79 1187.18 996.7 1198.71 970H1138Z"
+        d="M0 0C7.4628 18.5837 34.9107 55.5994 85 54.9926C72.0982 47.7867 49.1786 26.6999 60.7143 0H0Z"
         fill="#E55937"
       />
     </svg>

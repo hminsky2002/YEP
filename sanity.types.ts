@@ -667,7 +667,7 @@ export type TestimonialsBlock = {
         _type: "span";
         _key: string;
       }>;
-      style?: "normal" | "h3" | "yellowH3";
+      style?: "normal" | "testimonial" | "yellowTestimonial";
       listItem?: "bullet" | "number";
       markDefs?: Array<{
         href?: string;
@@ -1324,7 +1324,7 @@ export type TestimonialsBlockQueryResult = {
           _type: "span";
           _key: string;
         }>;
-        style?: "h3" | "normal" | "yellowH3";
+        style?: "normal" | "testimonial" | "yellowTestimonial";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -2776,7 +2776,7 @@ export type HomepageQueryResult = {
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h3" | "normal" | "yellowH3";
+              style?: "normal" | "testimonial" | "yellowTestimonial";
               listItem?: "bullet" | "number";
               markDefs?: Array<{
                 href?: string;
@@ -3492,7 +3492,7 @@ export type PageQueryResult = {
                 _type: "span";
                 _key: string;
               }>;
-              style?: "h3" | "normal" | "yellowH3";
+              style?: "normal" | "testimonial" | "yellowTestimonial";
               listItem?: "bullet" | "number";
               markDefs?: Array<{
                 href?: string;
