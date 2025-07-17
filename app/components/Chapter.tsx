@@ -200,43 +200,46 @@ export default function Chapter({ content }: Props) {
       </div>
       <div className="flex h-[1342px] flex-col items-center justify-center rounded-tl-[200px] bg-orange">
         <div className="flex w-full max-w-[1263px] flex-col items-center justify-center px-4 md:px-8">
-          <h1 className="mb-[100px] text-center text-white underline decoration-1">
+          <h1 className="mb-[100px] text-center w-full flex justify-start text-white underline decoration-1 underline-offset-[20px]">
             Meet Our Team
           </h1>
-          <div className="grid h-[900px] w-full gap-4 border-orange bg-white">
-            {imageGallery?.map((galleryImage, index) => {
-              if (
-                galleryImage.imageColumnEnd &&
-                galleryImage.imageColumnStart &&
-                galleryImage.imageRowEnd &&
-                galleryImage.imageRowStart &&
-                galleryImage.image?.assetPath
-              ) {
-                return (
-                  <div
-                    key={index}
-                    className="relative cursor-pointer border-4 border-white"
-                    style={{
-                      gridColumn: `${galleryImage.imageColumnStart} / ${galleryImage.imageColumnEnd + 1}`,
-                      gridRow: `${galleryImage.imageRowStart} / ${galleryImage.imageRowEnd + 1}`,
-                    }}
-                    onClick={() =>
-                      galleryImage.image?.assetPath &&
-                      openLightbox(galleryImage.image.assetPath)
-                    }
-                  >
-                    <Image
-                      src={galleryImage.image.assetPath}
-                      alt={galleryImage.image.caption || ""}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                );
-              } else {
-                return null;
-              }
-            })}
+          <div className="relative h-[900px] w-full">
+            <div className="grid gap-4 size-full border-orange bg-white">
+              {imageGallery?.map((galleryImage, index) => {
+                if (
+                  galleryImage.imageColumnEnd &&
+                  galleryImage.imageColumnStart &&
+                  galleryImage.imageRowEnd &&
+                  galleryImage.imageRowStart &&
+                  galleryImage.image?.assetPath
+                ) {
+                  return (
+                    <div
+                      key={index}
+                      className="relative cursor-pointer border-4 border-white"
+                      style={{
+                        gridColumn: `${galleryImage.imageColumnStart} / ${galleryImage.imageColumnEnd + 1}`,
+                        gridRow: `${galleryImage.imageRowStart} / ${galleryImage.imageRowEnd + 1}`,
+                      }}
+                      onClick={() =>
+                        galleryImage.image?.assetPath &&
+                        openLightbox(galleryImage.image.assetPath)
+                      }
+                    >
+                      <Image
+                        src={galleryImage.image.assetPath}
+                        alt={galleryImage.image.caption || ""}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
+            <div className="pointer-events-none absolute top-0 left-[0] hidden size-full border-[10px] border-orange lg:block" />
           </div>
         </div>
       </div>
