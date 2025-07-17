@@ -67,13 +67,13 @@ export default function OurProgram({ content }: OurProgramProps) {
         <div className="hidden flex-col lg:flex lg:max-w-[451px]">
           <p className="pb-12">{missionHeader}</p>
           {mission && (
-            <div className="flex flex-col gap-[55px]">
+            <div className="flex flex-col gap-[45px]">
               {mission.map((item) => (
                 <div
                   key={item._key}
                   className="gap flex flex-row items-center justify-center"
                 >
-                  <div className="w-[100px] text-[58px] font-extrabold text-red lg:mt-[30px]">
+                  <div className="mt-[-20px] w-[100px] text-[58px] font-extrabold text-red">
                     {item.number}.
                   </div>
                   <p className="body w-[300px]">{item.text}</p>

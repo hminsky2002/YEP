@@ -12,7 +12,9 @@ export default function ChaptersList({ content }: ChaptersListProps) {
   const { header, chapters } = content || {};
   return (
     <div className="flex flex-col items-center bg-white py-20">
-      <h1 className="mb-16 mt-[85px] underline decoration-1">{header}</h1>
+      <h1 className="mb-[100px] mt-[85px] underline decoration-1 underline-offset-[20px]">
+        {header}
+      </h1>
 
       {chapters?.map((chapter, i) => {
         const isEven = i % 2 === 0;
@@ -39,7 +41,7 @@ export default function ChaptersList({ content }: ChaptersListProps) {
                     alt={chapter.image.caption || ""}
                     width={2000}
                     height={2000}
-                    className={`size-full h-[300px] w-full object-cover lg:size-auto lg:min-h-[500px] lg:min-w-[600px] lg:object-fill ${isEven ? "lg:drop-shadow-image-left" : "lg:drop-shadow-image-right"}`}
+                    className={`size-full h-[300px] w-full object-cover lg:size-auto lg:max-h-[600px] lg:min-h-[500px] lg:min-w-[600px] lg:max-w-[800px] lg:object-fill ${isEven ? "drop-shadow-image-left" : "drop-shadow-image-right"}`}
                   />
                 )}
               </div>
@@ -47,7 +49,7 @@ export default function ChaptersList({ content }: ChaptersListProps) {
                 className={`top-[20%] flex flex-col items-center justify-center shadow-lg lg:absolute lg:h-[349px] lg:w-[560px] ${isEven ? "left-[80%] rounded-bl-[5rem] lg:rounded-tr-[5rem]" : "right-[80%] rounded-br-[5rem] lg:rounded-tl-[5rem]"}`}
                 style={{ backgroundColor: chapter.descriptionColor || "#fff" }}
               >
-                <div className="mx-auto flex max-w-[406px] items-center justify-center p-8 text-center">
+                <div className="mx-auto mt-[-50px] flex max-w-[406px] items-center justify-center p-8 text-center">
                   <CustomPortableText
                     value={chapter.description as PortableTextBlock[]}
                   />

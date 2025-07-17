@@ -77,10 +77,15 @@ body,
   @apply bg-white text-black;
 }
 
+
 .drop-shadow-image-left {
-  box-shadow: -7px 12px 8px rgba(0, 0, 0, 0.25);
+  @screen lg{
+    box-shadow: -7px 12px 8px rgba(0, 0, 0, 0.25);
+  }
 }
 
 .drop-shadow-image-right {
-  box-shadow: 7px 12px 8px rgba(0, 0, 0, 0.25);
+  @screen lg{
+    box-shadow: 7px 12px 8px rgba(0, 0, 0, 0.25);
+  }
 }
