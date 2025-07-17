@@ -52,7 +52,7 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
                 width={1200}
                 height={1200}
                 alt={photo?.caption || "missing alt"}
-                className="size-full lg:rounded-r-[2rem] object-contain object-center"
+                className="size-full object-contain object-center lg:rounded-r-[2rem]"
               />
             </SwiperSlide>
           ))}
