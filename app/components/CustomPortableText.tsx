@@ -38,18 +38,6 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
           </div>
         );
       },
-
-      leftBorder: ({ children }) => {
-        return (
-          <p
-            className={
-              "body leading-[225.1%] lg:border-l lg:border-black lg:pl-4"
-            }
-          >
-            {children}
-          </p>
-        );
-      },
     },
     marks: {
       link: ({ children, value }) => {
