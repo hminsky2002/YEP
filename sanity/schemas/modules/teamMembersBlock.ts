@@ -31,7 +31,6 @@ export const teamMembersBlock = defineType({
               name: "image",
               title: "Image",
               type: "imageAlt",
-             
             }),
             defineField({
               name: "memberTitle",

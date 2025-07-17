@@ -48,7 +48,7 @@ export const footer = defineType({
               name: "icon",
               title: "Icon",
               type: "imageAlt",
-              
+
               description: "Relevant icon for social media link",
             }),
           ],

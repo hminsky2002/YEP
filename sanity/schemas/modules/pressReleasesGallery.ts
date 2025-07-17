@@ -52,7 +52,6 @@ export const pressReleasesGallery = defineType({
               name: "image",
               title: "Press Release Image",
               type: "imageAlt",
-              
             }),
           ],
           preview: {
