@@ -7,7 +7,7 @@ import { PortableTextBlock } from "next-sanity";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 type Props = {
@@ -17,6 +17,18 @@ type Props = {
 export default function Chapter({ content }: Props) {
   const { header, image, timeline, imageGallery } = content || {};
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!lightboxImage) return;
+
+    const handleClick = () => setLightboxImage(null);
+
+    document.addEventListener("click", handleClick);
+
+    return () => {
+      document.removeEventListener("click", handleClick);
+    };
+  }, [lightboxImage]);
 
   useGSAP(() => {
     gsap.fromTo(
