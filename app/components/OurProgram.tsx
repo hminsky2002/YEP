@@ -35,9 +35,9 @@ export default function OurProgram({ content }: OurProgramProps) {
         </h1>
       </div>
 
-      <div className="flex flex-col items-center justify-center gap-[100px] bg-white py-[40px] lg:w-full lg:flex-row">
+      <div className="flex flex-col items-center justify-center gap-[100px] rounded-br-[8rem] bg-white py-[90px] lg:w-full lg:flex-row">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="hidden pb-12 font-bold underline decoration-1 underline-offset-[20px] lg:block">
+          <h1 className="hidden w-full pb-12 font-bold underline decoration-1 underline-offset-[20px] lg:block lg:mb-[40px]">
             {header}
           </h1>
           {description && (
@@ -46,13 +46,13 @@ export default function OurProgram({ content }: OurProgramProps) {
               <div className="mt-12 flex flex-col lg:hidden">
                 <p className="pb-4">{missionHeader}</p>
                 {mission && (
-                  <div className="flex flex-col gap-[20px]">
+                  <div className="flex flex-col gap-[40px]">
                     {mission.map((item) => (
                       <div
                         key={item._key}
                         className="gap flex flex-row items-center gap-4"
                       >
-                        <span className="h1 font-bold text-red">
+                        <span className="text-[48px] font-extrabold text-red">
                           {item.number}.
                         </span>
                         <p className="body">{item.text}</p>
@@ -65,16 +65,18 @@ export default function OurProgram({ content }: OurProgramProps) {
           )}
         </div>
         <div className="hidden flex-col lg:flex lg:max-w-[451px]">
-          <p className="pb-4">{missionHeader}</p>
+          <p className="pb-12">{missionHeader}</p>
           {mission && (
-            <div className="flex flex-col gap-[20px]">
+            <div className="flex flex-col gap-[55px]">
               {mission.map((item) => (
                 <div
                   key={item._key}
-                  className="gap flex flex-row items-center gap-4"
+                  className="gap flex flex-row items-center justify-center"
                 >
-                  <span className="h1 font-bold text-red">{item.number}.</span>
-                  <p className="body">{item.text}</p>
+                  <div className="w-[100px] text-[58px] font-extrabold text-red lg:mt-[30px]">
+                    {item.number}.
+                  </div>
+                  <p className="body w-[300px]">{item.text}</p>
                 </div>
               ))}
             </div>
