@@ -31,9 +31,7 @@ export const teamMembersBlock = defineType({
               name: "image",
               title: "Image",
               type: "imageAlt",
-              options: {
-                hotspot: true,
-              },
+             
             }),
             defineField({
               name: "memberTitle",

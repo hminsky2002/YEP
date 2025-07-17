@@ -23,7 +23,7 @@ const socialLink = `
     {
     ...,
     icon ${imageData},
-    ${linkTypeData}
+    link {..., ${linkTypeData}}
     }
 `;
 
@@ -34,7 +34,7 @@ const openerWithCarouselData = defineQuery(`{
     subHeader,
     'bgColor': bgColor.hex,
     tagline,
-    ${linkTypeData},
+    link {..., ${linkTypeData}},
     photos[] ${imageData}
 }`);
 
@@ -50,7 +50,7 @@ const testimonials = `{
 const teamMembers = `{
     ...,
     image ${imageData},
-    ${linkTypeData}
+    link {..., ${linkTypeData}}
 }`;
 
 const testimonialsBlock = `{
@@ -68,7 +68,7 @@ const teamMembersBlock = `{
 const pressRelease = `{
     ...,
     image ${imageData},
-    ${linkTypeData}
+    link {..., ${linkTypeData}}
 }`;
 
 const chapter = `{
@@ -191,7 +191,7 @@ const whatWeDo = `{
     header,
     description,
     image ${imageData},
-    ${linkTypeData},
+    link {..., ${linkTypeData}},
 }`;
 
 const ourProgram = `{
@@ -260,7 +260,7 @@ const howCanIHelpBlock = `{
     header,
     description,
     image ${imageData},
-    ${linkTypeData},
+    link {..., ${linkTypeData}},
 }`;
 
 const contentData = `{
