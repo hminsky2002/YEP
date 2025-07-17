@@ -12,7 +12,7 @@ export default function ChaptersGallery({ content }: ChaptersGalleryProps) {
 
   return (
     <div className="mx-auto mb-[160px] mt-[100px] flex flex-col items-center border-black xl:max-w-[1263px] xl:flex-row xl:items-start">
-      <div className="mr-8 hidden h-[509px] bg-black pr-px xl:block" />
+      <div className="mr-8 hidden h-[409px] bg-black pr-px xl:block" />
       <div className="flex flex-col">
         <div className="flex w-full flex-col justify-start text-center xl:flex-row">
           <h1 className="text-red">{header}</h1>
@@ -45,9 +45,7 @@ export default function ChaptersGallery({ content }: ChaptersGalleryProps) {
                         </div>
                       </Link>
                     </div>
-                    <div className="mt-4 text-center text-[12px]">
-                      <p>{chapter.chapterTitle}</p>
-                    </div>
+                   
                   </div>
                 )}
               </div>

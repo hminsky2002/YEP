@@ -73,9 +73,8 @@ const pressRelease = `{
 
 const chapter = `{
     ...,
-    chapterTitle,
     image ${imageData},
-    ${linkTypeData}
+    link {..., ${linkTypeData}}
 }`;
 
 const pressReleasesGallery = `{
