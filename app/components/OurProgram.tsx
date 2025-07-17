@@ -73,7 +73,7 @@ export default function OurProgram({ content }: OurProgramProps) {
                   key={item._key}
                   className="gap flex flex-row items-center justify-center"
                 >
-                  <div className="w-[100px] text-[58px] font-extrabold text-red mt-[-20px]">
+                  <div className="mt-[-20px] w-[100px] text-[58px] font-extrabold text-red">
                     {item.number}.
                   </div>
                   <p className="body w-[300px]">{item.text}</p>
