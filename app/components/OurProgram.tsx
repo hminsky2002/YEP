@@ -37,7 +37,7 @@ export default function OurProgram({ content }: OurProgramProps) {
 
       <div className="flex flex-col items-center justify-center gap-[100px] rounded-br-[8rem] bg-white py-[90px] lg:w-full lg:flex-row">
         <div className="flex flex-col items-center justify-center">
-          <h1 className="hidden w-full pb-12 font-bold underline decoration-1 underline-offset-[20px] lg:block lg:mb-[40px]">
+          <h1 className="hidden w-full pb-12 font-bold underline decoration-1 underline-offset-[20px] lg:mb-[40px] lg:block">
             {header}
           </h1>
           {description && (

@@ -179,7 +179,7 @@ export default function OurCurriculum({ content }: OurCurriculumProps) {
             className={`flex flex-col border border-black lg:flex-row lg:border-none ${index % 2 != 0 ? "lg:justify-end" : "lg:justify-start"} `}
           >
             <div
-              className={`relative z-10 flex flex-col-reverse justify-end bg-white lg:h-[524px] lg:w-[1300px] lg:flex-row lg:gap-[80px] lg:py-[70px] ${index % 2 != 0 ? " lg:flex-row-reverse lg:rounded-l-[20px]" : "lg:flex-row lg:rounded-r-[20px]"} ${index % 2 == 0 ? "lg:mt-[100px]" : ""}`}
+              className={`relative z-10 flex flex-col-reverse justify-end bg-white lg:h-[524px] lg:w-[1300px] lg:flex-row lg:gap-[80px] lg:py-[70px] ${index % 2 != 0 ? "lg:flex-row-reverse lg:rounded-l-[20px]" : "lg:flex-row lg:rounded-r-[20px]"} ${index % 2 == 0 ? "lg:mt-[100px]" : ""}`}
             >
               <Number index={index} className="hidden xl:block" />
 
