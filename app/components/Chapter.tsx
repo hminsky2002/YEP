@@ -189,7 +189,7 @@ export default function Chapter({ content }: Props) {
             Meet Our Team
           </h1>
           <div className="relative h-[900px] w-full">
-            <div className="grid size-full gap-4 border-orange bg-white">
+            <div className="grid size-full gap-2 border-orange bg-white">
               {imageGallery?.map((galleryImage, index) => {
                 if (
                   galleryImage.imageColumnEnd &&
@@ -201,10 +201,12 @@ export default function Chapter({ content }: Props) {
                   return (
                     <div
                       key={index}
-                      className="relative cursor-pointer border-4 border-white"
+                      className="relative cursor-pointer border-white"
                       style={{
-                        gridColumn: `${galleryImage.imageColumnStart} / ${galleryImage.imageColumnEnd + 1}`,
-                        gridRow: `${galleryImage.imageRowStart} / ${galleryImage.imageRowEnd + 1}`,
+                        gridColumnStart: galleryImage.imageColumnStart,
+                        gridColumnEnd: galleryImage.imageColumnEnd,
+                        gridRowStart: galleryImage.imageRowStart,
+                        gridRowEnd: galleryImage.imageRowEnd,
                       }}
                       onClick={() =>
                         galleryImage.image?.assetPath &&
@@ -224,7 +226,6 @@ export default function Chapter({ content }: Props) {
                 }
               })}
             </div>
-            <div className="pointer-events-none absolute left-0 top-0 block size-full border-4 border-orange lg:border-[10px]" />
           </div>
         </div>
       </div>
