@@ -348,6 +348,13 @@ export const headerQuery = defineQuery(`{
             ...,
             ${linkTypeData},
         },
+        showBanner,
+        announcementBanner {
+            content[] {
+                ...,
+                ${linkTypeData},
+            },
+        },
     }
 }`);
 
