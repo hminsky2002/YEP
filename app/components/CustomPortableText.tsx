@@ -42,9 +42,19 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
     marks: {
       link: ({ children, value }) => {
         return (
-          <a href={value?.url} target="_blank" rel="noreferrer noopener">
+          <a
+            className="underline underline-offset-4"
+            href={value?.href}
+            target="_blank"
+            rel="noreferrer noopener"
+          >
             {children}
           </a>
+        );
+      },
+      "dashed-border": ({ children }) => {
+        return (
+          <div className="mt-24 border-t border-dashed pt-24">{children}</div>
         );
       },
     },
@@ -52,9 +62,9 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
       link: ({ value }) => {
         return (
           <div className="mt-[5.5rem]">
-            <span className="button">
-              <Link link={value}>{value.text}</Link>
-            </span>
+            <Link link={value}>
+              <button className="button">{value.text}</button>
+            </Link>
           </div>
         );
       },

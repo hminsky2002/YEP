@@ -844,6 +844,32 @@ export type Header = {
       _key: string;
     } & Link
   >;
+  showBanner?: boolean;
+  announcementBanner?: {
+    content?: Array<
+      | {
+          children?: Array<{
+            marks?: Array<string>;
+            text?: string;
+            _type: "span";
+            _key: string;
+          }>;
+          style?: "normal" | "h1" | "h2" | "h3" | "h4";
+          listItem?: "bullet" | "number";
+          markDefs?: Array<{
+            href?: string;
+            _type: "link";
+            _key: string;
+          }>;
+          level?: number;
+          _type: "block";
+          _key: string;
+        }
+      | ({
+          _key: string;
+        } & Link)
+    >;
+  };
 };
 
 export type Color = {
@@ -2144,7 +2170,7 @@ export type HowCanIHelpBlockQueryResult = {
   } | null;
 };
 // Variable: headerQuery
-// Query: {    'header': *[_type == 'header'][0] {        navList[] {            ...,              _type == "link" => {    ...,    internalLink->{_type,slug,title}  },        },        mobileNavList[] {            ...,              _type == "link" => {    ...,    internalLink->{_type,slug,title}  },        },    }}
+// Query: {    'header': *[_type == 'header'][0] {        navList[] {            ...,              _type == "link" => {    ...,    internalLink->{_type,slug,title}  },        },        mobileNavList[] {            ...,              _type == "link" => {    ...,    internalLink->{_type,slug,title}  },        },        showBanner,        announcementBanner {            content[] {                ...,                  _type == "link" => {    ...,    internalLink->{_type,slug,title}  },            },        },    }}
 export type HeaderQueryResult = {
   header: {
     navList: Array<{
@@ -2197,6 +2223,54 @@ export type HeaderQueryResult = {
       parameters?: string;
       anchor?: string;
     }> | null;
+    showBanner: boolean | null;
+    announcementBanner: {
+      content: Array<
+        | {
+            children?: Array<{
+              marks?: Array<string>;
+              text?: string;
+              _type: "span";
+              _key: string;
+            }>;
+            style?: "h1" | "h2" | "h3" | "h4" | "normal";
+            listItem?: "bullet" | "number";
+            markDefs?: Array<{
+              href?: string;
+              _type: "link";
+              _key: string;
+            }>;
+            level?: number;
+            _type: "block";
+            _key: string;
+          }
+        | {
+            _key: string;
+            _type: "link";
+            text?: string;
+            type?: string;
+            internalLink:
+              | {
+                  _type: "homepage";
+                  slug: null;
+                  title: null;
+                }
+              | {
+                  _type: "page";
+                  slug: Slug | null;
+                  title: string | null;
+                }
+              | null;
+            url?: string;
+            email?: string;
+            phone?: string;
+            value?: string;
+            blank?: boolean;
+            parameters?: string;
+            anchor?: string;
+          }
+      > | null;
+    } | null;
   } | null;
 };
 // Variable: footerQuery
@@ -4072,7 +4146,7 @@ declare module "@sanity/client" {
     "{\n    'ourCurriculum': *[_type == 'ourCurriculum'][0] {\n    ...,\n    title,\n    header,\n    curriculumCards[] {\n        ...,\n        title,\n        icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n        description[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        },\n        image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n        carousel[] {\n            ...,\n            photo {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n            caption,\n        },\n    }\n}\n}": OurCurriculumQueryResult;
     "{\n    'programmingBlock': *[_type == 'programmingBlock'][0] {\n    ...,\n    title,\n    header,\n    programmingCards[] {\n        ...,\n        title,\n        description,\n        image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    }\n}\n}": ProgrammingBlockQueryResult;
     "{\n    'howCanIHelpBlock': *[_type == 'howCanIHelpBlock'][0] {\n    ...,\n    title,\n    header,\n    description,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n}\n}": HowCanIHelpBlockQueryResult;
-    "{\n    'header': *[_type == 'header'][0] {\n        navList[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        },\n        mobileNavList[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        },\n    }\n}": HeaderQueryResult;
+    '{\n    \'header\': *[_type == \'header\'][0] {\n        navList[] {\n            ...,\n            \n  _type == "link" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        },\n        mobileNavList[] {\n            ...,\n            \n  _type == "link" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        },\n        showBanner,\n        announcementBanner {\n            content[] {\n                ...,\n                \n  _type == "link" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n            },\n        },\n    }\n}': HeaderQueryResult;
     "{\n    'footer': *[_type == 'footer'][0] {\n            ...,\n            socials[] \n    {\n    ...,\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n}\n    }\n\n    }\n}": FooterQueryResult;
     "\n    *[_type == 'siteSettings'][0] {\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n": SiteSettingsQueryResult;
     "{\n    'homepage': *[_type == 'homepage'][0] {\n        ...,\n        content[]->{\n    ...,\n    _type == 'openerWithCarousel' => {\n    _id,\n    _type,\n    header,\n    subHeader,\n    'bgColor': bgColor.hex,\n    tagline,\n    link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    photos[] {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n}\n},\n    _type == 'testimonialsBlock' => {\n    _id,\n    title,\n    header,\n    testimonials[] {\n    icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    testimonialSource,\n    testimonialContent[] {\n      ...,\n      \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n}\n  },\n    _type == 'teamMembersBlock' => {\n    ...,\n    teamMembers[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n}\n}\n},\n    _type == 'pressReleasesGallery' => {\n    ...,\n    \n    'tagColor': tagColor.hex,\n    pressReleases[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n}\n},\n    \n},\n    _type == 'chaptersGallery' => {\n    ...,\n    title,\n    header,\n    subHeader,\n    chaptersLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    directorsLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    chapters[] {\n    ...,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n}\n}\n},\n    _type == 'chapterComponent' => {\n    ...,\n    title,\n    header,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    timeline[] {\n        ...,\n        title,\n        header,\n        subHeader,\n        description[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        },\n        \n    },\n    imageGallery[] {\n        ...,\n        image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n        imageColumnStart,\n        imageColumnEnd,\n        imageRowStart,\n        imageRowEnd,\n    },\n    contactLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    applyLink {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n\n},\n    _type == 'chaptersList' => {\n    ...,\n    header,\n    chapters[] {\n        ...,\n        title,\n        description,\n        'descriptionColor': descriptionColor.hex,\n        image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n        'linkColor': linkColor.hex,\n        link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n    }\n},\n    _type == 'directorsList' => {\n    ...,\n    header,\n    directorsByGroup[] {\n        directorGroupName,\n        directors[] {\n            directorName,\n            directorTitle,\n            image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n            description[] {\n                ...,\n                \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n            },\n        },\n    },\n},\n    _type == 'donation' => {\n    ...,\n    title,\n    redHeader,\n    plainHeader,\n    description[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n    },\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    stats {\n        ...,\n        years {\n            ...,\n            number,\n            text,\n        },\n        chapters {\n            ...,\n            number,\n            text,\n        },\n        studentsSupported {\n            ...,\n            number,\n            text,\n        },\n    }\n},\n    _type == 'whatWeDo' => {\n    ...,\n    title,\n    header,\n    description,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n},\n    _type == 'ourProgram' => {\n    ...,\n    title,\n    header,\n    description,\n    missionHeader,\n    mission[] {\n        ...,\n        number,\n        text,\n    },\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n},\n    _type == 'ourHistory' => {\n    ...,\n    title,\n    header,\n    timelineItems[] {\n        ...,\n        header,\n        description,\n        icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n        year {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    }\n},\n    _type == 'ourCurriculum' => {\n    ...,\n    title,\n    header,\n    curriculumCards[] {\n        ...,\n        title,\n        icon {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n        description[] {\n            ...,\n            \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n,\n        },\n        image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n        carousel[] {\n            ...,\n            photo {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n            caption,\n        },\n    }\n},\n    _type == 'programmingBlock' => {\n    ...,\n    title,\n    header,\n    programmingCards[] {\n        ...,\n        title,\n        description,\n        image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    }\n},\n    _type == 'howCanIHelpBlock' => {\n    ...,\n    title,\n    header,\n    description,\n    image {\n    caption,\n    'assetId': asset->_id,\n    'assetPath': asset->path,\n    'aspectRatio': asset->metadata.dimensions.aspectRatio,\n},\n    link {..., \n  _type == \"link\" => {\n    ...,\n    internalLink->{_type,slug,title}\n  }\n},\n}\n},\n        SEO {\n    ...,\n    'openGraphImage': openGraphImage.asset->url,\n},\n    }\n}": HomepageQueryResult;
