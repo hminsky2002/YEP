@@ -17,8 +17,15 @@ type Props = {
 };
 
 export default function Chapter({ content }: Props) {
-  const { header, image, timeline, imageGallery, contactLink, applyLink } =
-    content || {};
+  const {
+    header,
+    image,
+    timeline,
+    imageGallery,
+    contactLink,
+    applyLink,
+    timelineHeight,
+  } = content || {};
   const [lightboxImage, setLightboxImage] = useState<string | null>(null);
 
   useEffect(() => {
@@ -156,25 +163,28 @@ export default function Chapter({ content }: Props) {
 
       <div className="flex-col lg:flex">
         <div className="flex flex-col gap-4 lg:items-center lg:justify-center">
-          <h1 className="mx-auto my-[100px] w-fit underline decoration-1 underline-offset-[20px]">
+          <h1 className="mx-auto my-[80px] w-fit underline decoration-1 underline-offset-[20px]">
             A Chapter History
           </h1>
 
-          <div className="timeline flex flex-col items-center justify-center gap-32 pb-[100px] lg:flex-row lg:items-start">
-            <div className="absolute h-4/5 w-1 bg-black lg:mt-20 lg:h-1 lg:w-4/5"></div>
+          <div className="timeline flex flex-col items-center justify-center gap-32 pb-[80px] lg:flex-row lg:items-center">
+            <div className="absolute h-4/5 w-1 max-w-[1300px] bg-black lg:h-1 lg:w-3/5"></div>
             {timeline &&
               timeline.map((timelineItem, index) => (
                 <div
-                  className={`timeline-item relative mb-2 w-[340px] border-[5px] border-yellow bg-white-yellow text-center lg:w-[400px] lg:max-w-[600px] lg:border lg:border-black`}
+                  className={`timeline-item relative mb-2 w-[340px] border border-black bg-white-yellow text-center lg:w-[400px]`}
                   key={`timeline-${index}`}
+                  style={{
+                    height: `${timelineHeight ? `${timelineHeight}px` : "325px"}`,
+                  }}
                 >
-                  <div className="pointer-events-none absolute -right-2 -top-2 size-full border border-black lg:hidden" />
-
-                  <div className="mx-8 mt-4 flex flex-col gap-4">
-                    <h3 className="font-semibold">{timelineItem.header}</h3>
-                    <h2 className="font-bold text-red">
+                  <div className="mx-8 mt-8 flex flex-col gap-4">
+                    <h4 className="lg:h4 text-[20px] font-semibold">
+                      {timelineItem.header}
+                    </h4>
+                    <h3 className="text-[20px] font-bold text-red lg:text-[23px]">
                       {timelineItem.subHeader}
-                    </h2>
+                    </h3>
                     <div className="mb-4">
                       <CustomPortableText
                         value={timelineItem.description as PortableTextBlock[]}

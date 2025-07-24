@@ -111,6 +111,7 @@ const chapterComponent = `{
         },
         
     },
+    timelineHeight,
     imageGallery[] {
         ...,
         image ${imageData},

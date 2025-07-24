@@ -87,6 +87,12 @@ export const chapterComponent = defineType({
       ],
     }),
     defineField({
+      name: "timelineHeight",
+      title: "Timeline Height",
+      description: "Height for the timeline block in pixels",
+      type: "number",
+    }),
+    defineField({
       name: "imageGallery",
       title: "Image Gallery",
       type: "array",

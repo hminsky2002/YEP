@@ -3730,6 +3730,13 @@
         },
         "optional": true
       },
+      "timelineHeight": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
       "imageGallery": {
         "type": "objectAttribute",
         "value": {
