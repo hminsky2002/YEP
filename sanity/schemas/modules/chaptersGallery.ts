@@ -51,7 +51,7 @@ export const chaptersGallery = defineType({
           ],
           preview: {
             select: {
-              title: "chapterTitle",
+              title: "link.text",
             },
           },
         },

@@ -1,7 +1,15 @@
+"use client";
 import Image from "next/image";
 import type { ChaptersGalleryQueryResult } from "@/sanity.types";
 import { Link } from "./Link";
 import { LinkValue } from "sanity-plugin-link-field";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
 type ChaptersGalleryProps = {
   content: ChaptersGalleryQueryResult["chaptersGallery"];
 };
@@ -20,37 +28,54 @@ export default function ChaptersGallery({ content }: ChaptersGalleryProps) {
             <p>{subHeader}</p>
           </div>
         </div>
-        <div className="mt-[40px] flex flex-col items-center gap-6 xl:flex-row">
+        <Swiper
+          modules={[Navigation, Autoplay]}
+          spaceBetween={24}
+          slidesPerView={1}
+          navigation
+          autoplay={{ delay: 3500, disableOnInteraction: false }}
+          breakpoints={{
+            1265: {
+              slidesPerView: 5,
+              spaceBetween: 24,
+              effect: "slide",
+            },
+          }}
+          className="swiper-custom mt-[40px] w-[233px] xl:w-[1265px]"
+        >
           {chapters?.map((chapter) => {
             return (
-              <div key={chapter._key}>
-                {chapter.image?.assetPath && (
-                  <div>
-                    <div className="flex flex-col">
-                      <Image
-                        src={chapter.image.assetPath}
-                        alt={chapter.image.caption || ""}
-                        width={500}
-                        height={500}
-                        className="h-[242px] w-[233px]"
-                      />
-                    </div>
-                    <div className="w-[233px] rounded-b-full bg-orange py-[8px]">
-                      <Link
-                        link={chapter.link as LinkValue}
-                        className="text-center"
-                      >
-                        <div className="text-[15px] underline underline-offset-4">
-                          {chapter.link?.text}
+              <SwiperSlide key={chapter._key} className="rounded-b-full">
+                <div key={chapter._key}>
+                  {chapter.image?.assetPath && (
+                    <div>
+                      <div className="flex w-[233px] flex-col">
+                        <Image
+                          src={chapter.image.assetPath}
+                          alt={chapter.image.caption || ""}
+                          width={500}
+                          height={500}
+                          className="h-[242px]"
+                        />
+                        <div className="rounded-b-full bg-orange py-[8px]">
+                          <Link
+                            link={chapter.link as LinkValue}
+                            className="text-center"
+                          >
+                            <div className="text-[15px] underline underline-offset-4">
+                              {chapter.link?.text}
+                            </div>
+                          </Link>
                         </div>
-                      </Link>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+              </SwiperSlide>
             );
           })}
-        </div>
+        </Swiper>
+
         <div className="mt-[40px] flex flex-col items-center justify-center gap-6 xl:flex-row xl:gap-32">
           <Link
             link={chaptersLink as LinkValue}
