@@ -224,7 +224,7 @@ export default function OurCurriculum({ content }: OurCurriculumProps) {
   const { header, curriculumCards } = content || {};
 
   return (
-    <div className="flex w-full flex-col bg-orange py-[140px] transition-all duration-300">
+    <div className="flex w-full flex-col bg-orange py-[140px] transition-all duration-300 overflow-x-hidden">
       <div className="mx-auto flex w-full flex-col items-center justify-center gap-[100px] lg:flex-row">
         <div className="flex flex-col items-center justify-center">
           <h1 className="font-bold underline decoration-1 underline-offset-[20px]">
