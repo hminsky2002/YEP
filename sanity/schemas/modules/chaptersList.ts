@@ -41,7 +41,8 @@ export const chaptersList = defineType({
             defineField({
               name: "descriptionColor",
               title: "Background Color",
-              description: "Background color for chapterDescription",
+              description:
+                "Background color for chapterDescription. Values typically alternate between yellow: #FFE974 and Orange: #E55937, but can be any color.",
               type: "color",
               validation: (Rule) => Rule.required(),
             }),
@@ -70,7 +71,6 @@ export const chaptersList = defineType({
                 enableText: true,
               },
             }),
-            
           ],
         }),
       ],
