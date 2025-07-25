@@ -90,7 +90,8 @@ export const chapterComponent = defineType({
     defineField({
       name: "timelineHeight",
       title: "Timeline Height",
-      description: "Height for the timeline block in pixels",
+      description:
+        "Height for the timeline block in pixels. Default is 325, and likely value should be within 100 pixels of that range ",
       type: "number",
     }),
     defineField({
