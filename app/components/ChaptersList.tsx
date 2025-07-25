@@ -49,9 +49,10 @@ export default function ChaptersList({ content }: ChaptersListProps) {
                 className={`top-[20%] flex flex-col items-center justify-center shadow-lg lg:absolute lg:h-[349px] lg:w-[560px] ${isEven ? "left-[80%] rounded-bl-[5rem] lg:rounded-tr-[5rem]" : "right-[80%] rounded-br-[5rem] lg:rounded-tl-[5rem]"}`}
                 style={{ backgroundColor: chapter.descriptionColor || "#fff" }}
               >
-                <div className="mx-auto flex max-w-[406px] items-center justify-center p-8 text-center lg:mt-[-50px]">
+                <div className="mx-auto flex max-w-[406px] items-center justify-center p-8 text-center text-[20px]">
                   <CustomPortableText
                     value={chapter.description as PortableTextBlock[]}
+                    className="text-[15px] font-normal leading-[225.1%] tracking-normal lg:text-[18px]"
                   />
                 </div>
                 <div

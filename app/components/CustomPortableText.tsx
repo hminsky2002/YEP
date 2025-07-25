@@ -6,7 +6,13 @@ import {
 
 import { Link } from "./Link";
 
-export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
+export function CustomPortableText({
+  value,
+  className,
+}: {
+  value: PortableTextBlock[];
+  className?: string;
+}) {
   const components: PortableTextComponents = {
     block: {
       h1: ({ children }) => {
@@ -22,7 +28,11 @@ export function CustomPortableText({ value }: { value: PortableTextBlock[] }) {
         return <h4 className={"h4"}>{children}</h4>;
       },
       normal: ({ children }) => {
-        return <p className={"body leading-[225.1%]"}>{children}</p>;
+        return (
+          <p className={className ? className : "body leading-[225.1%]"}>
+            {children}
+          </p>
+        );
       },
       yellowTestimonial: ({ children }) => {
         return (
