@@ -70,12 +70,7 @@ export const chaptersList = defineType({
                 enableText: true,
               },
             }),
-            defineField({
-              name: "linkColor",
-              title: "Link Color",
-              type: "color",
-              validation: (Rule) => Rule.required(),
-            }),
+            
           ],
         }),
       ],
