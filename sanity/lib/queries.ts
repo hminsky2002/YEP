@@ -134,7 +134,6 @@ const chaptersList = `{
         description,
         'descriptionColor': descriptionColor.hex,
         image ${imageData},
-        'linkColor': linkColor.hex,
         link {..., ${linkTypeData}},
     }
 }`;

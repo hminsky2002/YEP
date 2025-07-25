@@ -63,6 +63,7 @@ export const chapterComponent = defineType({
             defineField({
               name: "subHeader",
               title: "Sub Header",
+              description: "Red text in timeline item",
               type: "string",
             }),
             defineField({
