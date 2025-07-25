@@ -41,7 +41,7 @@ export function OpenerWithCarousel({ content }: OpenerWithCarouselProps) {
         >
           {photos.map((photo) => (
             <SwiperSlide key={photo.assetPath} className="">
-              <div className="relative h-[500px] w-full lg:h-[663px]">
+              <div className="relative h-[300px] md:h-[400px] w-full lg:h-[663px]">
                 <Image
                   src={photo.assetPath}
                   fill
