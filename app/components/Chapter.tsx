@@ -109,7 +109,7 @@ export default function Chapter({ content }: Props) {
   };
 
   return (
-    <div className="flex flex-col lg:mt-[80px]">
+    <div className="flex flex-col bg-yellow lg:mt-[80px]">
       <div className="desktop-chapter-heading hidden bg-white py-[100px] lg:flex">
         <div className="mx-auto flex items-center justify-center">
           <div className="flex flex-col">
@@ -136,12 +136,12 @@ export default function Chapter({ content }: Props) {
           </div>
         </div>
       </div>
-      <div className="mobile-chapter-heading h-screen bg-white lg:hidden">
-        <div className="h-full after:absolute after:inset-0 after:z-0 after:bg-black after:bg-opacity-[25%]">
+      <div className="mobile-chapter-heading h-screen bg-yellow lg:hidden">
+        <div className="relative h-full after:absolute after:inset-0 after:z-0 after:bg-black after:bg-opacity-[25%]">
           {image?.assetPath && (
             <Image
-              src={image?.assetPath}
-              alt={image?.caption || ""}
+              src={image.assetPath}
+              alt={image.caption || ""}
               fill
               className="h-screen object-cover"
             />
@@ -149,12 +149,14 @@ export default function Chapter({ content }: Props) {
 
           <div className="absolute left-[5%] top-1/2 z-10">
             <div className="flex flex-col">
-              <div className="text-[60px] font-bold leading-[125%] text-white">
+              <div className="text-[50px] font-bold leading-[80%] text-white">
                 YEP!
               </div>
-              <div className="flex flex-row items-center gap-4 fill-white">
-                <AtSymbol fill="white" />
-                <div className="text-[80px] font-bold text-red">{header}</div>
+              <div className="flex max-w-[380px] flex-row items-start gap-4">
+                <div className="text-[65px] leading-[100%] text-white">@</div>
+                <div className="max-w-[280px] whitespace-normal break-words text-[65px] font-bold leading-[100%] text-red md:max-w-[450px]">
+                  {header}
+                </div>
               </div>
             </div>
           </div>
@@ -201,11 +203,11 @@ export default function Chapter({ content }: Props) {
         <div className="flex flex-row items-center justify-center lg:gap-16">
           <Link
             link={contactLink as LinkValue}
-            className="border-r-none lg:0 flex h-[80px] w-[200px] items-center justify-center rounded-l-full border-y-2 border-l-2 border-black bg-orange px-8 py-[28px] text-center text-[20px] font-bold text-black hover:opacity-50 lg:h-auto lg:w-[226px] lg:rounded-full lg:border-2 lg:py-0 lg:text-[23px]"
+            className="border-r-none lg:0 flex h-[80px] w-[180px] items-center justify-center rounded-l-full border-y-2 border-l-2 border-black bg-orange px-8 py-[28px] text-center text-[20px] font-bold text-black hover:opacity-50 lg:h-auto lg:w-[226px] lg:rounded-full lg:border-2 lg:py-0 lg:text-[23px]"
           ></Link>
           <Link
             link={applyLink as LinkValue}
-            className="border-l-none flex h-[80px] w-[200px] items-center justify-center rounded-r-full border-y-2 border-r-2 border-black bg-red py-[28px] text-center text-[20px] font-bold text-white hover:opacity-50 lg:h-auto lg:w-[226px] lg:rounded-full lg:border-2 lg:py-0 lg:text-[23px]"
+            className="border-l-none flex h-[80px] w-[180px] items-center justify-center rounded-r-full border-y-2 border-r-2 border-black bg-red py-[28px] text-center text-[20px] font-bold text-white hover:opacity-50 lg:h-auto lg:w-[226px] lg:rounded-full lg:border-2 lg:py-0 lg:text-[23px]"
           ></Link>
         </div>
       </div>
@@ -216,7 +218,7 @@ export default function Chapter({ content }: Props) {
             Meet Our Team
           </h1>
           <div className="relative h-[900px] w-full">
-            <div className="grid size-full gap-2 border-orange">
+            <div className="grid size-full gap-2 overflow-hidden border-orange">
               {imageGallery?.map((galleryImage, index) => {
                 if (
                   galleryImage.imageColumnEnd &&

@@ -3338,14 +3338,6 @@
                 },
                 "optional": true
               },
-              "linkColor": {
-                "type": "objectAttribute",
-                "value": {
-                  "type": "inline",
-                  "name": "color"
-                },
-                "optional": true
-              },
               "_type": {
                 "type": "objectAttribute",
                 "value": {
