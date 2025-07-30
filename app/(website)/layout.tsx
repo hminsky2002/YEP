@@ -25,11 +25,11 @@ export async function generateMetadata(): Promise<Metadata> {
       stega: false,
     })) || {};
 
-  const title = SEO?.metaTitle || "Rhythm & Motion";
+  const title = SEO?.metaTitle || "YEP - Young Entrepreneurs Program";
   const description = SEO?.metaDescription || "";
 
   return {
-    metadataBase: new URL("https://www.rhythmandmotion.com/"),
+    metadataBase: new URL("https://www.yepprogram.org/"),
     title: {
       template: `%s | ${title}`,
       default: title,
@@ -38,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: SEO?.openGraphTitle,
       description: SEO?.openGraphDescription,
-      url: "https://www.rhythmandmotion.com/",
+      url: "https://www.yepprogram.org/",
       siteName: title,
       images: [
         {
