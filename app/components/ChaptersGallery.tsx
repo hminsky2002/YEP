@@ -35,13 +35,18 @@ export default function ChaptersGallery({ content }: ChaptersGalleryProps) {
           navigation
           autoplay={{ delay: 3500, disableOnInteraction: false }}
           breakpoints={{
+            756: {
+              slidesPerView: 3,
+              spaceBetween: 24,
+              effect: "slide",
+            },
             1265: {
               slidesPerView: 5,
               spaceBetween: 24,
               effect: "slide",
             },
           }}
-          className="swiper-custom mt-[40px] w-[233px] xl:w-[1265px]"
+          className="swiper-custom mt-[40px] w-[233px] md:w-[756px] xl:w-[1265px]"
         >
           {chapters?.map((chapter) => {
             return (
